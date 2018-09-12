@@ -11,7 +11,7 @@ class Greeting extends React.Component {
     if (this.props.currentUser) {
       header = (
         <div>
-          <h1>Sup, {this.props.currentUser.name}</h1>
+          <h1>Sup, {this.props.currentUser.username}</h1>
           <button onClick={this.props.logout}>Log Out</button>
         </div>
       );

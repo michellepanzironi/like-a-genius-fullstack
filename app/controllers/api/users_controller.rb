@@ -1,4 +1,4 @@
-class Api::ActionController < ApplicationController
+class Api::UsersController < ApplicationController
 
   def index
     @users = User.all
@@ -16,7 +16,7 @@ class Api::ActionController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.save!
-      login!(user)
+      login!(@user)
       render 'api/users/show'
     else
       render json: @user.errors.full_messages, status: 421

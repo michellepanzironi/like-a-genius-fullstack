@@ -6,9 +6,12 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  after_initialize :ensure_session_token
+
   def self.find_by_credentials(username, password)
-    @user = User.find_by(username)
-    return @user if @user && @user.is_password?(password)
+    user = User.find_by(username: username)
+    return nil unless user
+    return user if user && user.is_password?(password)
   end
 
   def reset_token!
