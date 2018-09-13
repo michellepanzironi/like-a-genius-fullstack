@@ -18,13 +18,21 @@ class Greeting extends React.Component {
     } else {
       header = (
         <div>
-          <Link to='/signup'>Sign Up</Link>
-          <Link to='/login'>Login</Link>
+          <button
+            className='nav-button'
+            onClick={this.props.openSignup}>
+            SIGN UP
+          </button>
+          <button
+            className='nav-button'
+            onClick={this.props.openSignin}>
+            SIGN IN
+          </button>
         </div>
       )
     }
     return (
-      <div>
+      <div className="nav-header">
         { header }
       </div>
     )

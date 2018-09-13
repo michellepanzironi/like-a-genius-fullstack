@@ -1,6 +1,7 @@
 import Greeting from './greeting.jsx';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
+import { openModal } from '../../actions/modal_actions';
 
 const msp = state => ({
   currentUser: state.entities.users[state.session.id]
@@ -8,7 +9,11 @@ const msp = state => ({
 
 const mdp = (dispatch) => {
   return {
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    openSignin: () => {
+      return dispatch(openModal('SIGN IN'));
+    },
+    openSignup: () => dispatch(openModal('SIGN UP'))
   };
 };
 
