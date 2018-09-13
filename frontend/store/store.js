@@ -11,7 +11,7 @@ const defaultState = {
     users: {},
   },
   errors: {
-    session: ["Invalid credentials"]
+    session: []
   }
 };
 

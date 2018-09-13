@@ -6,9 +6,23 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <link href="https://fonts.googleapis.com/css?family=Mukta" rel="stylesheet">
+
   </head>
 
   <body>
     <%= yield %>
+    <script>
+      $(function(){
+        $("body").on("click", ".js-modal-open", function(event){
+          event.preventDefault();
+          $(".modal").addClass("is-open");
+        });
+        $("body").on("click", ".js-modal-close", function(event){
+          event.preventDefault();
+          $(".modal").removeClass("is-open");
+        });
+      });
+    </script>
   </body>
 </html>
