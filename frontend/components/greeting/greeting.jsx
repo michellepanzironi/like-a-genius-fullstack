@@ -12,7 +12,10 @@ class Greeting extends React.Component {
       header = (
         <div>
           <h1>Sup, {this.props.currentUser.username}</h1>
-          <button onClick={this.props.logout}>Log Out</button>
+          <button
+            onClick={this.props.logout}
+            className="nav-button">Log Out
+          </button>
         </div>
       );
     } else {

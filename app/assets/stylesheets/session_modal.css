@@ -34,14 +34,6 @@
   top: 10%;
 }
 
-.nav-button {
-  border: none;
-}
-
-.nav-button:hover {
-  border-bottom: 7px solid #fb3785;
-}
-
 h1 {
   font-family: 'Mukta', sans-serif;
 }
