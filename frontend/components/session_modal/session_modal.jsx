@@ -23,10 +23,6 @@ const SessionModal = props => {
     <div
       className="session-modal-background"
       onClick={props.closeModal}>
-      <div
-        onClick={props.closeModal}
-        className="close-x">&times;
-      </div>
       <div className="session-modal-child" onClick={e => e.stopPropagation()}>
         { renderComponent }
       </div>

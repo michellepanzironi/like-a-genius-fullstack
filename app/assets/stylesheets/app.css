@@ -2,6 +2,6 @@ a:link {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, button, input {
+h1, h2, h3, h4, button, input, p, a, div {
   font-family: 'Mukta', sans-serif;
 }

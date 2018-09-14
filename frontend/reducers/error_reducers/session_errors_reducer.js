@@ -1,4 +1,4 @@
-import { RECEIVE_ERRORS, RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { RECEIVE_ERRORS, RECEIVE_CURRENT_USER } from '../../actions/session_actions';
 import { merge } from 'lodash';
 
 const _nullErrors = [];
