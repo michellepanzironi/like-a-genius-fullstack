@@ -71,6 +71,6 @@ nav {
 .nav-link {
   font-family: 'Mukta', sans-serif;
   color: #ffffff;
-  padding-left: 25px;
-  top: 10px;
+  padding-right: 25px;
+  font-weight: 100;
 }

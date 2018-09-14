@@ -383,19 +383,18 @@ var Navbar = function Navbar(props) {
     className: "navbar-bottom"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "nav-link",
-    to: "#/artists/"
-  }, "ARTISTS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "nav-link",
-    to: "#/songs/"
-  }, "SONGS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    to: "artists/"
+  }, "ALL ARTISTS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "nav-link"
   }, " | "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "nav-link",
-    to: "#/songs/new"
-  }, "ADD SONG"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "songs/"
+  }, "ALL SONGS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "nav-link"
+  }, " | "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "nav-link",
-    to: "#/artists/new"
-  }, "ADD ARTIST")));
+    to: "songs/new"
+  }, "ADD A SONG")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Navbar);
@@ -697,9 +696,6 @@ var SessionModal = function SessionModal(props) {
     className: "session-modal-background",
     onClick: props.closeModal
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: props.closeModal,
-    className: "close-x"
-  }, "\xD7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "session-modal-child",
     onClick: function onClick(e) {
       return e.stopPropagation();
