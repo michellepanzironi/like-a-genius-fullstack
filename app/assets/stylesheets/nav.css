@@ -1,0 +1,76 @@
+nav {
+  justify-content: center;
+  display: block;
+}
+
+.navbar-top {
+  background-color: #ffff65;
+  display: flex;
+  justify-content: space-between;
+  height: 45px;
+}
+
+.nav-logo {
+  font-family: 'Mukta', sans-serif;
+  color: #ffff65;
+  text-shadow: -2px 3px 0 black;
+  letter-spacing: 4px;
+  font-weight: 700;
+  display: block;
+  margin: 0;
+  font-size: 21px;
+  margin-left: 70px;
+  min-width: 179px;
+  position: absolute;
+}
+
+.navbar-top a {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-header {
+  font-family: 'Mukta', sans-serif;
+}
+
+.nav-header div {
+  display: flex;
+}
+
+.nav-greeting {
+  display: flex;
+}
+
+.nav-name {
+  font-weight: bolder;
+  margin-top: 9px;
+  text-transform: uppercase;
+  padding-right: 8px;
+}
+
+.nav-button {
+  border: none;
+  display: flex;
+  border-bottom: 7px solid #ffff65;
+  margin-top: 8px;
+  min-width: 55px;
+}
+
+.nav-button:hover {
+  border-bottom: 7px solid #fb3785;
+}
+
+.navbar-bottom {
+  background-color: black;
+  color: #ffffff;
+  height: 40px;
+  text-align: center;
+  align-items: center;
+}
+
+.nav-link {
+  font-family: 'Mukta', sans-serif;
+  color: #ffffff;
+  padding-left: 25px;
+  top: 10px;
+}

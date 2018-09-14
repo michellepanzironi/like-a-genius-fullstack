@@ -5,7 +5,7 @@ import SignupFormContainer from '../session_form/signup_form_container';
 const SessionModal = props => {
   if (!props.modal) {
     return null;
-  } //modal is set to closed, ui slice of state points to null
+  }
 
   let renderComponent;
   switch (props.modal) {
