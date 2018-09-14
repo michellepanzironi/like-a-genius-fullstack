@@ -9,9 +9,12 @@ const Navbar = props => {
   return (
     <nav className="navbar">
       <div className="navbar-top">
-        <section className="nav-logo">
-          <Link to="/">LIKE A GENIUS</Link>
-        </section>
+        <div></div>
+        <Link to="/">
+          <h1 className="nav-logo">
+            LIKE A GENIUS
+          </h1>
+        </Link>
         <section className="nav-greeting">
           <GreetingContainer />
         </section>
@@ -19,7 +22,7 @@ const Navbar = props => {
       <div className="navbar-bottom">
         <Link className="nav-link" to="#/artists/">ARTISTS</Link>
         <Link className="nav-link" to="#/songs/">SONGS</Link>
-        <span> | </span>
+        <span className="nav-link"> | </span>
         <Link className="nav-link" to="#/songs/new">ADD SONG</Link>
         <Link className="nav-link" to="#/artists/new">ADD ARTIST</Link>
       </div>

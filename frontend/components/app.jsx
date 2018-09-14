@@ -10,7 +10,6 @@ const App = () => (
   <div>
     <header>
       <SessionModal />
-      <h1>Like, a genius or something</h1>
       <Navbar />
     </header>
   </div>

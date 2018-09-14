@@ -34,10 +34,6 @@
   top: 10%;
 }
 
-h1 {
-  font-family: 'Mukta', sans-serif;
-}
-
 .modal.is-open {
   display: block;
   background-color: #e9e9e9;

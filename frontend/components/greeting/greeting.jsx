@@ -11,7 +11,9 @@ class Greeting extends React.Component {
     if (this.props.currentUser) {
       header = (
         <div>
-          <h1>Sup, {this.props.currentUser.username}</h1>
+          <div className="nav-name">
+            {this.props.currentUser.username}
+          </div>
           <button
             onClick={this.props.logout}
             className="nav-button">Log Out
@@ -22,12 +24,12 @@ class Greeting extends React.Component {
       header = (
         <div>
           <button
-            className='nav-button'
+            className="nav-button"
             onClick={this.props.openSignup}>
             SIGN UP
           </button>
           <button
-            className='nav-button'
+            className="nav-button"
             onClick={this.props.openSignin}>
             SIGN IN
           </button>
