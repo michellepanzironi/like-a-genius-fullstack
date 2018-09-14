@@ -22,6 +22,16 @@ bootsriley = User.create(
   password: 'bootsriley',
   img_url: 'https://pbs.twimg.com/profile_images/749636414082469888/aC2LO3cR_400x400.jpg'
 )
+katya = User.create(
+  username: 'katya',
+  password: 'yourdad',
+  img_url: 'https://pbs.twimg.com/profile_images/1002621040512544768/HAJXfZtJ_400x400.jpg'
+)
+trixie = User.create(
+  username: 'trixiemattel',
+  password: 'ohwow',
+  img_url: 'https://pre00.deviantart.net/fd5c/th/pre/i/2018/062/4/6/trixie_mattel_iq_kitty_girl_rpdr_all_stars_3_by_sebaseroam-dc4ulyv.jpg'
+)
 
 # ----ARTISTS----
 
