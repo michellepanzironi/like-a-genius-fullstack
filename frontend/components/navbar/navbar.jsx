@@ -20,11 +20,11 @@ const Navbar = props => {
         </section>
       </div>
       <div className="navbar-bottom">
-        <Link className="nav-link" to="artists/">ALL ARTISTS</Link>
+        <Link className="nav-link" to="/artists">ALL ARTISTS</Link>
         <span className="nav-link"> | </span>
-        <Link className="nav-link" to="songs/">ALL SONGS</Link>
+        <Link className="nav-link" to="/songs">ALL SONGS</Link>
         <span className="nav-link"> | </span>
-        <Link className="nav-link" to="songs/new">ADD A SONG</Link>
+        <Link className="nav-link" to="/songs/new">ADD A SONG</Link>
       </div>
     </nav>
   );

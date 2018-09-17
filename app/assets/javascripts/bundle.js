@@ -242,7 +242,7 @@ var login = function login(user) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["login"](user).then(function (res) {
       dispatch(receiveCurrentUser(res));
     }, function (errors) {
-      dispatch(receiveErrors(errors));
+      dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -251,7 +251,7 @@ var logout = function logout() {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function (res) {
       dispatch(logoutCurrentUser());
     }, function (errors) {
-      dispatch(receiveErrors(errors));
+      dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -260,7 +260,7 @@ var signup = function signup(user) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (res) {
       dispatch(receiveCurrentUser(res));
     }, function (errors) {
-      dispatch(receiveErrors(errors));
+      dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -904,17 +904,17 @@ var Navbar = function Navbar(props) {
     className: "navbar-bottom"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "nav-link",
-    to: "artists/"
+    to: "/artists"
   }, "ALL ARTISTS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "nav-link"
   }, " | "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "nav-link",
-    to: "songs/"
+    to: "/songs"
   }, "ALL SONGS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "nav-link"
   }, " | "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "nav-link",
-    to: "songs/new"
+    to: "/songs/new"
   }, "ADD A SONG")));
 };
 
