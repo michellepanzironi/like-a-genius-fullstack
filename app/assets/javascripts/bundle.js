@@ -567,8 +567,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 var FrontPage =
 /*#__PURE__*/
-function (_Component) {
-  _inherits(FrontPage, _Component);
+function (_React$Component) {
+  _inherits(FrontPage, _React$Component);
 
   function FrontPage(props) {
     var _this;
@@ -639,7 +639,7 @@ function (_Component) {
   }]);
 
   return FrontPage;
-}(Component);
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (FrontPage);
 

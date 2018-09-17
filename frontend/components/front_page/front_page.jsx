@@ -3,7 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import FrontPageItemContainer from './front_page_item/front_page_item_container';
 import { isEmpty } from 'lodash';
 
-class FrontPage extends Component {
+class FrontPage extends React.Component {
   constructor(props) {
     super(props);
     if(isEmpty(this.props.newestSongs)) this.props.fetchNewestSongs();
