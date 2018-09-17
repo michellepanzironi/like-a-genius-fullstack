@@ -6,11 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'faker'
 
 # ----USERS----
 
-User.destroy_all
+# User.destroy_all
 
 guest = User.create(
   username: 'guest',
@@ -118,7 +117,7 @@ brain_thrust_mastery = Album.create(
   artist_id: 8,
   img_url: 'https://imgur.com/8d1zNpu'
 )
-99_9_% = Album.create(
+ninety_nine_point_nine_percent = Album.create(
   title: '99.9%',
   artist_id: 9,
   img_url: 'https://imgur.com/HUxorRy'

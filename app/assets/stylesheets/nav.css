@@ -74,3 +74,7 @@ nav {
   padding-right: 25px;
   font-weight: 100;
 }
+
+.nav-link:hover {
+  color: #ffff65;
+}
