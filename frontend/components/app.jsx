@@ -7,6 +7,9 @@ import SessionModal from './session_modal/session_modal_container';
 import Navbar from './navbar/navbar';
 import Footer from './footer/footer'
 import FrontPageContainer from './front_page/front_page_container';
+import SongShowContainer from './songs/song_show/song_show_container';
+import EditSongFormContainer from './songs/song_form/edit_song_form_container';
+import CreateSongFormContainer from './songs/song_form/create_song_form_container';
 
 const App = () => (
   <div>
@@ -17,6 +20,8 @@ const App = () => (
     <main className="main">
       <Switch>
         <Route exact path="/" component={FrontPageContainer} />
+        <Route exact path="/songs/:songId/edit" component={EditSongFormContainer} />
+        <Route exact path="/songs/new" component={CreateSongFormContainer} />
       </Switch>
     </main>
     <footer>
