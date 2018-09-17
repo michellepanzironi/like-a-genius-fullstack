@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import FrontPageItemContainer from './front_page_item/front_page_item_container';
 import { isEmpty } from 'lodash';
