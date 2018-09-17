@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { login } from '../../actions/session_actions';
+import { login, receiveErrors } from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { withRouter } from 'react-router-dom';
 import SessionForm from './session_form';
@@ -14,7 +14,9 @@ const mdp = dispatch => ({
 
   action: user => dispatch(login(user)),
   openModal: () => dispatch(openModal('SIGN UP')),
-  closeModal: () => dispatch(closeModal())
+  closeModal: () => dispatch(closeModal()),
+  loginGuest: () => dispatch(login({ username: 'guest', password: 'guest123' })),
+  clearErrors: () => dispatch(receiveErrors(clear))
 });
 
 export default withRouter(connect(msp, mdp)(SessionForm));

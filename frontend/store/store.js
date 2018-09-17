@@ -15,11 +15,20 @@ const defaultState = {
   }
 };
 
+const middleware = [thunk];
+if (process.env.NODE_ENV !== 'production') {
+  const { logger } = require('redux-logger');
+  middleware.push(logger);
+}
+
+
 const configureStore = (preloadedState = defaultState) => {
-  return createStore(
+  return (
+    createStore(
     rootReducer,
     preloadedState,
-    applyMiddleware(thunk)
+    applyMiddleware(...middleware)
+    )
   );
 };
 
