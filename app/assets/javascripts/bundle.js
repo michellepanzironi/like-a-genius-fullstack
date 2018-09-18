@@ -2165,10 +2165,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchArtists", function() { return fetchArtists; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchArtist", function() { return fetchArtist; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createArtist", function() { return createArtist; });
-var fetchArtists = function fetchArtists() {
+var fetchArtists = function fetchArtists(data) {
   return $.ajax({
     method: 'GET',
-    url: '/api/artists'
+    url: '/api/artists',
+    data: {
+      data: data
+    }
   });
 };
 var fetchArtist = function fetchArtist(id) {
@@ -2242,10 +2245,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSong", function() { return createSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateSong", function() { return updateSong; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSong", function() { return deleteSong; });
-var fetchSongs = function fetchSongs() {
+var fetchSongs = function fetchSongs(data) {
   return $.ajax({
     method: 'GET',
-    url: '/api/songs'
+    url: '/api/songs',
+    data: {
+      data: data
+    }
   });
 };
 var fetchNewestSongs = function fetchNewestSongs(data) {
@@ -2276,9 +2282,7 @@ var createSong = function createSong(song) {
   return $.ajax({
     method: 'POST',
     url: '/api/songs',
-    data: {
-      song: song
-    }
+    song: song
   });
 };
 var updateSong = function updateSong(song) {
