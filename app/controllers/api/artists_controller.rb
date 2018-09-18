@@ -6,7 +6,7 @@ class Api::ArtistsController < ApplicationController
   end
 
   def show
-    @artist = find(params[:id])
+    @artist = Artist.find(params[:id])
     @songs = @artist.songs
     @albums = @artist.albums
     render :show

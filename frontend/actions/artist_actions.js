@@ -2,7 +2,7 @@ import * as ArtistApiUtil from '../util/artist_api_util';
 
 export const RECEIVE_ALL_ARTISTS = 'RECEIVE_ALL_ARTISTS';
 export const RECEIVE_ARTIST = 'RECEIVE_ARTIST';
-export const RECEIVE_ARTIST_ERRORS = 'RECEIVE_ARTISTS_ERRORS';
+export const RECEIVE_ARTIST_ERRORS = 'RECEIVE_ARTIST_ERRORS';
 
 export const receiveAllArtists = artists => {
   return {

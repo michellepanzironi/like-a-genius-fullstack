@@ -108,7 +108,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_ALL_ARTISTS = 'RECEIVE_ALL_ARTISTS';
 var RECEIVE_ARTIST = 'RECEIVE_ARTIST';
-var RECEIVE_ARTIST_ERRORS = 'RECEIVE_ARTISTS_ERRORS';
+var RECEIVE_ARTIST_ERRORS = 'RECEIVE_ARTIST_ERRORS';
 var receiveAllArtists = function receiveAllArtists(artists) {
   return {
     type: RECEIVE_ALL_ARTISTS,
@@ -494,6 +494,68 @@ var App = function App() {
 
 /***/ }),
 
+/***/ "./frontend/components/artists/artist_bar.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/artists/artist_bar.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+var ArtistBar = function ArtistBar(ownProps) {
+  var song = ownProps.song || {};
+  var artist = ownProps.artist;
+  var barInfo;
+
+  if (Object(lodash__WEBPACK_IMPORTED_MODULE_3__["isEmpty"])(song)) {
+    barInfo = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "song-bar-info"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+      className: "song-bar-artist"
+    }, artist.name));
+  } else {
+    barInfo = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "song-bar-info"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+      className: "song-bar-title"
+    }, song.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+      className: "song-bar-artist"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      to: "/artists/".concat(artist.id)
+    }, artist.name)));
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "artist-bar"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "artist-bar-background"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: song.album_cover,
+    className: "artist-bar-image"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "artist-image-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "artist-image",
+    src: artist.img_url
+  }), barInfo));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(ArtistBar));
+
+/***/ }),
+
 /***/ "./frontend/components/artists/artist_index/artist_index.jsx":
 /*!*******************************************************************!*\
   !*** ./frontend/components/artists/artist_index/artist_index.jsx ***!
@@ -651,6 +713,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(React__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
+/* harmony import */ var _artist_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../artist_bar */ "./frontend/components/artists/artist_bar.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -671,8 +734,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
- // import { isEmpty } from 'lodash';
-//import ArtistBar from '../../artists/artist_bar';
+
+
 
 var ArtistShow =
 /*#__PURE__*/
@@ -686,8 +749,8 @@ function (_React$Component) {
   }
 
   _createClass(ArtistShow, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       this.props.fetchArtist(this.props.match.params.artistId);
     }
   }, {
@@ -695,7 +758,9 @@ function (_React$Component) {
     value: function render() {
       return React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background"
-      }, React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_artist_bar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        artist: this.props.artist
+      }), React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "foreground"
       }, React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: ""
@@ -733,7 +798,7 @@ __webpack_require__.r(__webpack_exports__);
 var msp = function msp(state, ownProps) {
   return {
     id: ownProps.match.params.artistId,
-    artist: state.entities.artists[ownProps.match.params.artistId]
+    artist: state.entities.artists[ownProps.match.params.artistId] || {}
   };
 };
 
@@ -741,9 +806,6 @@ var mdp = function mdp(dispatch) {
   return {
     fetchArtist: function fetchArtist(artistId) {
       return dispatch(Object(_actions_artist_actions__WEBPACK_IMPORTED_MODULE_2__["fetchArtist"])(artistId));
-    },
-    fetchArtists: function fetchArtists() {
-      return dispatch(Object(_actions_artist_actions__WEBPACK_IMPORTED_MODULE_2__["fetchArtists"])());
     }
   };
 };
@@ -1975,7 +2037,7 @@ var SongIndexItem = function SongIndexItem(_ref) {
     to: "/songs/".concat(song.id)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "song-index-item"
-  }, song.title, " | ", song.artist, " | ", song.album));
+  }, song.title, " by ", song.artist.name, " on ", song.album));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SongIndexItem);
@@ -1995,6 +2057,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(React__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
+/* harmony import */ var _artists_artist_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../artists/artist_bar */ "./frontend/components/artists/artist_bar.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2015,8 +2078,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
- // import { isEmpty } from 'lodash';
-//import ArtistBar from '../../artists/artist_bar';
+
+
 
 var SongShow =
 /*#__PURE__*/
@@ -2024,39 +2087,38 @@ function (_React$Component) {
   _inherits(SongShow, _React$Component);
 
   function SongShow(props) {
-    var _this;
-
     _classCallCheck(this, SongShow);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(SongShow).call(this, props));
-    _this.state = _this.props.song;
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(SongShow).call(this, props));
   }
 
   _createClass(SongShow, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       this.props.fetchSong(this.props.match.params.songId);
     }
   }, {
     key: "getLyrics",
     value: function getLyrics() {
-      return this.state.lyrics;
+      return this.props.song.lyrics;
     }
   }, {
     key: "render",
     value: function render() {
       return React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background"
-      }, React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_artists_artist_bar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        song: this.props.song,
+        artist: this.props.song.artist
+      }), React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "foreground"
       }, React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-lyrics"
       }, React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "show-lyrics-title"
-      }, this.state.title), React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.song.title), React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "lyrics-container"
-      }, React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.lyrics)))));
+      }, React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.song.lyrics)))));
     }
   }]);
 

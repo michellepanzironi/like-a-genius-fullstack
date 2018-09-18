@@ -5,7 +5,7 @@ const SongIndexItem = ({ song }) => {
   return (
     <Link to={`/songs/${song.id}`}>
       <li className="song-index-item">
-        {song.title} | {song.artist} | {song.album}
+        {song.title} by {song.artist.name} on {song.album}
       </li>
     </Link>
   );
