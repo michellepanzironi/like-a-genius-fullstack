@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import FrontPageItemContainer from './front_page_item/front_page_item_container';
+import FrontPageItem from './front_page_item';
 import { isEmpty } from 'lodash';
 
 class FrontPage extends React.Component {
@@ -56,8 +56,8 @@ class FrontPage extends React.Component {
 
     return (
       <div>
-        <div>
-          <section>
+        <div className="background">
+          <section className="foreground">
 
             <div className="front-page-above-fold">
               {randomSongFeatures}

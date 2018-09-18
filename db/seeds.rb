@@ -36,43 +36,43 @@ trixie = User.create(
 
 lizzo = Artist.create(
   name: 'Lizzo',
-  img_url: 'https://imgur.com/SQqOZJJ'
+  img_url: 'https://imgur.com/SQqOZJJ.png'
 )
 les_sins = Artist.create(
   name: 'Les Sins',
-  img_url: 'https://imgur.com/sRi4s6k'
+  img_url: 'https://imgur.com/sRi4s6k.jpg'
 )
 rupaul = Artist.create(
   name: 'Rupaul',
-  img_url: 'https://imgur.com/349DGbc'
+  img_url: 'https://imgur.com/349DGbc.jpg'
 )
 capital_cities = Artist.create(
   name: 'Capital Cities',
-  img_url: 'https://imgur.com/jWFhCd2'
+  img_url: 'https://imgur.com/jWFhCd2.jpg'
 )
 yeasayer = Artist.create(
   name: 'Yeasayer',
-  img_url: 'https://imgur.com/1ktPKoZ'
+  img_url: 'https://imgur.com/1ktPKoZ.jpg'
 )
 prince = Artist.create(
   name: 'Prince',
-  img_url: 'https://imgur.com/3DdiFfb'
+  img_url: 'https://imgur.com/3DdiFfb.jpg'
 )
 lorde = Artist.create(
   name: 'Lorde',
-  img_url: 'https://imgur.com/VUAhmt0'
+  img_url: 'https://imgur.com/VUAhmt0.jpg'
 )
 we_are_scientists = Artist.create(
   name: 'We Are Scientists',
-  img_url: 'https://imgur.com/jJomNLt'
+  img_url: 'https://imgur.com/jJomNLt.jpg'
 )
 kaytranada = Artist.create(
   name: 'KAYTRANADA',
-  img_url: 'https://imgur.com/OlxWUko'
+  img_url: 'https://imgur.com/OlxWUko.jpg'
 )
 david_bowie = Artist.create(
   name: 'David Bowie',
-  img_url: 'https://imgur.com/2JHlPja'
+  img_url: 'https://imgur.com/2JHlPja.jpg'
 )
 
 # ----ALBUMS----
@@ -80,52 +80,52 @@ david_bowie = Artist.create(
 let_em_say_album = Album.create(
   title: 'Let Em Say',
   artist_id: 1,
-  img_url: 'https://imgur.com/FAW0TmM'
+  img_url: 'https://imgur.com/FAW0TmM.jpg'
 )
 michael = Album.create(
   title: 'Michael',
   artist_id: 2,
-  img_url: 'https://imgur.com/NANRS7c'
+  img_url: 'https://imgur.com/NANRS7c.jpg'
 )
 born_naked = Album.create(
   title: 'Born Naked',
   artist_id: 3,
-  img_url: 'https://imgur.com/yFkkFLC'
+  img_url: 'https://imgur.com/yFkkFLC.jpg'
 )
 kangaroo_court = Album.create(
   title: 'Kangaroo Court',
   artist_id: 4,
-  img_url: 'https://imgur.com/myzhFXz'
+  img_url: 'https://imgur.com/myzhFXz.jpg'
 )
 odd_blood = Album.create(
   title: 'Odd Blood',
   artist_id: 5,
-  img_url: 'https://imgur.com/xuVisvo'
+  img_url: 'https://imgur.com/xuVisvo.png'
 )
 purple_rain = Album.create(
   title: 'Purple Rain',
   artist_id: 6,
-  img_url: 'https://imgur.com/IWygTFi'
+  img_url: 'https://imgur.com/IWygTFi.jpg'
 )
 melodrama = Album.create(
   title: 'Melodrama',
   artist_id: 7,
-  img_url: 'https://imgur.com/Ln1Z2pH'
+  img_url: 'https://imgur.com/Ln1Z2pH.png'
 )
 brain_thrust_mastery = Album.create(
   title: 'Brain Thrust Mastery',
   artist_id: 8,
-  img_url: 'https://imgur.com/8d1zNpu'
+  img_url: 'https://imgur.com/8d1zNpu.jpg'
 )
 ninety_nine_point_nine_percent = Album.create(
   title: '99.9%',
   artist_id: 9,
-  img_url: 'https://imgur.com/HUxorRy'
+  img_url: 'https://imgur.com/HUxorRy.png'
 )
 heroes_album = Album.create(
   title: 'Heroes',
   artist_id: 10,
-  img_url: 'https://imgur.com/4Rtifxq'
+  img_url: 'https://imgur.com/4Rtifxq.png'
 )
 
 # ----SONGS----

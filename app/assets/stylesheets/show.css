@@ -1,0 +1,5 @@
+.lyrics-container p {
+  white-space: pre-line;
+  font-size: 1.125em;
+  margin: 1rem 0;
+}

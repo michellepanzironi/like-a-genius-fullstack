@@ -9,6 +9,10 @@ class SessionForm extends React.Component {
     this.handleGuest = this.handleGuest.bind(this);
   }
 
+  componentWillUnmount() {
+    this.clearErrors();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
@@ -27,6 +31,24 @@ class SessionForm extends React.Component {
     };
   }
 
+  renderErrors() {
+    return (
+      <ul className="session-errors">
+        {this.props.errors.map((error, idx) => {
+          return (
+            <li key={`${idx}`} className="session-error-item">
+              {error}
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+
+  clearErrors() {
+    this.props.clearErrors([]);
+  }
+
   render () {
     let bottomFormLink;
     if (this.props.buttonText === 'SIGN IN') {
@@ -37,11 +59,9 @@ class SessionForm extends React.Component {
       <div className="modal is-open">
         <h2 className="form-section-label">{this.props.buttonText}</h2>
 
-        <ul className="session-form">
-          {
-            this.props.errors.map((error, idx) => <li key={idx}>{error}</li>)
-          }
-        </ul>
+        <div className="session-errors-container">
+          {this.renderErrors()}
+        </div>
 
         <form
           className="modal-form"

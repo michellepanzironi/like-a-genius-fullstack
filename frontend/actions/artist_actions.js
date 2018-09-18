@@ -2,7 +2,7 @@ import * as ArtistApiUtil from '../util/artist_api_util';
 
 export const RECEIVE_ALL_ARTISTS = 'RECEIVE_ALL_ARTISTS';
 export const RECEIVE_ARTIST = 'RECEIVE_ARTIST';
-export const RECEIVE_ARTIST_ERRORS = 'RECEIVE_ARTISTS_ERRORS';
+export const RECEIVE_ARTIST_ERRORS = 'RECEIVE_ARTIST_ERRORS';
 
 export const receiveAllArtists = artists => {
   return {
@@ -12,7 +12,7 @@ export const receiveAllArtists = artists => {
 };
 
 //add songs to the arg and return obj after you create them
-export const receiveArtist = ({ artist }) => {
+export const receiveArtist = artist => {
   return {
     type: RECEIVE_ARTIST,
     artist
@@ -21,13 +21,13 @@ export const receiveArtist = ({ artist }) => {
 
 export const receiveArtistErrors = errors => {
   return {
-    type: RECEIVE_ARTISTS_ERRORS,
+    type: RECEIVE_ARTIST_ERRORS,
     errors
   };
 };
 
-export const fetchArtists = data => dispatch => {
-  return ArtistApiUtil.fetchArtists(data).then(
+export const fetchArtists = () => dispatch => {
+  return ArtistApiUtil.fetchArtists().then(
     artists => {
       return dispatch(receiveAllArtists(artists));
     },

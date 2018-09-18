@@ -1,7 +1,39 @@
+h1 {
+  font-size: 24px;
+}
+
 a:link {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, button, input, p, a, div {
-  font-family: 'Mukta', sans-serif;
+.background {
+  background-color: #f7f7f7;
+  min-height: calc(100vh - 219px);
+}
+
+@media only screen and (min-width: 300px) {
+  .foreground {
+    margin: auto;
+    width: 100%;
+    background-color: white;
+    padding-top: 25px;
+    padding-bottom: 41px;
+    min-height: calc(100vh - 219px);
+  }
+}
+
+@media only screen and (min-width: 985px) {
+  .foreground {
+    margin: auto;
+    width: 80%;
+    min-width: 970px;
+    background-color: white;
+    padding-top: 25px;
+    padding-bottom: 41px;
+    min-height: calc(100vh - 219px);
+  }
+}
+
+.foreground {
+
 }

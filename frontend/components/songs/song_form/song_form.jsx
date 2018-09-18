@@ -49,38 +49,42 @@ class SongForm extends React.Component {
 
   render () {
     return (
-      <div>
-        <h1>{this.props.formType}</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>Title
-            <input
-              type="text"
-              value={this.state.title}
-              onChange={this.update('title')} />
-          </label>
-
-          <label>Artist
-            <input
-              type="text"
-              value={this.state.artist}
-              onChange={this.update('artist')} />
-          </label>
-
-          <label>Album
-            <input
-              type="text"
-              value={this.state.album}
-              onChange={this.update('album')} />
-          </label>
-
-          <label>Lyrics
-            <textarea
-              value={this.state.lyrics}
-              onChange={this.update('lyrics')}/>
-          </label>
-
-          <input type="submit" value={this.props.formType} />
-        </form>
+      <div className="background">
+        <div className="foreground">
+          <div className="song-form-container">
+            <h1>{this.props.formType}</h1>
+            <form onSubmit={this.handleSubmit}>
+              <label>Title
+                <input
+                  type="text"
+                  value={this.state.title}
+                  onChange={this.update('title')} />
+              </label>
+              <br/>
+              <label>Artist
+                <input
+                  type="text"
+                  value={this.state.artist}
+                  onChange={this.update('artist')} />
+              </label>
+              <br/>
+              <label>Album
+                <input
+                  type="text"
+                  value={this.state.album}
+                  onChange={this.update('album')} />
+              </label>
+              <br/>
+              <label>Lyrics
+                <textarea
+                  value={this.state.lyrics}
+                  onChange={this.update('lyrics')}/>
+              </label>
+              <br/>
+              <input type="submit" value={this.props.formType} />
+            </form>
+          </div>
+        </div>
       </div>
     );
   }
