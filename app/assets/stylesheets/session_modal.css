@@ -41,14 +41,12 @@
   padding-right: 20px;
   padding-bottom: 20px;
   max-width: 450px;
-  font-family: 'Mukta', sans-serif;
   font-size: .875rem;
 }
 
 .form-section-label {
   color: #99a7ee;
   font-size: .875rem;
-  font-family: 'Mukta', sans-serif;
   border-bottom: 2px solid #99a7ee;
   width: 100%;
   padding-bottom: .375rem;
@@ -66,7 +64,6 @@ input {
   width: 436px;
   height: 30px;
   margin-bottom: 20px;
-  font-family: 'Mukta', sans-serif;
   font-weight: 100;
   font-size: 1rem;
   padding-left: 8px;
@@ -87,7 +84,6 @@ button {
   padding: .25rem .5rem;
   line-height: 1.4rem;
   text-align: center;
-  font-family: 'Mukta', sans-serif;
   font-size: 1rem;
 }
 
@@ -96,7 +92,6 @@ button {
 }
 
 .other-form-link {
-  font-family: 'Mukta', sans-serif;
   color: #9a9a9a;
   text-decoration: underline;
   font-size: 1rem;
@@ -114,4 +109,13 @@ button {
 
 .terms-text {
   margin-bottom: 20px;
+}
+
+.session-error-item {
+  text-transform: uppercase;
+  background-color: #fc0017;
+  color: #ffedef;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  padding-left: 5px;
 }

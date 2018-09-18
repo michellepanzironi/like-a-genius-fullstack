@@ -1,8 +1,7 @@
-export const fetchArtists = data => {
+export const fetchArtists = () => {
   return $.ajax({
     method: 'GET',
-    url: '/api/artists',
-    data: { data }
+    url: '/api/artists'
   });
 };
 

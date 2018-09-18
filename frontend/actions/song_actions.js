@@ -7,11 +7,10 @@ export const RECEIVE_SONG = 'RECEIVE_SONG';
 export const REMOVE_SONG = 'REMOVE_SONG';
 export const RECEIVE_SONG_ERRORS = 'RECEIVE_SONG_ERRORS';
 
-export const receiveAllSongs = ({ songs, artists }) => {
+export const receiveAllSongs = songs => {
   return ({
     type: RECEIVE_ALL_SONGS,
-    songs,
-    artists
+    songs
   });
 };
 
@@ -29,18 +28,10 @@ export const receiveRandomSongs = songs => {
   });
 };
 
-export const receiveSong = (
-  { song, artist, comments, comment_authors, annotations, annotators, votes }
-) => {
+export const receiveSong = song => {
   return ({
     type: RECEIVE_SONG,
-    song,
-    artist,
-    comments,
-    comment_authors,
-    annotations,
-    annotators,
-    votes
+    song
   });
 };
 
@@ -60,8 +51,8 @@ export const receiveSongErrors = errors => {
 
 //thunks
 
-export const fetchSongs = data => dispatch => {
-  return SongApiUtil.fetchSongs(data).then(
+export const fetchSongs = () => dispatch => {
+  return SongApiUtil.fetchSongs().then(
     songs => dispatch(receiveAllSongs(songs)),
     errors => dispatch(receiveSongErrors(errors.responseJSON))
   );

@@ -1,2 +1,1 @@
-json.extract! artist, :id, :name
-json.image_url asset_path(artist.image.url)
+json.extract! artist, :id, :name, :img_url

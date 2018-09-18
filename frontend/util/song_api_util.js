@@ -1,8 +1,7 @@
-export const fetchSongs = data => {
+export const fetchSongs = () => {
   return $.ajax({
     method: 'GET',
     url: '/api/songs',
-    data: { data }
   });
 };
 
@@ -33,7 +32,7 @@ export const createSong = song => {
   return $.ajax({
     method: 'POST',
     url: '/api/songs',
-    song
+    data: { song }
   });
 };
 

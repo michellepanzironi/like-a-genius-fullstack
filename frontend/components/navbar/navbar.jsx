@@ -11,9 +11,9 @@ const Navbar = props => {
       <div className="navbar-top">
         <div></div>
         <Link to="/">
-          <h1 className="nav-logo">
+          <h3 className="nav-logo">
             LIKE A GENIUS
-          </h1>
+          </h3>
         </Link>
         <section className="nav-greeting">
           <GreetingContainer />

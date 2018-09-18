@@ -1,5 +1,5 @@
-@artists each do |artist|
+@artists.each do |artist|
   json.set! artist.id do
-    json.extract! artist, :id, :name
+    json.partial! 'api/artists/artist', artist: artist
   end
 end

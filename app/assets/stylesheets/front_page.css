@@ -1,6 +1,5 @@
 h2 {
   font-size: 12px;
-  font-family: 'Mukta', sans-serif;
 }
 
 @media only screen and (min-width: 300px) {
@@ -124,7 +123,6 @@ h2 {
 }
 
 .front-page-above-fold span {
-  font-family: 'Mukta', sans-serif;
 }
 
 .feature-song-image {
@@ -140,12 +138,10 @@ h2 {
   display: flex;
   width: 600px;
   height: 400px;
-  font-family: 'Mukta', sans-serif;
 }
 
 .front-page-feature-1 {
   background-color: purple;
-  font-family: 'Mukta', sans-serif;
   display: flex;
   width: 285px;
   height: 245px;
@@ -153,7 +149,6 @@ h2 {
 
 .front-page-feature-2 {
   background-color: yellow;
-  font-family: 'Mukta', sans-serif;
   display: flex;
   width: 285px;
   height: 140px;
