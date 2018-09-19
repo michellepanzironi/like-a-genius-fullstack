@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import ArtistBar from '../../artists/artist_bar';
