@@ -28,11 +28,13 @@ export const fetchSong = id => {
   });
 };
 
-export const createSong = song => {
+export const createSong = formData => {
   return $.ajax({
     method: 'POST',
     url: '/api/songs',
-    data: { song }
+    data: formData,
+    contentType: false,
+    processData: false
   });
 };
 

@@ -3,10 +3,10 @@ import sessionErrorsReducer from './session_errors_reducer';
 import artistErrorsReducer from './artist_errors_reducer';
 import songErrorsReducer from './song_errors_reducer';
 
-const errorsReducer = combineReducers({
+const ErrorsReducer = combineReducers({
   session: sessionErrorsReducer,
   artistErrors: artistErrorsReducer,
   songErrors: songErrorsReducer,
 });
 
-export default errorsReducer;
+export default ErrorsReducer;

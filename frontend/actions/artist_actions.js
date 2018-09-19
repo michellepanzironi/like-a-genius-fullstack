@@ -12,10 +12,12 @@ export const receiveAllArtists = artists => {
 };
 
 //add songs to the arg and return obj after you create them
-export const receiveArtist = artist => {
+export const receiveArtist = ({ artist, songs, albums }) => {
   return {
     type: RECEIVE_ARTIST,
-    artist
+    artist,
+    songs,
+    albums
   };
 };
 

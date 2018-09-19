@@ -116,10 +116,15 @@ var receiveAllArtists = function receiveAllArtists(artists) {
   };
 }; //add songs to the arg and return obj after you create them
 
-var receiveArtist = function receiveArtist(artist) {
+var receiveArtist = function receiveArtist(_ref) {
+  var artist = _ref.artist,
+      songs = _ref.songs,
+      albums = _ref.albums;
   return {
     type: RECEIVE_ARTIST,
-    artist: artist
+    artist: artist,
+    songs: songs,
+    albums: albums
   };
 };
 var receiveArtistErrors = function receiveArtistErrors(errors) {
@@ -331,10 +336,15 @@ var receiveRandomSongs = function receiveRandomSongs(songs) {
     songs: songs
   };
 };
-var receiveSong = function receiveSong(song) {
+var receiveSong = function receiveSong(_ref2) {
+  var song = _ref2.song,
+      artist = _ref2.artist,
+      album = _ref2.album;
   return {
     type: RECEIVE_SONG,
-    song: song
+    song: song,
+    artist: artist,
+    album: album
   };
 };
 var removeSongs = function removeSongs(songId) {
@@ -379,8 +389,8 @@ var fetchRandomSongs = function fetchRandomSongs(data) {
 };
 var fetchSong = function fetchSong(id) {
   return function (dispatch) {
-    return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSong"](id).then(function (song) {
-      return dispatch(receiveSong(song));
+    return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSong"](id).then(function (payload) {
+      return dispatch(receiveSong(payload));
     }, function (errors) {
       return dispatch(receiveSongErrors(errors.responseJSON));
     });
@@ -486,10 +496,6 @@ var App = function App() {
     exact: true,
     path: "/songs/:songId",
     component: _songs_song_show_song_show_container__WEBPACK_IMPORTED_MODULE_10__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-    exact: true,
-    path: "/songs/:songId/edit",
-    component: _songs_song_form_edit_song_form_container__WEBPACK_IMPORTED_MODULE_11__["default"]
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_footer__WEBPACK_IMPORTED_MODULE_7__["default"], {
     className: "footer"
   })));
@@ -553,7 +559,7 @@ var ArtistBar = function ArtistBar(ownProps) {
     className: "artist-image-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "artist-image",
-    src: artist.img_url
+    src: artist.photo
   }), barInfo));
 };
 
@@ -704,7 +710,7 @@ var ArtistIndexItem = function ArtistIndexItem(_ref) {
     src: "".concat(artist.img_url),
     className: "index-item-thumb"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    classname: "index-item-left"
+    className: "index-item-left"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "index-item-main"
   }, artist.name))));
@@ -921,8 +927,8 @@ function (_React$Component) {
 
     _classCallCheck(this, FrontPage);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(FrontPage).call(this, props));
-    if (Object(lodash__WEBPACK_IMPORTED_MODULE_3__["isEmpty"])(_this.props.newestSongs)) _this.props.fetchNewestSongs();
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(FrontPage).call(this, props)); // if(isEmpty(this.props.newestSongs)) this.props.fetchNewestSongs();
+
     if (Object(lodash__WEBPACK_IMPORTED_MODULE_3__["isEmpty"])(_this.props.randomSongs)) _this.props.fetchRandomSongs();
     return _this;
   }
@@ -930,7 +936,7 @@ function (_React$Component) {
   _createClass(FrontPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchNewestSongs();
+      // this.props.fetchNewestSongs();
       this.props.fetchRandomSongs();
     }
   }, {
@@ -941,21 +947,19 @@ function (_React$Component) {
       var randomSongFeatures = this.props.randomSongs.map(function (song, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "front-page-feature-".concat(idx),
-          key: "random-song-item-".concat(idx)
+          key: "".concat(idx)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/songs/".concat(song.id)
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "feature-song-image",
+          src: song.album_cover
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "feature-song-text"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "feature-song-title"
-        }, song.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "feature-song-text"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        }, song.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "feature-song-artist"
-        }, song.artist_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "feature-song-image",
-          src: song.album_cover
-        })));
+        }, song.artist_name))));
       });
       var newSongList = this.props.newestSongs.map(function (song, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -1638,16 +1642,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state) {
-  var song = {
-    title: '',
-    artist: '',
-    album: '',
-    lyrics: ''
-  };
   return {
-    errors: state.errors,
-    formType: 'ADD SONG',
-    song: song
+    errors: state.errors.songErrors,
+    formType: 'ADD SONG'
   };
 };
 
@@ -1706,11 +1703,15 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 var msp = function msp(state, ownProps) {
   var emptySong = {
     title: '',
-    artist: '',
-    album: '',
-    lyrics: ''
+    artist_name: '',
+    album_title: '',
+    lyrics: '',
+    artist_imageFile: '',
+    artist_imageUrl: '',
+    album_imageFile: '',
+    album_imageUrl: ''
   };
-  var song = state.entities.songs[ownProps.match.params.postId] || emptySong;
+  var song = state.entities.songs[ownProps.match.params.songId] || emptySong;
   return {
     errors: state.errors,
     formType: 'UPDATE SONG',
@@ -1821,9 +1822,22 @@ function (_React$Component) {
     _classCallCheck(this, SongForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SongForm).call(this, props));
-    _this.state = _this.props.song;
+    _this.state = {
+      title: '',
+      artist: '',
+      album_title: '',
+      lyrics: '',
+      artist_imageFile: '',
+      artist_imageUrl: '',
+      album_imageFile: '',
+      album_imageUrl: ''
+    };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.navigateToSong = _this.navigateToSong.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.updateFileArtist = _this.updateFileArtist.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.updateFileAlbum = _this.updateFileAlbum.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.fileReaderLoadedArtist = _this.fileReaderLoadedArtist.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.fileReaderLoadedAlbum = _this.fileReaderLoadedAlbum.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -1833,18 +1847,20 @@ function (_React$Component) {
       this.clearErrors();
     }
   }, {
-    key: "navigateToSong",
-    value: function navigateToSong(songId) {
-      this.props.history.push("songs/".concat(songId));
-    }
-  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       var _this2 = this;
 
       e.preventDefault();
-      this.props.action(this.state).then(function (res) {
-        _this2.navigateToSong(res.song.id);
+      var formData = new FormData();
+      formData.append("song[title]", this.state.title);
+      formData.append("artist[name]", this.state.artist);
+      formData.append("artist[photo]", this.state.artist_imageFile);
+      formData.append("album[title]", this.state.album_title);
+      formData.append("album[photo]", this.state.album_imageFile);
+      formData.append("song[lyrics]", this.state.lyrics);
+      this.props.action(formData).then(function (res) {
+        _this2.props.history.push("/".concat(res.song.id));
       });
     }
   }, {
@@ -1857,16 +1873,60 @@ function (_React$Component) {
       };
     }
   }, {
-    key: "renderErrors",
-    value: function renderErrors(type) {
-      var errors = this.props.errors.songErrors;
-      var thisError = '';
-      errors.forEach(function (error) {
-        if (error.includes(type)) {
-          thisError = error;
-        }
+    key: "updateFileArtist",
+    value: function updateFileArtist(e) {
+      var _this4 = this;
+
+      var file = e.currentTarget.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        return _this4.fileReaderLoadedArtist(file, fileReader);
+      };
+
+      if (file) fileReader.readAsDataURL(file);
+    }
+  }, {
+    key: "updateFileAlbum",
+    value: function updateFileAlbum(e) {
+      var _this5 = this;
+
+      var file = e.currentTarget.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        return _this5.fileReaderLoadedAlbum(file, fileReader);
+      };
+
+      if (file) fileReader.readAsDataURL(file);
+    }
+  }, {
+    key: "fileReaderLoadedArtist",
+    value: function fileReaderLoadedArtist(file, fileReader) {
+      this.setState({
+        artist_imageFile: file,
+        artist_imageUrl: fileReader.result
       });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, thisError);
+    }
+  }, {
+    key: "fileReaderLoadedAlbum",
+    value: function fileReaderLoadedAlbum(file, fileReader) {
+      this.setState({
+        album_imageFile: file,
+        album_imageUrl: fileReader.result
+      });
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "session-errors"
+      }, this.props.errors.map(function (error, idx) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "".concat(idx),
+          className: "session-error-item"
+        }, error);
+      }));
     }
   }, {
     key: "clearErrors",
@@ -1876,6 +1936,8 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var imageClassArtist = this.state.artist_imageUrl === '' ? 'hidden' : 'artist-form-image';
+      var imageClassAlbum = this.state.album_imageUrl === '' ? 'hidden' : 'album-form-image';
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1887,39 +1949,39 @@ function (_React$Component) {
       }, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         id: "song-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "session-errors-container"
+      }, this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.title,
         onChange: this.update('title'),
         placeholder: "Title"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.artist,
         onChange: this.update('artist'),
         placeholder: "Artist"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        onChange: this.updateFileArtist,
+        className: "song-form-image-input"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        value: this.state.artist.img_url,
-        onChange: this.update(''),
-        placeholder: "Artist image url"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: this.state.album,
-        onChange: this.update('album'),
+        value: this.state.album_title,
+        onChange: this.update('album_title'),
         placeholder: "Album title"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: this.state.album.img_url,
-        onChange: this.update(''),
-        placeholder: "Album cover url"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        onChange: this.updateFileAlbum,
+        className: "song-form-image-input"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "textarea-wrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         rows: "10",
         value: this.state.lyrics,
         onChange: this.update('lyrics'),
         placeholder: "Lyrics"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleSubmit
       }, this.props.formType)))));
     }
@@ -2280,7 +2342,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions_artist_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/artist_actions */ "./frontend/actions/artist_actions.js");
+/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -2292,9 +2356,11 @@ var ArtistsReducer = function ArtistsReducer() {
 
   switch (action.type) {
     case _actions_artist_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALL_ARTISTS"]:
+    case _actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_ALL_SONGS"]:
       return Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, state, action.artists);
 
     case _actions_artist_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ARTIST"]:
+    case _actions_song_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_SONG"]:
       return Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, state, _defineProperty({}, action.artist.id, action.artist));
 
     default:
@@ -2327,14 +2393,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
+var EntitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   artists: _artists_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   songs: _songs_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   newestSongs: _new_songs_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
   randomSongs: _random_songs_reducer__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
-/* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
+/* harmony default export */ __webpack_exports__["default"] = (EntitiesReducer);
 
 /***/ }),
 
@@ -2416,10 +2482,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
+/* harmony import */ var _actions_artist_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/artist_actions */ "./frontend/actions/artist_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
- // import { RECEIVE_ARTIST } from '../../actions/artist_actions';
+
+
 
 var SongsReducer = function SongsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -2437,6 +2505,9 @@ var SongsReducer = function SongsReducer() {
       newState = state;
       delete newState[action.songId];
       return newState;
+
+    case _actions_artist_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_ARTIST"]:
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, state, action.songs);
 
     default:
       return state;
@@ -2538,12 +2609,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
+var ErrorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   artistErrors: _artist_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   songErrors: _song_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
-/* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
+/* harmony default export */ __webpack_exports__["default"] = (ErrorsReducer);
 
 /***/ }),
 
@@ -2728,7 +2799,7 @@ var _nullUser = {
   id: null
 };
 
-var sessionReducer = function sessionReducer() {
+var SessionReducer = function SessionReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
@@ -2747,7 +2818,7 @@ var sessionReducer = function sessionReducer() {
   }
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (sessionReducer);
+/* harmony default export */ __webpack_exports__["default"] = (SessionReducer);
 
 /***/ }),
 
@@ -2826,7 +2897,9 @@ var createArtist = function createArtist(formData) {
   return $.ajax({
     method: 'POST',
     url: "/api/artists/",
-    data: formData
+    data: formData,
+    contentType: false,
+    processData: false
   });
 };
 
@@ -2917,13 +2990,13 @@ var fetchSong = function fetchSong(id) {
     url: "/api/songs/".concat(id)
   });
 };
-var createSong = function createSong(song) {
+var createSong = function createSong(formData) {
   return $.ajax({
     method: 'POST',
     url: '/api/songs',
-    data: {
-      song: song
-    }
+    data: formData,
+    contentType: false,
+    processData: false
   });
 };
 var updateSong = function updateSong(song) {

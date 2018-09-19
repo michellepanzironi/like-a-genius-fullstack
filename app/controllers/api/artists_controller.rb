@@ -13,16 +13,14 @@ class Api::ArtistsController < ApplicationController
   end
 
   def create
+    @artist = Artist.find_or_create_by(artist_params)
+    @artist.update(artist_photo_params)
+    unless @artist.save
+      render json: @artist.errors.full_messages, status: :unprocessable_entity
+    end
   end
 
   def update
-    @artist = Artist.find_by(artist_params)
-    @artist.update(artist_photo_params)
-    if @artist.save
-
-    else
-      render json: @artist.errors.full_messages, status: :unprocessable_entity
-    end
   end
 
   def edit
@@ -35,7 +33,7 @@ class Api::ArtistsController < ApplicationController
   end
 
   def artist_photo_params
-    params.require(:artist).permit(:img_url)
+    params.require(:artist).permit(:photo)
   end
 
 end

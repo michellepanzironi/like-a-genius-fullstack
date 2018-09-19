@@ -6,12 +6,12 @@ import { isEmpty } from 'lodash';
 class FrontPage extends React.Component {
   constructor(props) {
     super(props);
-    if(isEmpty(this.props.newestSongs)) this.props.fetchNewestSongs();
+    // if(isEmpty(this.props.newestSongs)) this.props.fetchNewestSongs();
     if(isEmpty(this.props.randomSongs)) this.props.fetchRandomSongs();
   }
 
   componentDidMount() {
-    this.props.fetchNewestSongs();
+    // this.props.fetchNewestSongs();
     this.props.fetchRandomSongs();
   }
 
@@ -19,20 +19,17 @@ class FrontPage extends React.Component {
     const randomSongFeatures = this.props.randomSongs.map((song, idx) => {
       return (
         <div className={`front-page-feature-${idx}`}
-          key={`random-song-item-${idx}`}>
+          key={`${idx}`}>
           <Link to={`/songs/${song.id}`}>
+            <img className="feature-song-image" src={ song.album_cover } />
             <p className="feature-song-text">
               <span className="feature-song-title">
                 {song.title}
-              </span>
-            </p>
-            <br/>
-            <p className="feature-song-text">
+              </span><br/>
               <span className="feature-song-artist">
                 {song.artist_name}
               </span>
             </p>
-            <img className="feature-song-image" src={ song.album_cover } />
           </Link>
         </div>
       );

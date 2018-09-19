@@ -35,10 +35,10 @@
 }
 
 .artist-image-container {
-  border: 5px solid #9a9a9a;
 }
 
 .artist-image {
+  border: 5px solid #9a9a9a;
   width: 225px;
   height: 225px;
   background-color: #9a9a9a;

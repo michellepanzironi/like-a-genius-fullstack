@@ -4,7 +4,7 @@ import {
   RECEIVE_SONG,
   REMOVE_SONG
 } from '../../actions/song_actions';
-// import { RECEIVE_ARTIST } from '../../actions/artist_actions';
+import { RECEIVE_ARTIST } from '../../actions/artist_actions';
 
 const SongsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -17,6 +17,8 @@ const SongsReducer = (state = {}, action) => {
       newState = state;
       delete newState[action.songId];
       return newState;
+    case RECEIVE_ARTIST:
+      return merge({}, state, action.songs);
     default:
       return state;
   }

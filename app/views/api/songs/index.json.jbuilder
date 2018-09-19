@@ -3,6 +3,9 @@ json.songs do
     json.set! song.id do
       json.partial! 'api/songs/song', song: song
     end
+    json.artist song.artist
+    json.album song.album.title
+    json.album_cover url_for(song.album.photo)
   end
 end
 

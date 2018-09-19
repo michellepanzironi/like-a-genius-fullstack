@@ -4,16 +4,9 @@ import { createSong, receiveSongErrors } from '../../../actions/song_actions';
 import SongForm from './song_form';
 
 const msp = state => {
-  const song = {
-    title: '',
-    artist: '',
-    album: '',
-    lyrics: '',
-  };
   return ({
-    errors: state.errors,
-    formType: 'ADD SONG',
-    song
+    errors: state.errors.songErrors,
+    formType: 'ADD SONG'
   });
 };
 

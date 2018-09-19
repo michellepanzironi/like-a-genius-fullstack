@@ -2,46 +2,47 @@ h2 {
   font-size: 12px;
 }
 
-
 .front-page-above-fold {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 0 75px 0 75px;
-  height: 450px;
+  height: 400px;
 }
 
 .feature-song-text {
   text-align: center;
+  align-items: center;
   width: 275px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%)
+  /* left: 50%;
+  top: 50%; */
+  /* transform: translate(-50%, -50%) */
+}
+
+div[class^="front-page-feature"] {
+  position: relative;
+  text-align: center;
+  color: white;
 }
 
 .feature-song-image {
-  
-  object-fit: cover;
+
 }
 
 .front-page-feature-0 {
   background-color: pink;
-  display: flex;
   width: 600px;
   height: 400px;
 }
 
 .front-page-feature-1 {
   background-color: purple;
-  display: flex;
   width: 285px;
   height: 245px;
 }
 
 .front-page-feature-2 {
   background-color: yellow;
-  display: flex;
   width: 285px;
   height: 140px;
 }
@@ -55,62 +56,3 @@ h2 {
   border-color: #fb3785;
   background-color: #fb3785;
 }
-
-.new-song-list-line {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  border-style: inset;
-  border-width: 1px;
-  border-color: grey;
-  background-color: grey;
-}
-
-
-/* --
-
-.front-page-feature-0 {
-  background-color: pink;
-  overflow: hidden;
-  min-width: 500px;
-  height: 400px;
-  margin-right: 20px;
-  position: relative;
-  display: flex;
-}
-
-.front-page-feature-0 .feature-song-title {
-  font-size: 48px;
-}
-
-.front-page-feature-0 .feature-song-artist {
-  font-size: 28px;
-}
-
-.front-page-feature-1 {
-  font-size: 22px;
-  height: 190px;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 20px;
-  max-width: 375px;
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-}
-
-.front-page-feature-2 {
-  font-size: 22px;
-  height: 190px;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 20px;
-  max-width: 375px;
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-}
-
-
-.front-page-above-fold span {
-} */

@@ -12,7 +12,11 @@ class Api::Albums < ApplicationController
   end
 
   def create
-
+    @artist = Artist.find_or_create_by(artist_params)
+    @artist.update(artist_photo_params)
+    unless @artist.save
+      render json: @artist.errors.full_messages, status: :unprocessable_entity
+    end
   end
 
   def update
@@ -32,7 +36,7 @@ class Api::Albums < ApplicationController
   end
 
   def album_cover_params
-    params.require(:album).permit(:img_url)
+    params.require(:album).permit(:photo)
   end
 
 end

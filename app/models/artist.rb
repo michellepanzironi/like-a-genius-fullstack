@@ -13,6 +13,8 @@ class Artist < ApplicationRecord
 
   validates :name, presence: true
 
+  has_one_attached :photo
+
   has_many :songs,
     primary_key: :id,
     foreign_key: :artist_id,

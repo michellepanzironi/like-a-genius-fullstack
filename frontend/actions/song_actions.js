@@ -29,10 +29,12 @@ export const receiveRandomSongs = songs => {
   });
 };
 
-export const receiveSong = song => {
+export const receiveSong = ({ song, artist, album }) => {
   return ({
     type: RECEIVE_SONG,
-    song
+    song,
+    artist,
+    album
   });
 };
 
@@ -75,7 +77,7 @@ export const fetchRandomSongs = data => dispatch => {
 
 export const fetchSong = id => dispatch => {
   return SongApiUtil.fetchSong(id).then(
-    song => dispatch(receiveSong(song)),
+    payload => dispatch(receiveSong(payload)),
     errors => dispatch(receiveSongErrors(errors.responseJSON))
   );
 };

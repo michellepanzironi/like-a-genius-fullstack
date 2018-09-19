@@ -8,7 +8,7 @@ const ArtistIndexItem = ({ artist }) => {
         <img
           src={`${artist.img_url}`}
           className="index-item-thumb" />
-        <div classname="index-item-left">
+        <div className="index-item-left">
           <span className="index-item-main">{artist.name}</span>
         </div>
       </li>

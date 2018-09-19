@@ -6,11 +6,15 @@ import { fetchSong, updateSong } from '../../../actions/song_actions';
 const msp = (state, ownProps) => {
   const emptySong = {
     title: '',
-    artist: '',
-    album: '',
+    artist_name: '',
+    album_title: '',
     lyrics: '',
+    artist_imageFile: '',
+    artist_imageUrl: '',
+    album_imageFile: '',
+    album_imageUrl: '',
   };
-  const song = state.entities.songs[ownProps.match.params.postId] || emptySong;
+  const song = state.entities.songs[ownProps.match.params.songId] || emptySong;
 
   return ({
     errors: state.errors,

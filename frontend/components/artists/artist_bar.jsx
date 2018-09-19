@@ -35,7 +35,7 @@ const ArtistBar = ownProps => {
         <img src={song.album_cover} className="artist-bar-image" />
       </div>
       <div className="artist-image-container">
-        <img className="artist-image" src={artist.img_url}/>
+        <img className="artist-image" src={artist.photo}/>
         {barInfo}
       </div>
     </div>

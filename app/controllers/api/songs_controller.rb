@@ -33,11 +33,13 @@ class Api::SongsController < ApplicationController
   def create
     if logged_in?
       @song = Song.new(song_params)
-      @artist = Artist.find_or_initialize_by(artist_params)
-      @album = Album.find_or_initialize_by(album_params)
+      @artist = Artist.find_or_create_by(artist_params)
+      @artist.photo.attach(io: params[:artist][:photo], filename: "#{@artist.name}.jpg")
+      @album = Album.find_or_create_by(album_params.merge({ artist_id: @artist.id }))
+      @album.photo.attach(io: params[:album][:photo], filename: "#{@album.title}.jpg")
       @song.artist = @artist
       @song.album = @album
-      if @song.save && @artist.valid?
+      if @song.save
         @artist.save
         @album.save
         render :show
@@ -45,10 +47,10 @@ class Api::SongsController < ApplicationController
         artist_errors = @artist[:name].empty? ? ["Artist name cannot be blank"] : []
         album_errors = @album[:title].empty? ? ["Album title cannot be blank"] : []
         all_errors = @song.errors.full_messages + artist_errors + album_errors
-        render json: all_errors, status: :unprocessable_entity
+        render json: all_errors, status: 422
       end
     else
-      render json: ['You must be logged in to add a song']
+      render json: ['You must be logged in to add a song'], status: 401
     end
   end
 
@@ -58,7 +60,7 @@ class Api::SongsController < ApplicationController
 
   private
   def song_params
-    params.require(:song).permit(:title, :lyrics, :img_url)
+    params.require(:song).permit(:title, :lyrics)
   end
 
   def artist_params

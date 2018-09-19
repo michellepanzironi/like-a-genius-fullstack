@@ -1,21 +1,21 @@
-export const fetchArtists = () => {
+export const fetchAlbums = () => {
   return $.ajax({
     method: 'GET',
-    url: '/api/artists'
+    url: '/api/albums'
   });
 };
 
-export const fetchArtist = id => {
+export const fetchAlbum = id => {
   return $.ajax({
     method: 'GET',
-    url: `/api/artists/${id}`
+    url: `/api/albums/${id}`
   });
 };
 
-export const createArtist = formData => {
+export const createAlbum = formData => {
   return $.ajax({
     method: 'POST',
-    url: `/api/artists/`,
+    url: `/api/albums/`,
     data: formData,
     contentType: false,
     processData: false
