@@ -3,75 +3,26 @@ h2 {
 }
 
 
-  .front-page-above-fold {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 0 75px 0 75px;
-    height: 450px;
-  }
+.front-page-above-fold {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 75px 0 75px;
+  height: 450px;
+}
 
-  .feature-song-text {
-    text-align: center;
-    width: 275px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%)
-  }
-
-  .front-page-feature-0 {
-    background-color: pink;
-    overflow: hidden;
-    min-width: 500px;
-    height: 400px;
-    margin-right: 20px;
-    position: relative;
-    display: flex;
-  }
-
-  .front-page-feature-0 .feature-song-title {
-    font-size: 48px;
-  }
-
-  .front-page-feature-0 .feature-song-artist {
-    font-size: 28px;
-  }
-
-  .front-page-feature-1 {
-    font-size: 22px;
-    height: 190px;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 20px;
-    max-width: 375px;
-    min-width: 300px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .front-page-feature-2 {
-    font-size: 22px;
-    height: 190px;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 20px;
-    max-width: 375px;
-    min-width: 300px;
-    display: flex;
-    flex-direction: column;
-  }
-
-
-.front-page-above-fold span {
+.feature-song-text {
+  text-align: center;
+  width: 275px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%)
 }
 
 .feature-song-image {
-  width: 100%;
-  height: auto;
-  min-width: 675px;
-  min-height: 400px;
-  opacity: 0.5;
+  
+  object-fit: cover;
 }
 
 .front-page-feature-0 {
@@ -114,3 +65,52 @@ h2 {
   border-color: grey;
   background-color: grey;
 }
+
+
+/* --
+
+.front-page-feature-0 {
+  background-color: pink;
+  overflow: hidden;
+  min-width: 500px;
+  height: 400px;
+  margin-right: 20px;
+  position: relative;
+  display: flex;
+}
+
+.front-page-feature-0 .feature-song-title {
+  font-size: 48px;
+}
+
+.front-page-feature-0 .feature-song-artist {
+  font-size: 28px;
+}
+
+.front-page-feature-1 {
+  font-size: 22px;
+  height: 190px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+  max-width: 375px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.front-page-feature-2 {
+  font-size: 22px;
+  height: 190px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+  max-width: 375px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.front-page-above-fold span {
+} */
