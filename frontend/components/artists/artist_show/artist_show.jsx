@@ -22,7 +22,7 @@ class ArtistShow extends React.Component {
            />
         <div className="foreground">
           <div className="">
-            <h1 className="">{this.props.artist.name}</h1>
+            <h1 className="show-section-label">{this.props.artist.name}</h1>
             <ul className="song-show-list-container">
               <p>songList goes here</p>
             </ul>

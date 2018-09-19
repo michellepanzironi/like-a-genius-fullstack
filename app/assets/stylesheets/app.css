@@ -1,39 +1,27 @@
 h1 {
-  font-size: 24px;
+  font-size: 32px;
 }
 
 a:link {
   text-decoration: none;
 }
 
+Link:hover {
+  color: #fb3785;
+}
+
 .background {
   background-color: #f7f7f7;
-  min-height: calc(100vh - 219px);
-}
-
-@media only screen and (min-width: 300px) {
-  .foreground {
-    margin: auto;
-    width: 100%;
-    background-color: white;
-    padding-top: 25px;
-    padding-bottom: 41px;
-    min-height: calc(100vh - 219px);
-  }
-}
-
-@media only screen and (min-width: 985px) {
-  .foreground {
-    margin: auto;
-    width: 80%;
-    min-width: 970px;
-    background-color: white;
-    padding-top: 25px;
-    padding-bottom: 41px;
-    min-height: calc(100vh - 219px);
-  }
+  min-height: calc(100vh - 167px);
 }
 
 .foreground {
-
+  margin: 0 210px;
+  background-color: white;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 970px;
+  display: flex;
+  min-height: calc(100vh - 167px);
 }

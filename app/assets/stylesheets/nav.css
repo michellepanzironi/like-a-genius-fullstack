@@ -4,7 +4,7 @@ nav {
 }
 
 .navbar-top {
-  background-color: #ffff65;
+  background-color: #ffff64;
   display: flex;
   justify-content: space-between;
   height: 45px;
@@ -12,13 +12,13 @@ nav {
 
 .nav-logo {
   font-family: 'Mukta', sans-serif;
-  color: #ffff65;
+  color: #ffff64;
   text-shadow: -2px 3px 0 black;
   letter-spacing: 4px;
   font-weight: 700;
   display: block;
   margin: 0;
-  font-size: 21px;
+  font-size: 26px;
   margin-left: 70px;
   min-width: 179px;
   position: absolute;
@@ -50,7 +50,7 @@ nav {
 .nav-button {
   border: none;
   display: flex;
-  border-bottom: 7px solid #ffff65;
+  border-bottom: 7px solid #ffff64;
   margin-top: 8px;
   min-width: 55px;
 }
@@ -62,7 +62,8 @@ nav {
 .navbar-bottom {
   background-color: black;
   color: #ffffff;
-  height: 40px;
+  height: 35px;
+  padding-top: 5px;
   text-align: center;
   align-items: center;
 }
@@ -74,5 +75,5 @@ nav {
 }
 
 .nav-link:hover {
-  color: #ffff65;
+  color: #ffff64;
 }

@@ -1,5 +1,5 @@
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
 }
@@ -57,7 +57,7 @@
 }
 
 .footer-container {
-  color: #ffff65;
+  color: #ffff64;
   width: 70%;
   height: 100%;
   margin: auto;

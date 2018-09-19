@@ -15,7 +15,7 @@ import ArtistIndexContainer from './artists/artist_index/artist_index_container'
 import ArtistShowContainer from './artists/artist_show/artist_show_container';
 
 const App = () => (
-  <div>
+  <div className="app-container">
     <header>
       <SessionModal />
       <Navbar />

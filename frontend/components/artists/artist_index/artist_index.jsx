@@ -25,10 +25,9 @@ class ArtistIndex extends React.Component {
     return (
       <div className="background">
         <section className="foreground">
-          <div className="artist-index-container">
-            <h1>ALL ARTISTS</h1>
-            <hr />
-            <ul className="artist-index-list">
+          <div className="index-container">
+            <h1 className="index-section-label">ALL ARTISTS</h1>
+            <ul className="index-list">
               {artistList}
             </ul>
           </div>

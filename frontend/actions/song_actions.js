@@ -7,10 +7,11 @@ export const RECEIVE_SONG = 'RECEIVE_SONG';
 export const REMOVE_SONG = 'REMOVE_SONG';
 export const RECEIVE_SONG_ERRORS = 'RECEIVE_SONG_ERRORS';
 
-export const receiveAllSongs = songs => {
+export const receiveAllSongs = ({ songs, artists }) => {
   return ({
     type: RECEIVE_ALL_SONGS,
-    songs
+    songs,
+    artists
   });
 };
 

@@ -6,7 +6,7 @@ import { isEmpty } from 'lodash';
 const ArtistBar = ownProps => {
 
   const song = ownProps.song || { };
-  const artist = ownProps.artist;
+  const artist = ownProps.artist || { };
 
   let barInfo;
   if(isEmpty(song)) {
@@ -24,6 +24,7 @@ const ArtistBar = ownProps => {
             {artist.name}
           </Link>
         </h2>
+        <h2>{song.album}</h2>
       </div>
     )
   }

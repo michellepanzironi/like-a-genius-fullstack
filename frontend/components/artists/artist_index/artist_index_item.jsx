@@ -4,8 +4,13 @@ import { Link } from 'react-router-dom';
 const ArtistIndexItem = ({ artist }) => {
   return (
     <Link to={`/artists/${artist.id}`}>
-      <li className="artist-index-item">
-        {artist.name}
+      <li className="index-item">
+        <img
+          src={`${artist.img_url}`}
+          className="index-item-thumb" />
+        <div classname="index-item-left">
+          <span className="index-item-main">{artist.name}</span>
+        </div>
       </li>
     </Link>
   );

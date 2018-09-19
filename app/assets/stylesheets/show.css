@@ -3,3 +3,13 @@
   font-size: 1.125em;
   margin: 1rem 0;
 }
+
+.show-section-label {
+  color: #99a7ee;
+  border-bottom: 2px solid #99a7ee;
+  width: 100%;
+  padding-bottom: .375rem;
+  letter-spacing: .04rem;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}

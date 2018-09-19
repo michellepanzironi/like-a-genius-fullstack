@@ -310,10 +310,13 @@ var RECEIVE_RANDOM_SONGS = 'RECEIVE_RANDOM_SONGS';
 var RECEIVE_SONG = 'RECEIVE_SONG';
 var REMOVE_SONG = 'REMOVE_SONG';
 var RECEIVE_SONG_ERRORS = 'RECEIVE_SONG_ERRORS';
-var receiveAllSongs = function receiveAllSongs(songs) {
+var receiveAllSongs = function receiveAllSongs(_ref) {
+  var songs = _ref.songs,
+      artists = _ref.artists;
   return {
     type: RECEIVE_ALL_SONGS,
-    songs: songs
+    songs: songs,
+    artists: artists
   };
 };
 var receiveNewestSongs = function receiveNewestSongs(songs) {
@@ -455,7 +458,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_modal_session_modal_container__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar__WEBPACK_IMPORTED_MODULE_6__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "app-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_modal_session_modal_container__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar__WEBPACK_IMPORTED_MODULE_6__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
     className: "main"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
@@ -516,7 +521,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ArtistBar = function ArtistBar(ownProps) {
   var song = ownProps.song || {};
-  var artist = ownProps.artist;
+  var artist = ownProps.artist || {};
   var barInfo;
 
   if (Object(lodash__WEBPACK_IMPORTED_MODULE_3__["isEmpty"])(song)) {
@@ -534,7 +539,7 @@ var ArtistBar = function ArtistBar(ownProps) {
       className: "song-bar-artist"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
       to: "/artists/".concat(artist.id)
-    }, artist.name)));
+    }, artist.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, song.album));
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -624,9 +629,11 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "foreground"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "artist-index-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "ALL ARTISTS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "artist-index-list"
+        className: "index-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "index-section-label"
+      }, "ALL ARTISTS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "index-list"
       }, artistList))));
     }
   }]);
@@ -692,8 +699,15 @@ var ArtistIndexItem = function ArtistIndexItem(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/artists/".concat(artist.id)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "artist-index-item"
-  }, artist.name));
+    className: "index-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "".concat(artist.img_url),
+    className: "index-item-thumb"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    classname: "index-item-left"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "index-item-main"
+  }, artist.name))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ArtistIndexItem);
@@ -765,7 +779,7 @@ function (_React$Component) {
       }, React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: ""
       }, React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        className: ""
+        className: "show-section-label"
       }, this.props.artist.name), React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "song-show-list-container"
       }, React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "songList goes here")))));
@@ -1868,27 +1882,46 @@ function (_React$Component) {
         className: "foreground"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "song-form-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Title", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "song-form-section-label"
+      }, this.props.formType), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        id: "song-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.title,
-        onChange: this.update('title')
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Artist", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.update('title'),
+        placeholder: "Title"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.artist,
-        onChange: this.update('artist')
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Album", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.update('artist'),
+        placeholder: "Artist"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.artist.img_url,
+        onChange: this.update(''),
+        placeholder: "Artist image url"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.album,
-        onChange: this.update('album')
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Lyrics", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        onChange: this.update('album'),
+        placeholder: "Album title"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.album.img_url,
+        onChange: this.update(''),
+        placeholder: "Album cover url"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "textarea-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        rows: "10",
         value: this.state.lyrics,
-        onChange: this.update('lyrics')
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "submit",
-        value: this.props.formType
-      })))));
+        onChange: this.update('lyrics'),
+        placeholder: "Lyrics"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleSubmit
+      }, this.props.formType)))));
     }
   }]);
 
@@ -1968,9 +2001,11 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "foreground"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "song-index-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "ALL SONGS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "song-index-list"
+        className: "index-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "index-section-label"
+      }, "ALL SONGS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "index-list"
       }, songList))));
     }
   }]);
@@ -2036,8 +2071,17 @@ var SongIndexItem = function SongIndexItem(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/songs/".concat(song.id)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "song-index-item"
-  }, song.title, " by ", song.artist.name, " on ", song.album));
+    className: "index-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "".concat(song.album_cover),
+    className: "index-item-thumb"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    classname: "index-item-left"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "index-item-main"
+  }, song.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "index-item-sub"
+  }, song.artist.name, " | ", song.album))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SongIndexItem);

@@ -52,36 +52,55 @@ class SongForm extends React.Component {
       <div className="background">
         <div className="foreground">
           <div className="song-form-container">
-            <h1>{this.props.formType}</h1>
-            <form onSubmit={this.handleSubmit}>
-              <label>Title
-                <input
-                  type="text"
-                  value={this.state.title}
-                  onChange={this.update('title')} />
-              </label>
+            <h1 className="song-form-section-label">
+              {this.props.formType}
+            </h1>
+            <form onSubmit={this.handleSubmit} id="song-form">
+
+              <input
+                type="text"
+                value={this.state.title}
+                onChange={this.update('title')}
+                placeholder="Title" />
+
               <br/>
-              <label>Artist
-                <input
-                  type="text"
-                  value={this.state.artist}
-                  onChange={this.update('artist')} />
-              </label>
+              <input
+                type="text"
+                value={this.state.artist}
+                onChange={this.update('artist')}
+                placeholder="Artist" />
+
               <br/>
-              <label>Album
-                <input
-                  type="text"
-                  value={this.state.album}
-                  onChange={this.update('album')} />
-              </label>
+              <input
+                type="text"
+                value={this.state.artist.img_url}
+                onChange={this.update('')}
+                placeholder="Artist image url" />
+
               <br/>
-              <label>Lyrics
+              <input
+                type="text"
+                value={this.state.album}
+                onChange={this.update('album')}
+                placeholder="Album title" />
+
+              <br/>
+              <input
+                type="text"
+                value={this.state.album.img_url}
+                onChange={this.update('')}
+                placeholder="Album cover url" />
+
+              <br/>
+              <div className="textarea-wrapper">
                 <textarea
+                  rows="10"
                   value={this.state.lyrics}
-                  onChange={this.update('lyrics')}/>
-              </label>
-              <br/>
-              <input type="submit" value={this.props.formType} />
+                  onChange={this.update('lyrics')}
+                  placeholder="Lyrics" />
+              </div>
+
+              <button onClick={this.handleSubmit}>{this.props.formType}</button>
             </form>
           </div>
         </div>

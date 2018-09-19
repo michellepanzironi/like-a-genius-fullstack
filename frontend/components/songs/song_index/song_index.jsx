@@ -26,10 +26,9 @@ class SongIndex extends React.Component {
     return (
       <div className="background">
         <section className="foreground">
-          <div className="song-index-container">
-            <h1>ALL SONGS</h1>
-            <hr />
-            <ul className="song-index-list">
+          <div className="index-container">
+            <h1 className="index-section-label">ALL SONGS</h1>
+            <ul className="index-list">
               {songList}
             </ul>
           </div>
