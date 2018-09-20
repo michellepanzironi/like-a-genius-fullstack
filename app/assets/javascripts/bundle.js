@@ -570,7 +570,8 @@ var ArtistBar = function ArtistBar(props) {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
       className: "song-bar-title"
     }, song.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-      to: "/artists/".concat(artist.id)
+      to: "/artists/".concat(artist.id),
+      className: "bar-info-link"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
       className: "bar-artist-name"
     }, artist.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, song.album));
@@ -1041,17 +1042,15 @@ function (_React$Component) {
         }));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "background"
+        className: "front-page-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: "foreground"
+        className: ""
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "front-page-above-fold"
       }, randomSongFeatures), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "front-page-below-fold"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "front-page-header"
-      }, "LATEST"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-        className: "new-song-header-line"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "front-page-list-container"
       }, newSongList)))));

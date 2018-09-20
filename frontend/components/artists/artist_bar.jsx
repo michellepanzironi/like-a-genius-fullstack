@@ -43,7 +43,9 @@ const ArtistBar = props => {
     barInfo = (
       <div className="bar-info">
         <h1 className="song-bar-title">{song.title}</h1>
-        <Link to={`/artists/${artist.id}`}>
+        <Link
+          to={`/artists/${artist.id}`}
+          className="bar-info-link">
           <h2 className="bar-artist-name">
             {artist.name}
           </h2>

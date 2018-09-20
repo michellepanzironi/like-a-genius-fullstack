@@ -23,11 +23,8 @@ class FrontPage extends React.Component {
           <Link to={`/songs/${song.id}`}>
             <img className="feature-song-image" src={ song.album_cover } />
             <div className="feature-song-text">
-              
                 <h2 className="feature-song-title">{song.title}</h2>
-
                 <h3 className="feature-song-artist">{song.artist_name}</h3>
-
             </div>
           </Link>
         </div>
@@ -52,16 +49,15 @@ class FrontPage extends React.Component {
 
     return (
       <div>
-        <div className="background">
-          <section className="foreground">
+        <div className="front-page-container">
+          <section className="">
 
             <div className="front-page-above-fold">
               {randomSongFeatures}
             </div>
 
             <div className="front-page-below-fold">
-              <h2 className="front-page-header">LATEST</h2>
-              <hr className="new-song-header-line" />
+              <h2 className="front-page-header"></h2>
               <ul className="front-page-list-container">
                 {newSongList}
               </ul>

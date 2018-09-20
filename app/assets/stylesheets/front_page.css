@@ -1,35 +1,32 @@
+.front-page-container {
+  min-height: calc(100vh - 167px);
+}
+
 .front-page-above-fold {
+  margin: 0 20px;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   padding: 0 75px 0 75px;
-  height: 400px;
 }
 
 div[class^="front-page-feature"] {
   position: relative;
+  margin: 10px;
 }
 
 .feature-song-image {
-  opacity: 0.4;
+  background-color: grey;
+  opacity: 0.8;
+  object-fit: cover;
 }
 
-.feature-song-text {
-  text-align: center;
-  color: white;
-  text-align: center;
-  align-items: center;
-  width: 275px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%)
+.feature-song-image:hover {
+  opacity: 1;
 }
 
 .front-page-feature-0 {
-  background-color: grey;
-  width: 600px;
-  height: 400px;
+  min-width: 600px;
+  height: 600px;
 }
 
 .front-page-feature-0 h2 {
@@ -40,15 +37,35 @@ div[class^="front-page-feature"] {
 }
 
 .front-page-feature-1 {
-  background-color: grey;
-  width: 285px;
-  height: 245px;
+  min-width: 285px;
+  height: 285px;
 }
 
 .front-page-feature-2 {
-  background-color: grey;
-  width: 285px;
-  height: 140px;
+  min-width: 285px;
+  height: 285px;
+}
+
+.front-page-feature-3 {
+  min-width: 285px;
+  height: 285px;
+}
+
+.front-page-feature-4 {
+  min-width: 285px;
+  height: 285px;
+}
+
+.feature-song-text {
+  text-align: center;
+  color: white;
+  text-align: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: -1px 2px 0 grey;
 }
 
 .new-song-header-line {
