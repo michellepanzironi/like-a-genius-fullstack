@@ -3,39 +3,61 @@ import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { isEmpty } from 'lodash';
 
-const ArtistBar = ownProps => {
+const ArtistBar = props => {
 
-  const song = ownProps.song || { };
-  const artist = ownProps.artist || { };
+  const song = props.song || { };
+  const artist = props.artist || { };
 
+  let barBackground;
+  let barImage;
   let barInfo;
   if(isEmpty(song)) {
+    barBackground = (
+      <div className="bar-background">
+        <img src={artist.photo} className="bar-background-image" />
+      </div>
+    )
+    barImage = (
+      <div className="bar-thumb-container">
+        <img className="bar-thumb" src={artist.photo}/>
+      </div>
+    )
     barInfo = (
-      <div className="song-bar-info">
-        <h1 className="song-bar-artist">{artist.name}</h1>
+      <div className="bar-info">
+        <Link to={`/artists/${artist.id}`}>
+          <h1 className="bar-artist-name">{artist.name}</h1>
+        </Link>
       </div>
     )
   } else {
+    barBackground = (
+      <div className="bar-background">
+        <img src={song.album_cover} className="bar-background-image" />
+      </div>
+    )
+    barImage = (
+      <div className="bar-thumb-container">
+        <img className="bar-thumb" src={song.album_cover}/>
+      </div>
+    )
     barInfo = (
-      <div className="song-bar-info">
+      <div className="bar-info">
         <h1 className="song-bar-title">{song.title}</h1>
-        <h2 className="song-bar-artist">
-          <Link to={`/artists/${artist.id}`}>
+        <Link to={`/artists/${artist.id}`}>
+          <h2 className="bar-artist-name">
             {artist.name}
-          </Link>
-        </h2>
+          </h2>
+        </Link>
         <h2>{song.album}</h2>
       </div>
     )
   }
 
   return(
-    <div className="artist-bar">
-      <div className="artist-bar-background">
-        <img src={song.album_cover} className="artist-bar-image" />
-      </div>
-      <div className="artist-image-container">
-        <img className="artist-image" src={artist.photo}/>
+    <div className="bar">
+      {barBackground}
+      <div className="bar-foreground-container">
+        {barImage}
         {barInfo}
       </div>
     </div>

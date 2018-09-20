@@ -4,9 +4,13 @@ import { fetchArtist } from '../../../actions/artist_actions';
 
 
 const msp = (state, ownProps) => {
+  const artist = state.entities.artists[ownProps.match.params.artistId] || { };
+  const songs = artist.song_ids ? artist.song_ids.map(songId => {
+    return state.entities.songs[songId];
+  }) : [];
   return ({
-    id: ownProps.match.params.artistId,
-    artist: state.entities.artists[ownProps.match.params.artistId] || { }
+    artist,
+    songs
   });
 };
 

@@ -17,11 +17,13 @@ nav {
   letter-spacing: 4px;
   font-weight: 700;
   display: block;
-  margin: 0;
-  font-size: 26px;
+  margin: 0 auto;
+  font-size: 28px;
   margin-left: 70px;
   min-width: 179px;
   position: absolute;
+  height: 45px;
+  top: -5px;
 }
 
 .navbar-top a {

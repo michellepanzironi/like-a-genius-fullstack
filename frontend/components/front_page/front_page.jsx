@@ -22,14 +22,13 @@ class FrontPage extends React.Component {
           key={`${idx}`}>
           <Link to={`/songs/${song.id}`}>
             <img className="feature-song-image" src={ song.album_cover } />
-            <p className="feature-song-text">
-              <span className="feature-song-title">
-                {song.title}
-              </span><br/>
-              <span className="feature-song-artist">
-                {song.artist_name}
-              </span>
-            </p>
+            <div className="feature-song-text">
+              
+                <h2 className="feature-song-title">{song.title}</h2>
+
+                <h3 className="feature-song-artist">{song.artist_name}</h3>
+
+            </div>
           </Link>
         </div>
       );

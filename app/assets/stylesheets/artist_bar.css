@@ -1,70 +1,76 @@
-.artist-bar {
+.bar {
   width: 100%;
   height: 245px;
-}
-
-.artist-bar-background {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
   position: relative;
 }
 
-.artist-bar-image {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
+.bar-background {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.bar-background-image {
   opacity: 0.3;
+  transform: translate(0, -15%);
+  z-index: -1;
+  margin: 10px;
 }
 
-@media only screen and (min-width: 300px) {
-  .artist-bar-image {
-    display: flex;
-    position: absolute;
-    width: auto;
-    height: auto;
-    left: 15%;
-    top: 140px;
-  }
+.bar-foreground-container {
+  position: absolute;
+  background-color: rgb(0, 0, 0, .7);
+  display: flex;
+  width: 970px;
+  max-width: 970px;
+  height: 245px;
+  top: -1px;
+  align-items: center;
 }
 
-@media only screen and (min-width: 985px) {
-  .artist-bar-image {
-    top: 100px;
-  }
-}
-
-.artist-image-container {
-}
-
-.artist-image {
-  border: 5px solid #9a9a9a;
+.bar-thumb {
+  border: 3px solid #9a9a9a;
   width: 225px;
   height: 225px;
-  background-color: #9a9a9a;
+  margin: 0 15px;
+  object-fit: cover;
 }
 
-.song-bar-artist Link:hover {
-  color: #fb3785;
-}
-
-.song-bar-info {
-  display: flex;
-  flex-direction: column;
+.bar-info {
   justify-content: center;
   min-width: 500px;
 }
 
-.song-bar-info h1 {
+.bar-info h1 {
+  color: #ffff64;
   text-transform: capitalize;
   max-width: 550px;
   font-size: 32px;
   padding-left: 25px;
-  margin: 0;
 }
-.song-bar-info h2 {
+
+.bar-info h2 {
+  color: #f7f7f7;
   text-transform: capitalize;
   font-size: 24px;
   padding-left: 25px;
-  margin: 0;
 }
+
+
+/* @media only screen and (min-width: 300px) {
+.bar-image {
+display: flex;
+position: absolute;
+width: auto;
+height: auto;
+left: 15%;
+top: 140px;
+}
+}
+
+@media only screen and (min-width: 985px) {
+.bar-image {
+top: 100px;
+}
+} */

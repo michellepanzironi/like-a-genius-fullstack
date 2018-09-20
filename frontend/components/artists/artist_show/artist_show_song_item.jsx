@@ -1,15 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ArtistShowSongItem = () => {
+const ArtistShowSongItem = props => {
   return (
-    <li className="artist-song-index-item">
-      <Link
-        className="artist-song-index-item-link"
-        to={`songs/${songId}`}>
-        {this.props.song.title}
-      </Link>
-    </li>
+    <Link to={`songs/${props.song.id}`}>
+      <li className="index-item">
+        <img
+          src={`${props.song.album_cover}`}
+          className="index-item-thumb" />
+        <div className="index-item-left">
+          <span className="index-item-main">{props.song.title}</span>
+        </div>
+      </li>
+    </Link>
   );
 };
 

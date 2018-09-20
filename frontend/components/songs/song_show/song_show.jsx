@@ -24,10 +24,12 @@ class SongShow extends React.Component {
           artist={this.props.song.artist} />
         <div className="foreground">
           <div className="show-lyrics">
-            <h1 className="show-lyrics-title">{this.props.song.title}</h1>
             <div className="lyrics-container">
               <p>{this.props.song.lyrics}</p>
             </div>
+          </div>
+          <div className="annotation-column">
+
           </div>
         </div>
       </div>

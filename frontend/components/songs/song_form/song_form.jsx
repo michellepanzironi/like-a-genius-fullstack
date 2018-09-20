@@ -37,7 +37,7 @@ class SongForm extends React.Component {
 
 
     this.props.action(formData).then(res => {
-      this.props.history.push(`/${res.song.id}`);
+      this.props.history.push(`/songs/${res.song.id}`);
     });
   }
 
