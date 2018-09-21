@@ -25,20 +25,20 @@ class Song < ApplicationRecord
     foreign_key: :album_id,
     class_name: :Album
 
-  def self.endmost(n)
-    all.only(:order).from(all.reverse_order.limit(n), table_name)
-  end
-
-  def self.recent(n)
-    Song.all.order.endmost(n)
-  end
-
   def self.sample(n)
     Song.all.sample(n)
   end
 
   def self.order
-    order(created_at: :asc)
+    Song.order(created_at: :asc)
+  end
+
+  def self.endmost(n)
+    Song.all.only(:order).from(all.reverse_order.limit(n), table_name)
+  end
+
+  def self.recent(n)
+    Song.all.order.endmost(n)
   end
 
 end

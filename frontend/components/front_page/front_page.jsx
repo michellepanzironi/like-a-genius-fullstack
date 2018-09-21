@@ -6,12 +6,12 @@ import { isEmpty } from 'lodash';
 class FrontPage extends React.Component {
   constructor(props) {
     super(props);
-    // if(isEmpty(this.props.newestSongs)) this.props.fetchNewestSongs();
+    if(isEmpty(this.props.newestSongs)) this.props.fetchNewestSongs();
     if(isEmpty(this.props.randomSongs)) this.props.fetchRandomSongs();
   }
 
   componentDidMount() {
-    // this.props.fetchNewestSongs();
+    this.props.fetchNewestSongs();
     this.props.fetchRandomSongs();
   }
 
@@ -36,7 +36,7 @@ class FrontPage extends React.Component {
         <li
           className="front-page-featured-item"
           key={`front-page-featured-item-${idx}`}>
-          <FrontPageItemContainer
+          <FrontPageItem
             key={`new-song-item-${idx}`}
             index={parseInt(idx)+1}
             songInfo = { this.props.newestSongs[idx] } />
@@ -47,6 +47,20 @@ class FrontPage extends React.Component {
       );
     });
 
+    const tempSongList = this.props.newestSongs.map((song, idx) => {
+      return (
+        <div className="front-page-other-rando" key={`${idx}`}>
+          <Link to={`/songs/${song.id}`}>
+            <img className="feature-song-image" src={ song.album_cover } />
+            <div className="feature-song-text">
+              <h2 className="feature-song-title">{song.title}</h2>
+              <h3 className="feature-song-artist">{song.artist_name}</h3>
+            </div>
+          </Link>
+        </div>
+      )
+    })
+
     return (
       <div>
         <div className="front-page-container">
@@ -55,14 +69,9 @@ class FrontPage extends React.Component {
             <div className="front-page-above-fold">
               {randomSongFeatures}
             </div>
-
-            <div className="front-page-below-fold">
-              <h2 className="front-page-header"></h2>
-              <ul className="front-page-list-container">
-                {newSongList}
-              </ul>
+            <div className="front-page-other-holder">
+              {tempSongList}
             </div>
-
           </section>
         </div>
       </div>

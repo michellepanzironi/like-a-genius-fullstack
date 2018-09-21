@@ -6,6 +6,7 @@
   font-weight: 100;
   padding-left: 8px;
   color: #757575;
+  padding-top: 8px;
 }
 
 textarea {
@@ -33,12 +34,16 @@ textarea:focus {
   margin-bottom: 35px;
 }
 
-.artist-form-image {
+.artist-form-image-input {
   max-width: 580px;
   height: 100%;
 }
 
-.album-form-image {
+.album-form-image-input {
   max-width: 580px;
   height: 100%;
+}
+
+.song-form-image-input {
+  padding-top: 8px;
 }

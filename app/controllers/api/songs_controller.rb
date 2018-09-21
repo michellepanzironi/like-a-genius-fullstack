@@ -12,7 +12,7 @@ class Api::SongsController < ApplicationController
   end
 
   def newest
-    @songs = Song.recent(10).reverse
+    @songs = Song.last(2)
     render :newest
   end
 

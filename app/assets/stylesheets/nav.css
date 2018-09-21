@@ -11,7 +11,7 @@ nav {
 }
 
 .nav-logo {
-  font-family: 'Mukta', sans-serif;
+  font-family: 'Cabin', sans-serif;
   color: #ffff64;
   text-shadow: -2px 3px 0 black;
   letter-spacing: 4px;
@@ -23,7 +23,7 @@ nav {
   min-width: 179px;
   position: absolute;
   height: 45px;
-  top: -5px;
+  top: 1px;
 }
 
 .navbar-top a {
@@ -44,7 +44,7 @@ nav {
 
 .nav-name {
   font-weight: bolder;
-  margin-top: 9px;
+  margin-top: 13px;
   text-transform: uppercase;
   padding-right: 8px;
 }
@@ -64,16 +64,17 @@ nav {
 .navbar-bottom {
   background-color: black;
   color: #ffffff;
-  height: 35px;
-  padding-top: 5px;
+  height: 30px;
+  padding-top: 10px;
   text-align: center;
   align-items: center;
+  font-weight: lighter;
 }
 
 .nav-link {
   color: #ffffff;
   padding-right: 25px;
-  font-weight: 100;
+  font-weight: lighter;
 }
 
 .nav-link:hover {

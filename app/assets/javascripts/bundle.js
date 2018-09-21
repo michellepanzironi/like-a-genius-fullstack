@@ -994,8 +994,8 @@ function (_React$Component) {
 
     _classCallCheck(this, FrontPage);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(FrontPage).call(this, props)); // if(isEmpty(this.props.newestSongs)) this.props.fetchNewestSongs();
-
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(FrontPage).call(this, props));
+    if (Object(lodash__WEBPACK_IMPORTED_MODULE_3__["isEmpty"])(_this.props.newestSongs)) _this.props.fetchNewestSongs();
     if (Object(lodash__WEBPACK_IMPORTED_MODULE_3__["isEmpty"])(_this.props.randomSongs)) _this.props.fetchRandomSongs();
     return _this;
   }
@@ -1003,7 +1003,7 @@ function (_React$Component) {
   _createClass(FrontPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // this.props.fetchNewestSongs();
+      this.props.fetchNewestSongs();
       this.props.fetchRandomSongs();
     }
   }, {
@@ -1032,7 +1032,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "front-page-featured-item",
           key: "front-page-featured-item-".concat(idx)
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(FrontPageItemContainer, {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_front_page_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: "new-song-item-".concat(idx),
           index: parseInt(idx) + 1,
           songInfo: _this2.props.newestSongs[idx]
@@ -1041,6 +1041,23 @@ function (_React$Component) {
           key: "front-page-line-".concat(idx)
         }));
       });
+      var tempSongList = this.props.newestSongs.map(function (song, idx) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "front-page-other-rando",
+          key: "".concat(idx)
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/songs/".concat(song.id)
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "feature-song-image",
+          src: song.album_cover
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "feature-song-text"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "feature-song-title"
+        }, song.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+          className: "feature-song-artist"
+        }, song.artist_name))));
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "front-page-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
@@ -1048,12 +1065,8 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "front-page-above-fold"
       }, randomSongFeatures), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "front-page-below-fold"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-        className: "front-page-header"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "front-page-list-container"
-      }, newSongList)))));
+        className: "front-page-other-holder"
+      }, tempSongList))));
     }
   }]);
 

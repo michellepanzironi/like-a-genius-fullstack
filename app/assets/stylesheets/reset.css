@@ -6,7 +6,8 @@ textarea, span, article, footer, time, small {
   padding: 0;
   border: 0;
   outline: 0;
-  font-family: 'Mukta', sans-serif;
+  font-family: 'Cabin', sans-serif;
+  letter-spacing: 1.5px;
   color: inherit;
   text-align: inherit;
   text-decoration: inherit;
