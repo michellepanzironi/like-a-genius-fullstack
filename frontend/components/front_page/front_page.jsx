@@ -65,13 +65,13 @@ class FrontPage extends React.Component {
     return (
       <div>
         <div className="front-page-container">
-          <section className="">
+          <section className="front-page-section">
 
             <div className="front-page-above-fold">
               {randomSongFeatures}
-            </div>
-            <div className="front-page-other-holder">
-              {tempSongList}
+              <div className="front-page-other-holder">
+                {tempSongList}
+              </div>
             </div>
           </section>
         </div>

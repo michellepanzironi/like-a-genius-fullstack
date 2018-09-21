@@ -1,15 +1,19 @@
 .front-page-container {
   min-height: calc(100vh - 167px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .front-page-above-fold {
-  margin: 20px;
+  margin: auto;
   display: flex;
   justify-content: space-between;
   padding: 0 75px 0 75px;
   align-items: flex-end;
   max-width: 1231px;
   min-width: 1231px;
+  position: relative;
 }
 
 .feature-song-title {
@@ -72,8 +76,8 @@ div[class^="front-page-feature"] {
   display: flex;
   height: 285px;
   position: absolute;
-  top: 115px;
-  left: 705px;
+  top: 10px;
+  right: 85px;
   justify-content: space-between;
 }
 

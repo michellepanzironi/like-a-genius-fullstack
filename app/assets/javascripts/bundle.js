@@ -1062,12 +1062,12 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "front-page-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: ""
+        className: "front-page-section"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "front-page-above-fold"
-      }, randomSongFeatures), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, randomSongFeatures, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "front-page-other-holder"
-      }, tempSongList))));
+      }, tempSongList)))));
     }
   }]);
 
