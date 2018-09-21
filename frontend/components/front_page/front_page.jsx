@@ -53,6 +53,7 @@ class FrontPage extends React.Component {
           <Link to={`/songs/${song.id}`}>
             <img className="feature-song-image" src={ song.album_cover } />
             <div className="feature-song-text">
+              <h3 > NEW </h3>
               <h2 className="feature-song-title">{song.title}</h2>
               <h3 className="feature-song-artist">{song.artist_name}</h3>
             </div>

@@ -1,24 +1,36 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+FEATURES
 
-Things you may want to cover:
+* Session modal
+  -working front end auth
+  -overlays on any page
+  -switches between Login and Signup Components
 
-* Ruby version
+* Songs
+  -index page with list of all songs
+  -show page
 
-* System dependencies
+* Artists
+  -index page
+  -show page
 
-* Configuration
+* Albums
+  -associated with both artist and song
+  -provides album artwork to song show and index components
 
-* Database creation
+* Random Songs
+  -generates 5 random songs from entities slice of state
+  -renders them in homepage layout
 
-* Database initialization
+* Newest Songs
+  -generates the 2 most recently added songs from state
+  -renders them in homepage layout
 
-* How to run the test suite
+* Show page info bar
+  -dynamically renders content for song and artist show pages
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Add Song Form:
+    -creates a new instance of song
+    -creates or updates existing instances of artist and album
+    -includes artwork inputs for artist and album

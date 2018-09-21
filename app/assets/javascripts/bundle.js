@@ -883,8 +883,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ArtistShowSongItem = function ArtistShowSongItem(props) {
+  if (!props.song) return null;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "songs/".concat(props.song.id)
+    to: "/songs/".concat(props.song.id)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "index-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1052,7 +1053,7 @@ function (_React$Component) {
           src: song.album_cover
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "feature-song-text"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, " NEW "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
           className: "feature-song-title"
         }, song.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
           className: "feature-song-artist"
