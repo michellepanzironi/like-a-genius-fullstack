@@ -3,7 +3,7 @@
 }
 
 .front-page-above-fold {
-  margin: 0 20px;
+  margin: 20px;
   display: flex;
   justify-content: space-between;
   padding: 0 75px 0 75px;
@@ -12,11 +12,11 @@
 div[class^="front-page-feature"] {
   position: relative;
   margin: 10px;
+  background-color: black;
 }
 
 .feature-song-image {
-  background-color: grey;
-  opacity: 0.8;
+  opacity: 0.9;
   object-fit: cover;
 }
 
@@ -25,6 +25,7 @@ div[class^="front-page-feature"] {
 }
 
 .front-page-feature-0 {
+  display: block;
   min-width: 600px;
   height: 600px;
 }
