@@ -1,7 +1,7 @@
 .front-page-container {
   min-height: calc(100vh - 167px);
   display: flex;
-  flex-direction: column;1
+  flex-direction: column;
   justify-content: space-around;
 }
 
