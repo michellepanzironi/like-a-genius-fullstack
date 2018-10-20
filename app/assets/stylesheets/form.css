@@ -51,16 +51,17 @@ textarea:focus {
 .form-field-container {
   background-color: #99a7ee;
   align-items: center;
+  border: .15rem solid #cccccc;
 }
 
 .form-field-label {
-  padding: 15px 15px 0 15px;
+  padding: 8px 8px 0 8px;
   color: white;
 }
 
 input[type="file"] {
   background-color: transparent;
   border: none;
-  margin: 15px 0;
+  margin: 8px 0;
   color: white;
 }

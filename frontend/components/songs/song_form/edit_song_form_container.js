@@ -16,10 +16,13 @@ const msp = (state, ownProps) => {
   };
   const song = state.entities.songs[ownProps.match.params.songId] || emptySong;
 
+
   return ({
     errors: state.errors,
     formType: 'UPDATE SONG',
-    song
+    artist: state.entities.artists[song.artist_id] || {},
+    album: state.entities.artists[song.album_id] || {},
+    song,
   });
 };
 
@@ -47,12 +50,14 @@ class EditSongFormContainer extends React.Component {
   }
 
   render() {
-    let { action, formType, song } = this.props;
+    let { action, formType, song, artist, album } = this.props;
     return (
       <SongForm
         action={action}
         formType={formType}
-        song={song} />
+        song={song}
+        artist={artist}
+        album={album} />
     );
   }
 }
