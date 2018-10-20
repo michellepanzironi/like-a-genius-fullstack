@@ -496,6 +496,10 @@ var App = function App() {
     exact: true,
     path: "/songs/:songId",
     component: _songs_song_show_song_show_container__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    exact: true,
+    path: "/songs/:songId/edit",
+    component: _songs_song_form_edit_song_form_container__WEBPACK_IMPORTED_MODULE_11__["default"]
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_footer__WEBPACK_IMPORTED_MODULE_7__["default"], {
     className: "footer"
   })));
@@ -934,7 +938,7 @@ var Footer = function Footer() {
     className: "footer-right"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "footer-blurb"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "a clone of ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "A React app inspired by ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "https://www.genius.com"
   }, "Genius.com")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "by ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: ""
@@ -1781,7 +1785,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 var msp = function msp(state, ownProps) {
   var emptySong = {
-    title: '',
+    title: 'empty',
     artist_name: '',
     album_title: '',
     lyrics: '',
@@ -1807,7 +1811,7 @@ var mdp = function mdp(dispatch) {
       return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_3__["updateSong"])(song));
     },
     clearErrors: function clearErrors(clear) {
-      return dispatch(receiveSongErrors(clear));
+      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_3__["receiveSongErrors"])(clear));
     }
   };
 };
@@ -1827,13 +1831,18 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchSong(this.props.match.params.songId);
-    }
+    } // componentWillReceiveProps(nextProps) {
+    //   if (this.props.song.id !== nextProps.match.params.songId) {
+    //     this.props.fetchSong(nextProps.match.params.songId);
+    //   }
+    // }
+
   }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {
-      if (this.props.song.id !== nextProps.match.params.songId) {
-        this.props.fetchSong(nextProps.match.params.songId);
-      }
+    key: "clearErrors",
+    value: function clearErrors() {
+      this.setState({
+        errors: []
+      });
     }
   }, {
     key: "render",
@@ -1842,7 +1851,7 @@ function (_React$Component) {
           action = _this$props.action,
           formType = _this$props.formType,
           song = _this$props.song;
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PostForm, {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_song_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
         action: action,
         formType: formType,
         song: song
@@ -1901,7 +1910,7 @@ function (_React$Component) {
     _classCallCheck(this, SongForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SongForm).call(this, props));
-    _this.state = {
+    var emptySong = {
       title: '',
       artist: '',
       album_title: '',
@@ -1911,12 +1920,14 @@ function (_React$Component) {
       album_imageFile: '',
       album_imageUrl: ''
     };
+    _this.state = _this.props.song || emptySong;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.updateFileArtist = _this.updateFileArtist.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.updateFileAlbum = _this.updateFileAlbum.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.fileReaderLoadedArtist = _this.fileReaderLoadedArtist.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.fileReaderLoadedAlbum = _this.fileReaderLoadedAlbum.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.clearErrors = _this.clearErrors.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -1998,19 +2009,23 @@ function (_React$Component) {
   }, {
     key: "renderErrors",
     value: function renderErrors() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "session-errors"
-      }, this.props.errors.map(function (error, idx) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: "".concat(idx),
-          className: "session-error-item"
-        }, error);
-      }));
+      if (this.props.errors) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "session-errors"
+        }, this.props.errors.map(function (error, idx) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: "".concat(idx),
+            className: "session-error-item"
+          }, error);
+        }));
+      }
     }
   }, {
     key: "clearErrors",
     value: function clearErrors() {
-      this.props.clearErrors([]);
+      this.setState({
+        errors: []
+      });
     }
   }, {
     key: "render",
@@ -2040,20 +2055,28 @@ function (_React$Component) {
         value: this.state.artist,
         onChange: this.update('artist'),
         placeholder: "Artist"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-field-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-field-label"
+      }, "Artist Photo"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
         onChange: this.updateFileArtist,
         className: "song-form-image-input"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.album_title,
         onChange: this.update('album_title'),
         placeholder: "Album title"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-field-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-field-label"
+      }, "Album Art"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
         onChange: this.updateFileAlbum,
         className: "song-form-image-input"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "textarea-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         rows: "10",
@@ -2300,6 +2323,8 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_artists_artist_bar__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -2311,7 +2336,16 @@ function (_React$Component) {
         className: "show-lyrics"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "lyrics-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.song.lyrics))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/songs/".concat(this.props.song.id, "/edit")
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "purple-button"
+      }, "Edit")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "purple-button",
+        onClick: function onClick() {
+          return _this.props.deleteSong(_this.props.id);
+        }
+      }, "Delete"), "// Are you sure? // this.props.deleteSong(this.props.id);", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.song.lyrics))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "annotation-column"
       })));
     }

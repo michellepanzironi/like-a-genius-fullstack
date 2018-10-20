@@ -25,6 +25,18 @@ class SongShow extends React.Component {
         <div className="foreground">
           <div className="show-lyrics">
             <div className="lyrics-container">
+                <Link to={`/songs/${this.props.song.id}/edit`}>
+                  <button className="purple-button">
+                    Edit
+                  </button>
+                </Link>
+                <button
+                  className="purple-button"
+                  onClick={() => this.props.deleteSong(this.props.id)}>
+                  Delete
+                </button>
+                // Are you sure?
+                // this.props.deleteSong(this.props.id);
               <p>{this.props.song.lyrics}</p>
             </div>
           </div>

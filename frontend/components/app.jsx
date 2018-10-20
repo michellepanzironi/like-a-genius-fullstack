@@ -28,6 +28,7 @@ const App = () => (
         <Route exact path="/songs" component={SongIndexContainer} />
         <Route exact path="/songs/new" component={CreateSongFormContainer} />
         <Route exact path="/songs/:songId" component={SongShowContainer} />
+        <Route exact path="/songs/:songId/edit" component={EditSongFormContainer} />
       </Switch>
     </main>
     <footer>

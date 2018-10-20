@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import SongForm from './song_form';
-import { fetchSong, updateSong } from '../../../actions/song_actions';
+import { fetchSong, updateSong, receiveSongErrors } from '../../../actions/song_actions';
 
 const msp = (state, ownProps) => {
   const emptySong = {
-    title: '',
+    title: 'empty',
     artist_name: '',
     album_title: '',
     lyrics: '',
@@ -36,16 +36,20 @@ class EditSongFormContainer extends React.Component {
     this.props.fetchSong(this.props.match.params.songId);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.song.id !== nextProps.match.params.songId) {
-      this.props.fetchSong(nextProps.match.params.songId);
-    }
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props.song.id !== nextProps.match.params.songId) {
+  //     this.props.fetchSong(nextProps.match.params.songId);
+  //   }
+  // }
+
+  clearErrors() {
+    this.setState({ errors: [] });
   }
 
   render() {
     let { action, formType, song } = this.props;
     return (
-      <PostForm
+      <SongForm
         action={action}
         formType={formType}
         song={song} />

@@ -3,7 +3,7 @@ import React from 'react';
 class SongForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    const emptySong = {
       title: '',
       artist: '',
       album_title: '',
@@ -13,12 +13,14 @@ class SongForm extends React.Component {
       album_imageFile: '',
       album_imageUrl: '',
     };
+    this.state = this.props.song || emptySong;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateFileArtist = this.updateFileArtist.bind(this);
     this.updateFileAlbum = this.updateFileAlbum.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
     this.fileReaderLoadedArtist = this.fileReaderLoadedArtist.bind(this);
     this.fileReaderLoadedAlbum = this.fileReaderLoadedAlbum.bind(this);
+    this.clearErrors = this.clearErrors.bind(this);
   }
 
   componentDidMount() {
@@ -70,21 +72,23 @@ class SongForm extends React.Component {
   }
 
   renderErrors() {
-    return (
-      <ul className="session-errors">
-        {this.props.errors.map((error, idx) => {
-          return (
-            <li key={`${idx}`} className="session-error-item">
-              {error}
-            </li>
-          );
-        })}
-      </ul>
-    );
+    if (this.props.errors) {
+      return (
+        <ul className="session-errors">
+          {this.props.errors.map((error, idx) => {
+            return (
+              <li key={`${idx}`} className="session-error-item">
+                {error}
+              </li>
+            );
+          })}
+        </ul>
+      );
+    }
   }
 
   clearErrors() {
-    this.props.clearErrors([]);
+    this.setState({errors: []})
   }
 
   render () {
@@ -120,13 +124,15 @@ class SongForm extends React.Component {
                   placeholder="Artist" />
               </label>
               <br/>
-
-              <label>
-                <input
-                  type="file"
-                  onChange={this.updateFileArtist}
-                  className="song-form-image-input" />
-              </label>
+              <div className="form-field-container">
+                <label>
+                  <div className="form-field-label">Artist Photo</div>
+                  <input
+                    type="file"
+                    onChange={this.updateFileArtist}
+                    className="song-form-image-input" />
+                </label>
+              </div>
               <br/>
 
               <label>
@@ -137,13 +143,15 @@ class SongForm extends React.Component {
                   placeholder="Album title" />
               </label>
               <br/>
-
-              <label>
-                <input
-                  type="file"
-                  onChange={this.updateFileAlbum}
-                  className="song-form-image-input" />
-              </label>
+              <div className="form-field-container">
+                <label>
+                  <div className="form-field-label">Album Art</div>
+                  <input
+                    type="file"
+                    onChange={this.updateFileAlbum}
+                    className="song-form-image-input" />
+                </label>
+              </div>
               <br/>
 
               <div className="textarea-wrapper">

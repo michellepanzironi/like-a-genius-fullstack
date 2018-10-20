@@ -4,6 +4,7 @@
   margin: 1rem 0;
   padding-left: 20px;
   padding-bottom: 20px;
+  line-height: 150%;
 }
 
 .show-section-label {
@@ -14,4 +15,11 @@
   letter-spacing: .04rem;
   padding-top: 20px;
   margin-bottom: 35px;
+}
+
+.purple-button {
+  color: #99a7ee;
+  border: .15rem solid #99a7ee;
+  margin-top: 20px;
+  margin-left: 15px;
 }

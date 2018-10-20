@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_20_125944) do
+ActiveRecord::Schema.define(version: 2018_10_20_162811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,9 @@ ActiveRecord::Schema.define(version: 2018_09_20_125944) do
     t.datetime "updated_at", null: false
     t.integer "starting_char"
     t.integer "ending_char"
+    t.string "lyric_substring"
+    t.index ["author_id"], name: "index_annotations_on_author_id"
+    t.index ["song_id"], name: "index_annotations_on_song_id"
   end
 
   create_table "artists", force: :cascade do |t|

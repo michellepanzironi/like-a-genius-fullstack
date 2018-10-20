@@ -47,3 +47,20 @@ textarea:focus {
 .song-form-image-input {
   padding-top: 8px;
 }
+
+.form-field-container {
+  background-color: #99a7ee;
+  align-items: center;
+}
+
+.form-field-label {
+  padding: 15px 15px 0 15px;
+  color: white;
+}
+
+input[type="file"] {
+  background-color: transparent;
+  border: none;
+  margin: 15px 0;
+  color: white;
+}

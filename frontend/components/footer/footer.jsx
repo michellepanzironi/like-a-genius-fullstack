@@ -11,7 +11,8 @@ const Footer = () => {
         </div>
         <div className="footer-right">
           <div className="footer-blurb">
-            <span>a clone of <a href="https://www.genius.com">Genius.com</a></span>
+            <span>A React app
+              inspired by <a href="https://www.genius.com">Genius.com</a></span>
             <br />
             <span>by <a href="">Michelle Panzironi</a></span>
           </div>
