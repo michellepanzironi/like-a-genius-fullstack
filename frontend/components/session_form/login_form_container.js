@@ -16,7 +16,7 @@ const mdp = dispatch => ({
   openModal: () => dispatch(openModal('SIGN UP')),
   closeModal: () => dispatch(closeModal()),
   loginGuest: () => dispatch(login({ username: 'guest', password: 'guest123' })),
-  clearErrors: () => dispatch(receiveErrors())
+  clearErrors: (clear) => dispatch(receiveErrors(clear))
 });
 
 export default withRouter(connect(msp, mdp)(SessionForm));

@@ -1405,8 +1405,8 @@ var mdp = function mdp(dispatch) {
         password: 'guest123'
       }));
     },
-    clearErrors: function clearErrors() {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["receiveErrors"])());
+    clearErrors: function clearErrors(clear) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["receiveErrors"])(clear));
     }
   };
 };
@@ -1602,8 +1602,8 @@ var mdp = function mdp(dispatch) {
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["closeModal"])());
     },
-    clearErrors: function clearErrors() {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["receiveErrors"])());
+    clearErrors: function clearErrors(clear) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["receiveErrors"])(clear));
     }
   };
 };
