@@ -20,6 +20,11 @@ class User < ApplicationRecord
 
   has_one_attached :photo
 
+  has_many :annotations,
+    primary_key: :id,
+    foreign_key: :author_id,
+    class_name: :Annotation
+
   attr_reader :password
 
   after_initialize :ensure_session_token

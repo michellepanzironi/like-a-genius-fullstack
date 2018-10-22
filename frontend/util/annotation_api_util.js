@@ -5,10 +5,10 @@ export const fetchAnnotation = id => {
   });
 };
 
-export const createAnnotation = annotation => {
+export const createAnnotation = formData => {
   return $.ajax({
     method: 'POST',
     url: `/api/annotations/`,
-    data: { annotation }
+    data: { formData }
   });
 };

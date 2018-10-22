@@ -1,45 +1,30 @@
-import * as AnnotationApiUtils from '../util/annotation_api_utils';
+import * as AnnotationApiUtils from '../util/annotation_api_util';
 
 export const RECEIVE_ANNOTATION = 'RECEIVE_ANNOTATION';
-export const RECEIVE_NEW_ANNOTATION = 'RECEIVE_NEW_ANNOTATION';
-export const RECEIVE_ANNOTATION_ERRORS = 'RECEIVE_ANNOTATION_ERRORS';
+export const RECEIVE_ANNOTATIONS = 'RECEIVE_ANNOTATIONS';
 
-export const receiveAnnotation = ({ annotation, current_user }) => {
+export const receiveAnnotation = annotation => {
   return ({
     type: RECEIVE_ANNOTATION,
-    annotation,
-    current_user
+    annotation
   });
 };
 
-export const receiveNewAnnotation = data => {
+export const receiveAnnotations = data => {
   return ({
-    type: RECEIVE_NEW_ANNOTATION,
+    type: RECEIVE_ANNOTATIONS,
     data
   });
 };
 
-export const receiveAnnotationErrors = errors => {
-  return ({
-    type: RECEIVE_ANNOTATION_ERRORS,
-    errors
-  });
-};
-
 export const fetchAnnotation = id => {
-  return AnnotationApiUtils.fetchAnnotation(id).then(payload => {
-    return dispatch(receiveAnnotation(payload));
-  },
-  errors => {
-    return dispatch(receiveAnnotationErrors(errors.responseJSON));
+  return AnnotationApiUtils.fetchAnnotation(id).then(annotation => {
+    return dispatch(receiveAnnotation(annotation));
   });
 };
 
 export const createAnnotation = (annotation, songId, lyric_substring) => dispatch => {
   return AnnotationApiUtils.createAnnotation(annotation, songId, lyric_substring).then(annotation => {
     return dispatch(receiveAnnotation(annotation));
-  },
-  errors => {
-    return dispatch(receiveAnnotationErrors(errors.resporesponseJSON));
   });
 };

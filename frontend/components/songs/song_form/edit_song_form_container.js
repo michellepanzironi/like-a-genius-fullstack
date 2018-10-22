@@ -14,15 +14,13 @@ const msp = (state, ownProps) => {
     album_imageFile: '',
     album_imageUrl: '',
   };
-  const song = state.entities.songs[ownProps.match.params.songId] || emptySong;
+  const song = state.entities.songs[ownProps.match.params.songId];
 
 
   return ({
     errors: state.errors,
     formType: 'UPDATE SONG',
-    artist: state.entities.artists[song.artist_id] || {},
-    album: state.entities.artists[song.album_id] || {},
-    song,
+    song
   });
 };
 

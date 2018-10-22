@@ -7,6 +7,19 @@
   line-height: 150%;
 }
 
+.show-sidebar {
+  margin: 1rem;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  line-height: 150%;
+  border-left: 2px solid #99a7ee;
+}
+
+.sidebar-section {
+  color: #99a7ee;
+
+}
+
 .show-section-label {
   color: #99a7ee;
   border-bottom: 2px solid #99a7ee;

@@ -10,7 +10,8 @@ import { fetchArtist } from '../../../actions/artist_actions';
 const msp = (state, ownProps) => {
   return ({
     id: ownProps.match.params.songId,
-    song: state.entities.songs[ownProps.match.params.songId] || { }
+    song: state.entities.songs[ownProps.match.params.songId] || { },
+    currentUser: state.entities.users || {}
   });
 };
 

@@ -6,3 +6,5 @@ json.song do
 end
 json.artist @song.artist
 json.album @song.album.title
+
+json.annotations @song.annotations

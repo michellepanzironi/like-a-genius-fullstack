@@ -25,6 +25,11 @@ class Song < ApplicationRecord
     foreign_key: :album_id,
     class_name: :Album
 
+  has_many :annotations,
+    primary_key: :id,
+    foreign_key: :song_id,
+    class_name: :Annotation
+
   def self.sample(n)
     Song.all.sample(n)
   end
