@@ -1,3 +1,7 @@
+.show-lyrics {
+  width: 45%;
+}
+
 .lyrics-container p {
   white-space: pre-line;
   font-size: 1.125em;
@@ -15,9 +19,8 @@
   border-left: 2px solid #99a7ee;
 }
 
-.sidebar-section {
+.sidebar-section-head {
   color: #99a7ee;
-
 }
 
 .show-section-label {

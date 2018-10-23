@@ -8,7 +8,7 @@ class SongShow extends React.Component {
   constructor(props) {
     super(props);
     this.highlightedText = this.highlightedText.bind(this);
-    this.highlight = '';
+    this.state = { highlight: '' };
   }
 
   componentDidMount() {
@@ -20,22 +20,12 @@ class SongShow extends React.Component {
   }
 
   highlightedText() {
-    if (window.getSelection) {
-      this.highlight = window.getSelection().toString();
-    }
+    this.setState({ highlight: window.getSelection().toString() });
+    console.log(this.state.highlight);
   }
 
   render() {
-    let annotationForm;
-    if (this.highlightedText) {
-      console.log(this.highlight);
-      annotationForm = (
-        <AnnotationFormContainer
-          song={this.props.song}
-          lyricSubstring={this.highlighted}
-          currentUser={this.props.currentUser} />
-      );
-    }
+
 
     return (
       <div className="background">
@@ -54,8 +44,14 @@ class SongShow extends React.Component {
             </div>
           </div>
           <div className="show-sidebar">
-            <h3  className="sidebar-section">HIGHLIGHT TEXT <br /> TO ADD ANNOTATION</h3>
-            { annotationForm }
+            <div className="annotation-section">
+              <h3  className="sidebar-section-head">HIGHLIGHT TEXT <br /> TO ADD ANNOTATION</h3>
+              <AnnotationFormContainer
+                song={this.props.song}
+                lyricSubstring={this.state.highlight}
+                currentUser={this.props.currentUser}
+                openModal={this.props.openSignin} />
+            </div>
           </div>
         </div>
       </div>

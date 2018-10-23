@@ -5,7 +5,9 @@ import { merge } from 'lodash';
 class AnnotationForm extends React.Component {
   constructor(props) {
     super(props);
-    this.body = '';
+    this.state = {
+      body: '',
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -15,7 +17,7 @@ class AnnotationForm extends React.Component {
     formData.append("annotation[this.song_id]", this.props.song.id);
     formData.append("annotation[author_id]", this.props.currentUser.id);
     formData.append("annotation[lyric_substring]", this.props.lyricSubstring);
-    formData.append("annotation[body]", this.body);
+    formData.append("annotation[body]", this.state.body);
 
     this.props.createAnnotation(formData).then(payload => {
       //render new annotation in component
@@ -29,21 +31,33 @@ class AnnotationForm extends React.Component {
   }
 
   render() {
+    let header;
+
+
     let submitButton;
     if (this.props.currentUser) {
       <button onClick={this.handleSubmit}>Submit</button>
     } else {
-      //open the sign in modal
-      <button onClick={this.handleSubmit}>Submit</button>
+      <button onClick={this.props.openSignin}>Submit</button>
     }
 
     return (
       <form onSubmit={this.handleSubmit} id="annotation-form">
+        
         <input
-          type="textarea"
-          value={this.body}
-          onChange={this.update('body')} >
+          type="text"
+          value={this.props.lyricSubstring}
+          className="annotation-form-substring"
+          readOnly>
         </input>
+
+        <textarea
+          className="annotation-textarea"
+          value={this.state.body}
+          onChange={this.update('body')}
+          placeholder="What this line means..." >
+        </textarea>
+
         { submitButton }
       </form>
     )
