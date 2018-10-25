@@ -2,13 +2,18 @@
   width: 45%;
 }
 
-.lyrics-container p {
+.lyrics-container div {
   white-space: pre-line;
   font-size: 1.125em;
   margin: 1rem 0;
   padding-left: 20px;
   padding-bottom: 20px;
   line-height: 150%;
+}
+
+.lyrics {
+  display: flex;
+  flex-direction: column;
 }
 
 .show-sidebar {

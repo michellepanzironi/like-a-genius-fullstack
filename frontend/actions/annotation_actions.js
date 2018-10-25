@@ -17,13 +17,13 @@ export const receiveAnnotations = data => {
   });
 };
 
-export const fetchAnnotation = id => {
+export const fetchAnnotation = id => dispatch => {
   return AnnotationApiUtils.fetchAnnotation(id).then(annotation => {
     return dispatch(receiveAnnotation(annotation));
   });
 };
 
-export const createAnnotation = (annotation, songId, lyric_substring) => dispatch => {
+export const createAnnotation = (annotation, songId, line_id) => dispatch => {
   return AnnotationApiUtils.createAnnotation(annotation, songId, lyric_substring).then(annotation => {
     return dispatch(receiveAnnotation(annotation));
   });

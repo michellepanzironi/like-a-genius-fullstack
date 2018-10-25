@@ -118,11 +118,13 @@ var receiveAnnotations = function receiveAnnotations(data) {
   };
 };
 var fetchAnnotation = function fetchAnnotation(id) {
-  return _util_annotation_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAnnotation"](id).then(function (annotation) {
-    return dispatch(receiveAnnotation(annotation));
-  });
+  return function (dispatch) {
+    return _util_annotation_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAnnotation"](id).then(function (annotation) {
+      return dispatch(receiveAnnotation(annotation));
+    });
+  };
 };
-var createAnnotation = function createAnnotation(annotation, songId, lyric_substring) {
+var createAnnotation = function createAnnotation(annotation, songId, line_id) {
   return function (dispatch) {
     return _util_annotation_api_util__WEBPACK_IMPORTED_MODULE_0__["createAnnotation"](annotation, songId, lyric_substring).then(function (annotation) {
       return dispatch(receiveAnnotation(annotation));
@@ -472,10 +474,10 @@ var deleteSong = function deleteSong(id) {
 
 /***/ }),
 
-/***/ "./frontend/components/annotations/annotation_form/annotation_form.jsx":
-/*!*****************************************************************************!*\
-  !*** ./frontend/components/annotations/annotation_form/annotation_form.jsx ***!
-  \*****************************************************************************/
+/***/ "./frontend/components/annotations/annotation_form/ann_form.jsx":
+/*!**********************************************************************!*\
+  !*** ./frontend/components/annotations/annotation_form/ann_form.jsx ***!
+  \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -589,20 +591,18 @@ function (_React$Component) {
 
 /***/ }),
 
-/***/ "./frontend/components/annotations/annotation_form/annotation_form_container.js":
-/*!**************************************************************************************!*\
-  !*** ./frontend/components/annotations/annotation_form/annotation_form_container.js ***!
-  \**************************************************************************************/
+/***/ "./frontend/components/annotations/annotation_form/ann_form_container.js":
+/*!*******************************************************************************!*\
+  !*** ./frontend/components/annotations/annotation_form/ann_form_container.js ***!
+  \*******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/song_actions */ "./frontend/actions/song_actions.js");
-/* harmony import */ var _actions_annotation_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/annotation_actions */ "./frontend/actions/annotation_actions.js");
-/* harmony import */ var _annotation_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./annotation_form */ "./frontend/components/annotations/annotation_form/annotation_form.jsx");
-
+/* harmony import */ var _actions_annotation_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/annotation_actions */ "./frontend/actions/annotation_actions.js");
+/* harmony import */ var _ann_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ann_form */ "./frontend/components/annotations/annotation_form/ann_form.jsx");
 
 
 
@@ -615,16 +615,13 @@ var msp = function msp(state, ownProps) {
 
 var mdp = function mdp(dispatch) {
   return {
-    fetchSong: function fetchSong(songId) {
-      return dispatch(Object(_actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["fetchSong"])(songId));
-    },
     createAnnotation: function createAnnotation(formData) {
-      return dispatch(Object(_actions_annotation_actions__WEBPACK_IMPORTED_MODULE_2__["createAnnotation"])(formData));
+      return dispatch(Object(_actions_annotation_actions__WEBPACK_IMPORTED_MODULE_1__["createAnnotation"])(formData));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_annotation_form__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_ann_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -2497,7 +2494,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
 /* harmony import */ var _artists_artist_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../artists/artist_bar */ "./frontend/components/artists/artist_bar.jsx");
-/* harmony import */ var _annotations_annotation_form_annotation_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../annotations/annotation_form/annotation_form_container */ "./frontend/components/annotations/annotation_form/annotation_form_container.js");
+/* harmony import */ var _annotations_annotation_form_ann_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../annotations/annotation_form/ann_form_container */ "./frontend/components/annotations/annotation_form/ann_form_container.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2508,13 +2505,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 
 
@@ -2533,34 +2530,32 @@ function (_React$Component) {
     _classCallCheck(this, SongShow);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SongShow).call(this, props));
-    _this.highlightedText = _this.highlightedText.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.state = {
-      highlight: ''
-    };
+    _this.selection = {};
     return _this;
   }
 
   _createClass(SongShow, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
+    key: "componentWillMount",
+    value: function componentWillMount() {
       this.props.fetchSong(this.props.match.params.songId);
     }
   }, {
-    key: "getLyrics",
-    value: function getLyrics() {
-      return this.props.song.lyrics;
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.lyricsListener = document.getElementById('lyrics');
+      this.lyricsListener.addEventListener('mousedown', this.handleSelect.bind(this));
     }
   }, {
-    key: "highlightedText",
-    value: function highlightedText() {
-      this.setState({
-        highlight: window.getSelection().toString()
-      });
-      console.log(this.state.highlight);
+    key: "handleSelect",
+    value: function handleSelect(e) {
+      this.selection = window.getSelection().toString();
+      console.log(this.selection);
+      console.log("handleSelect fired");
     }
   }, {
     key: "render",
     value: function render() {
+      var lyrics = this.props.song.lyrics;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_artists_artist_bar__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -2576,15 +2571,16 @@ function (_React$Component) {
         to: "/songs/".concat(this.props.song.id, "/edit")
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "purple-button"
-      }, "Edit Song")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.song.lyrics))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Edit Song")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "lyrics"
+      }, lyrics))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "annotation-section"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "sidebar-section-head"
-      }, "HIGHLIGHT TEXT ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " TO ADD ANNOTATION"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotations_annotation_form_annotation_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, "HIGHLIGHT TEXT ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " TO ADD ANNOTATION"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotations_annotation_form_ann_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
         song: this.props.song,
-        lyricSubstring: this.state.highlight,
         currentUser: this.props.currentUser,
         openModal: this.props.openSignin
       })))));
