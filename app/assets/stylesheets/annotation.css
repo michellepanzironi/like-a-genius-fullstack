@@ -1,19 +1,26 @@
-.annotation-textarea {
-  border: .15rem solid #cccccc;
-  width: 436px;
-  height: 216px;
-  margin-bottom: 20px;
-  font-weight: 100;
-  padding-left: 8px;
-  color: #757575;
-  padding-top: 8px;
-}
-
 .annotation-section {
   position: fixed;
-  top: 330px;
+  top: 325px;
 }
 
-#annotation_form {
+#annotation-form {
+  width: 401px;
+}
 
+.annotation-form-substring {
+  white-space: pre-line;
+  border: .15rem solid #cccccc;
+  height: 100%;
+  font-weight: 100;
+  color: #757575;
+  padding: 8px;
+}
+
+.annotation-form-textarea {
+  border: .15rem solid #cccccc;
+  height: 202px;
+  margin-bottom: 20px;
+  font-weight: 100;
+  color: #757575;
+  padding: 8px;
 }

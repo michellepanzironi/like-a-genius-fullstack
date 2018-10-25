@@ -7,21 +7,30 @@ class AnnotationForm extends React.Component {
     super(props);
     this.state = {
       body: '',
+      sublyric: '',
+      author: this.props.authorId,
+      song: this.props.songId
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    this.setState({ sublyric: this.props.sublyric });
+  }
+
+  componentDidMount() {
+    console.log(this.state.sublyric);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     let formData = new FormData();
-    formData.append("annotation[this.song_id]", this.props.song.id);
-    formData.append("annotation[author_id]", this.props.currentUser.id);
-    formData.append("annotation[lyric_substring]", this.props.lyricSubstring);
+    formData.append("annotation[song_id]", this.state.song);
+    formData.append("annotation[author_id]", this.state.author);
+    formData.append("annotation[sublyric]", this.props.lyricSubstring);
     formData.append("annotation[body]", this.state.body);
 
-    this.props.createAnnotation(formData).then(payload => {
-      //render new annotation in component
-    })
+    this.props.createAnnotation(formData);
   }
 
   update(field) {
@@ -33,9 +42,8 @@ class AnnotationForm extends React.Component {
   render() {
     let header;
 
-
     let submitButton;
-    if (this.props.currentUser) {
+    if (this.props.author) {
       <button onClick={this.handleSubmit}>Submit</button>
     } else {
       <button onClick={this.props.openSignin}>Submit</button>
@@ -43,16 +51,15 @@ class AnnotationForm extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit} id="annotation-form">
-        
-        <input
-          type="text"
-          value={this.props.lyricSubstring}
-          className="annotation-form-substring"
-          readOnly>
-        </input>
 
         <textarea
-          className="annotation-textarea"
+          value={this.state.sublyric}
+          className="annotation-form-substring"
+          readOnly>
+        </textarea>
+
+        <textarea
+          className="annotation-form-textarea"
           value={this.state.body}
           onChange={this.update('body')}
           placeholder="What this line means..." >

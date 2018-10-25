@@ -23,8 +23,8 @@ export const fetchAnnotation = id => dispatch => {
   });
 };
 
-export const createAnnotation = (annotation, songId, line_id) => dispatch => {
-  return AnnotationApiUtils.createAnnotation(annotation, songId, lyric_substring).then(annotation => {
+export const createAnnotation = formData => dispatch => {
+  return AnnotationApiUtils.createAnnotation(formData).then(annotation => {
     return dispatch(receiveAnnotation(annotation));
   });
 };

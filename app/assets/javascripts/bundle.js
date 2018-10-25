@@ -124,9 +124,9 @@ var fetchAnnotation = function fetchAnnotation(id) {
     });
   };
 };
-var createAnnotation = function createAnnotation(annotation, songId, line_id) {
+var createAnnotation = function createAnnotation(formData) {
   return function (dispatch) {
-    return _util_annotation_api_util__WEBPACK_IMPORTED_MODULE_0__["createAnnotation"](annotation, songId, lyric_substring).then(function (annotation) {
+    return _util_annotation_api_util__WEBPACK_IMPORTED_MODULE_0__["createAnnotation"](formData).then(function (annotation) {
       return dispatch(receiveAnnotation(annotation));
     });
   };
@@ -524,23 +524,37 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(AnnotationForm).call(this, props));
     _this.state = {
-      body: ''
+      body: '',
+      sublyric: '',
+      author: _this.props.authorId,
+      song: _this.props.songId
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
   _createClass(AnnotationForm, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.setState({
+        sublyric: this.props.sublyric
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log(this.state.sublyric);
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
       var formData = new FormData();
-      formData.append("annotation[this.song_id]", this.props.song.id);
-      formData.append("annotation[author_id]", this.props.currentUser.id);
-      formData.append("annotation[lyric_substring]", this.props.lyricSubstring);
+      formData.append("annotation[song_id]", this.state.song);
+      formData.append("annotation[author_id]", this.state.author);
+      formData.append("annotation[sublyric]", this.props.lyricSubstring);
       formData.append("annotation[body]", this.state.body);
-      this.props.createAnnotation(formData).then(function (payload) {//render new annotation in component
-      });
+      this.props.createAnnotation(formData);
     }
   }, {
     key: "update",
@@ -557,7 +571,7 @@ function (_React$Component) {
       var header;
       var submitButton;
 
-      if (this.props.currentUser) {
+      if (this.props.author) {
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: this.handleSubmit
         }, "Submit");
@@ -570,13 +584,12 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         id: "annotation-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: this.props.lyricSubstring,
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        value: this.state.sublyric,
         className: "annotation-form-substring",
         readOnly: true
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        className: "annotation-textarea",
+        className: "annotation-form-textarea",
         value: this.state.body,
         onChange: this.update('body'),
         placeholder: "What this line means..."
@@ -2530,7 +2543,9 @@ function (_React$Component) {
     _classCallCheck(this, SongShow);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SongShow).call(this, props));
-    _this.selection = {};
+    _this.state = {
+      selection: null
+    };
     return _this;
   }
 
@@ -2542,20 +2557,45 @@ function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.lyricsListener = document.getElementById('lyrics');
-      this.lyricsListener.addEventListener('mousedown', this.handleSelect.bind(this));
+      this.lyricsListener = document.getElementById('show-lyrics');
+      this.lyricsListener.addEventListener('click', this.handleSelect.bind(this));
     }
   }, {
     key: "handleSelect",
     value: function handleSelect(e) {
-      this.selection = window.getSelection().toString();
-      console.log(this.selection);
+      var currentSelection;
+
+      if (window.getSelection) {
+        var sel = window.getSelection();
+
+        if (sel.getRangeAt && sel.rangeCount) {
+          currentSelection = sel.toString();
+        } else {
+          currentSelection = null;
+        }
+      }
+
+      this.setState({
+        selection: currentSelection
+      });
+      console.log(this.state.selection);
       console.log("handleSelect fired");
     }
   }, {
     key: "render",
     value: function render() {
       var lyrics = this.props.song.lyrics;
+      var annotationForm;
+
+      if (this.state.selection) {
+        annotationForm = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotations_annotation_form_ann_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          songId: this.props.song.id,
+          authorId: this.props.currentUser.id,
+          sublyric: this.state.selection,
+          openSignin: this.props.openSignin
+        }));
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_artists_artist_bar__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -2564,7 +2604,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "foreground"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "show-lyrics"
+        id: "show-lyrics"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "lyrics-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -2579,11 +2619,7 @@ function (_React$Component) {
         className: "annotation-section"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "sidebar-section-head"
-      }, "HIGHLIGHT TEXT ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " TO ADD ANNOTATION"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotations_annotation_form_ann_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        song: this.props.song,
-        currentUser: this.props.currentUser,
-        openModal: this.props.openSignin
-      })))));
+      }, "HIGHLIGHT TEXT", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " TO ADD ANNOTATION"), annotationForm))));
     }
   }]);
 
