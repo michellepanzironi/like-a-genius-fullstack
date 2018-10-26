@@ -16,6 +16,7 @@ class AnnotationForm extends React.Component {
 
   componentWillMount() {
     this.setState({ sublyric: this.props.sublyric });
+    
     this.setState({ author: this.props.author.username });
     this.setState({ song: this.props.song.title });
   }

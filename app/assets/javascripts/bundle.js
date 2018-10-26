@@ -626,7 +626,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var msp = function msp(state, ownProps) {
   return {
-    author: state.entities.users[state.session.id]
+    author: state.entities.users[state.session.id] || {}
   };
 };
 
