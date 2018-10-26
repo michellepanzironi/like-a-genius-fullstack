@@ -7,4 +7,12 @@ end
 json.artist @song.artist
 json.album @song.album.title
 
-json.annotations @song.annotations
+if @annotations
+  json.annotations do
+    @annotations.each do |annotation|
+      json.set! annotation.id do
+        json.extract! annotation, :id, :sublyric, :body, :author_id, :song_id
+      end
+    end
+  end
+end

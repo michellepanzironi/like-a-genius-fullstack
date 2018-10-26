@@ -8,6 +8,7 @@ class Api::SongsController < ApplicationController
 
   def show
     @song = Song.find(params[:id])
+    @annotations = @song.annotations
     render :show
   end
 

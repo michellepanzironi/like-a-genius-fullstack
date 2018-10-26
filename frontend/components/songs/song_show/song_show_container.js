@@ -5,13 +5,18 @@ import {
   fetchSongs,
   deleteSong } from '../../../actions/song_actions';
 import { fetchArtist } from '../../../actions/artist_actions';
-import { openModal } from '../../../actions/modal_actions';
+
 
 const msp = (state, ownProps) => {
+  const song = state.entities.songs[ownProps.match.params.songId] || { };
+  // debugger
+  const annotations = song.annotations ? song.annotations.map(ann => {
+    return state.entities.annotations[ann.id];
+  }) : [];
   return ({
     id: ownProps.match.params.songId,
-    song: state.entities.songs[ownProps.match.params.songId] || { },
-    currentUser: state.entities.users || {}
+    song,
+    annotations
   });
 };
 
@@ -21,9 +26,6 @@ const mdp = dispatch => {
     fetchSongs: () => dispatch(fetchSongs()),
     deleteSong: id => dispatch(deleteSong(id)),
     fetchArtist: artistId => dispatch(fetchArtist(artistId)),
-    openSignin: () => {
-      return dispatch(openModal('SIGN IN'));
-    },
   });
 };
 

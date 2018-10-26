@@ -387,12 +387,14 @@ var receiveRandomSongs = function receiveRandomSongs(songs) {
 var receiveSong = function receiveSong(_ref2) {
   var song = _ref2.song,
       artist = _ref2.artist,
-      album = _ref2.album;
+      album = _ref2.album,
+      annotations = _ref2.annotations;
   return {
     type: RECEIVE_SONG,
     song: song,
     artist: artist,
-    album: album
+    album: album,
+    annotations: annotations
   };
 };
 var removeSongs = function removeSongs(songId) {
@@ -526,8 +528,8 @@ function (_React$Component) {
     _this.state = {
       body: '',
       sublyric: '',
-      author: _this.props.authorId,
-      song: _this.props.songId
+      song: '',
+      author: ''
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
@@ -539,22 +541,33 @@ function (_React$Component) {
       this.setState({
         sublyric: this.props.sublyric
       });
+      this.setState({
+        author: this.props.author.username
+      });
+      this.setState({
+        song: this.props.song.title
+      });
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       console.log(this.state.sublyric);
+      console.log(this.state.author);
+      console.log(this.state.song);
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
       var formData = new FormData();
-      formData.append("annotation[song_id]", this.state.song);
-      formData.append("annotation[author_id]", this.state.author);
-      formData.append("annotation[sublyric]", this.props.lyricSubstring);
       formData.append("annotation[body]", this.state.body);
+      formData.append("annotation[sublyric]", this.state.sublyric);
+      formData.append("song[title]", this.state.song);
+      formData.append("user[username]", this.state.author);
       this.props.createAnnotation(formData);
+      setTimeout(function () {
+        window.location.reload();
+      }, 10);
     }
   }, {
     key: "update",
@@ -568,19 +581,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var header;
-      var submitButton;
-
-      if (this.props.author) {
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: this.handleSubmit
-        }, "Submit");
-      } else {
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: this.props.openSignin
-        }, "Submit");
-      }
-
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         id: "annotation-form"
@@ -593,7 +593,9 @@ function (_React$Component) {
         value: this.state.body,
         onChange: this.update('body'),
         placeholder: "What this line means..."
-      }), submitButton);
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleSubmit
+      }, "Submit"));
     }
   }]);
 
@@ -616,13 +618,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_annotation_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/annotation_actions */ "./frontend/actions/annotation_actions.js");
 /* harmony import */ var _ann_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ann_form */ "./frontend/components/annotations/annotation_form/ann_form.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
 
 var msp = function msp(state, ownProps) {
   return {
-    lyricSubstring: ''
+    author: state.entities.users[state.session.id]
   };
 };
 
@@ -630,6 +634,9 @@ var mdp = function mdp(dispatch) {
   return {
     createAnnotation: function createAnnotation(formData) {
       return dispatch(Object(_actions_annotation_actions__WEBPACK_IMPORTED_MODULE_1__["createAnnotation"])(formData));
+    },
+    openSignin: function openSignin() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])('SIGN IN'));
     }
   };
 };
@@ -1507,9 +1514,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _greeting_greeting_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../greeting/greeting_container */ "./frontend/components/greeting/greeting_container.jsx");
 
 
- // add <Greeting /> here to include
-// currentUser.username & logout button if signed in
-// OR signup/login modals if logged out
+
 
 var Navbar = function Navbar(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
@@ -2558,7 +2563,8 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.lyricsListener = document.getElementById('show-lyrics');
-      this.lyricsListener.addEventListener('click', this.handleSelect.bind(this));
+      this.lyricsListener.addEventListener('click', this.handleSelect.bind(this)); //fetch associated annotations.then(annotations.forEach search lyrics str)
+      //style and comp-link lyrics with matching annotations
     }
   }, {
     key: "handleSelect",
@@ -2589,10 +2595,8 @@ function (_React$Component) {
 
       if (this.state.selection) {
         annotationForm = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotations_annotation_form_ann_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          songId: this.props.song.id,
-          authorId: this.props.currentUser.id,
-          sublyric: this.state.selection,
-          openSignin: this.props.openSignin
+          song: this.props.song,
+          sublyric: this.state.selection
         }));
       }
 
@@ -2643,18 +2647,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _song_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./song_show */ "./frontend/components/songs/song_show/song_show.jsx");
 /* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/song_actions */ "./frontend/actions/song_actions.js");
 /* harmony import */ var _actions_artist_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/artist_actions */ "./frontend/actions/artist_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-
 
 
 
 
 
 var msp = function msp(state, ownProps) {
+  var song = state.entities.songs[ownProps.match.params.songId] || {}; // debugger
+
+  var annotations = song.annotations ? song.annotations.map(function (ann) {
+    return state.entities.annotations[ann.id];
+  }) : [];
   return {
     id: ownProps.match.params.songId,
-    song: state.entities.songs[ownProps.match.params.songId] || {},
-    currentUser: state.entities.users || {}
+    song: song,
+    annotations: annotations
   };
 };
 
@@ -2671,9 +2678,6 @@ var mdp = function mdp(dispatch) {
     },
     fetchArtist: function fetchArtist(artistId) {
       return dispatch(Object(_actions_artist_actions__WEBPACK_IMPORTED_MODULE_3__["fetchArtist"])(artistId));
-    },
-    openSignin: function openSignin() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])('SIGN IN'));
     }
   };
 };
@@ -3163,9 +3167,6 @@ var ModalReducer = function ModalReducer() {
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__["OPEN_MODAL"]:
       return action.modal;
 
-    case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__["OPEN_ANNOTATION_MODAL"]:
-      return action.data;
-
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__["CLOSE_MODAL"]:
       return null;
 
@@ -3334,9 +3335,9 @@ var createAnnotation = function createAnnotation(formData) {
   return $.ajax({
     method: 'POST',
     url: "/api/annotations/",
-    data: {
-      formData: formData
-    }
+    data: formData,
+    contentType: false,
+    processData: false
   });
 };
 

@@ -29,12 +29,13 @@ export const receiveRandomSongs = songs => {
   });
 };
 
-export const receiveSong = ({ song, artist, album }) => {
+export const receiveSong = ({ song, artist, album, annotations }) => {
   return ({
     type: RECEIVE_SONG,
     song,
     artist,
-    album
+    album,
+    annotations
   });
 };
 

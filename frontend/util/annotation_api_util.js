@@ -9,6 +9,8 @@ export const createAnnotation = formData => {
   return $.ajax({
     method: 'POST',
     url: `/api/annotations/`,
-    data: { formData }
+    data: formData,
+    contentType: false,
+    processData: false
   });
 };

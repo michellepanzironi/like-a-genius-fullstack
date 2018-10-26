@@ -4,6 +4,7 @@
 }
 
 #annotation-form {
+  margin-bottom: 167px;
   width: 401px;
 }
 
@@ -17,8 +18,9 @@
 }
 
 .annotation-form-textarea {
+  white-space: pre-line;
   border: .15rem solid #cccccc;
-  height: 202px;
+  height: 140px;
   margin-bottom: 20px;
   font-weight: 100;
   color: #757575;

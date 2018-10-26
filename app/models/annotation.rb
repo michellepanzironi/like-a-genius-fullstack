@@ -1,6 +1,6 @@
 class Annotation < ApplicationRecord
 
-  validates :body, :author_id, :song_id, :lyric_substring, presence: true
+  validates :body, :author_id, :song_id, :sublyric, presence: true
 
   belongs_to :author,
     primary_key: :id,

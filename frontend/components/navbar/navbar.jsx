@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import GreetingContainer from '../greeting/greeting_container';
-// add <Greeting /> here to include
-// currentUser.username & logout button if signed in
-// OR signup/login modals if logged out
 
 const Navbar = props => {
   return (

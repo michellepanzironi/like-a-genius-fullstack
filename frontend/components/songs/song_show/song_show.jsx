@@ -17,6 +17,8 @@ class SongShow extends React.Component {
   componentDidMount() {
     this.lyricsListener = document.getElementById('show-lyrics');
     this.lyricsListener.addEventListener('click', this.handleSelect.bind(this));
+    //fetch associated annotations.then(annotations.forEach search lyrics str)
+    //style and comp-link lyrics with matching annotations
   }
 
   handleSelect(e) {
@@ -42,13 +44,12 @@ class SongShow extends React.Component {
       annotationForm = (
         <div>
           <AnnotationFormContainer
-            songId={this.props.song.id}
-            authorId={this.props.currentUser.id}
-            sublyric={this.state.selection}
-            openSignin={this.props.openSignin} />
+            song={this.props.song}
+            sublyric={this.state.selection} />
         </div>
       )
     }
+
     return (
       <div className="background">
         <ArtistBar

@@ -8,29 +8,36 @@ class AnnotationForm extends React.Component {
     this.state = {
       body: '',
       sublyric: '',
-      author: this.props.authorId,
-      song: this.props.songId
+      song: '',
+      author: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
     this.setState({ sublyric: this.props.sublyric });
+    this.setState({ author: this.props.author.username });
+    this.setState({ song: this.props.song.title });
   }
 
   componentDidMount() {
     console.log(this.state.sublyric);
+    console.log(this.state.author);
+    console.log(this.state.song);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     let formData = new FormData();
-    formData.append("annotation[song_id]", this.state.song);
-    formData.append("annotation[author_id]", this.state.author);
-    formData.append("annotation[sublyric]", this.props.lyricSubstring);
     formData.append("annotation[body]", this.state.body);
+    formData.append("annotation[sublyric]", this.state.sublyric);
+    formData.append("song[title]", this.state.song);
+    formData.append("user[username]", this.state.author);
 
     this.props.createAnnotation(formData);
+    setTimeout(() => {
+      window.location.reload();
+    },10);
   }
 
   update(field) {
@@ -40,15 +47,6 @@ class AnnotationForm extends React.Component {
   }
 
   render() {
-    let header;
-
-    let submitButton;
-    if (this.props.author) {
-      <button onClick={this.handleSubmit}>Submit</button>
-    } else {
-      <button onClick={this.props.openSignin}>Submit</button>
-    }
-
     return (
       <form onSubmit={this.handleSubmit} id="annotation-form">
 
@@ -65,7 +63,7 @@ class AnnotationForm extends React.Component {
           placeholder="What this line means..." >
         </textarea>
 
-        { submitButton }
+        <button onClick={this.handleSubmit}>Submit</button>
       </form>
     )
   }
