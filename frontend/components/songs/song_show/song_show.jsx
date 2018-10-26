@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import ArtistBar from '../../artists/artist_bar';
 import AnnotationFormContainer from '../../annotations/annotation_form/ann_form_container';
+
 
 class SongShow extends React.Component {
   constructor(props) {
@@ -17,8 +19,6 @@ class SongShow extends React.Component {
   componentDidMount() {
     this.lyricsListener = document.getElementById('show-lyrics');
     this.lyricsListener.addEventListener('click', this.handleSelect.bind(this));
-    //fetch associated annotations.then(annotations.forEach search lyrics str)
-    //style and comp-link lyrics with matching annotations
   }
 
   handleSelect(e) {
@@ -32,20 +32,31 @@ class SongShow extends React.Component {
         }
     }
     this.setState({ selection: currentSelection });
-    console.log(this.state.selection);
-    console.log("handleSelect fired");
   }
 
 
   render() {
     let lyrics = this.props.song.lyrics;
+
+    let formHeader;
+    if (typeof this.props.currentUser.id === 'undefined') {
+      formHeader = (
+        <h3  className="sidebar-section-head">PLEASE SIGN IN<br /> TO ADD ANNOTATION</h3>
+      )
+    } else {
+      formHeader = (
+        <h3  className="sidebar-section-head">HIGHLIGHT TEXT<br /> TO ADD ANNOTATION</h3>
+      )
+    }
+
     let annotationForm;
     if (this.state.selection) {
       annotationForm = (
         <div>
           <AnnotationFormContainer
             song={this.props.song}
-            sublyric={this.state.selection} />
+            sublyric={this.state.selection}
+            author={this.props.currentUser} />
         </div>
       )
     }
@@ -70,7 +81,7 @@ class SongShow extends React.Component {
           </div>
           <div className="show-sidebar">
             <div className="annotation-section">
-              <h3  className="sidebar-section-head">HIGHLIGHT TEXT<br /> TO ADD ANNOTATION</h3>
+              {formHeader}
               {annotationForm}
             </div>
           </div>

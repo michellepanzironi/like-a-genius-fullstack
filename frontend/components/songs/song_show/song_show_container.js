@@ -9,14 +9,11 @@ import { fetchArtist } from '../../../actions/artist_actions';
 
 const msp = (state, ownProps) => {
   const song = state.entities.songs[ownProps.match.params.songId] || { };
-  // debugger
-  const annotations = song.annotations ? song.annotations.map(ann => {
-    return state.entities.annotations[ann.id];
-  }) : [];
+  const currentUser = state.entities.users[state.session.id] || { };
   return ({
     id: ownProps.match.params.songId,
     song,
-    annotations
+    currentUser
   });
 };
 

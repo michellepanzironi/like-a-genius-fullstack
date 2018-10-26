@@ -625,9 +625,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  return {
-    author: state.entities.users[state.session.id] || {}
-  };
+  return {};
 };
 
 var mdp = function mdp(dispatch) {
@@ -2509,10 +2507,12 @@ var SongIndexItem = function SongIndexItem(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
-/* harmony import */ var _artists_artist_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../artists/artist_bar */ "./frontend/components/artists/artist_bar.jsx");
-/* harmony import */ var _annotations_annotation_form_ann_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../annotations/annotation_form/ann_form_container */ "./frontend/components/annotations/annotation_form/ann_form_container.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
+/* harmony import */ var _artists_artist_bar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../artists/artist_bar */ "./frontend/components/artists/artist_bar.jsx");
+/* harmony import */ var _annotations_annotation_form_ann_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../annotations/annotation_form/ann_form_container */ "./frontend/components/annotations/annotation_form/ann_form_container.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2530,6 +2530,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -2563,8 +2564,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.lyricsListener = document.getElementById('show-lyrics');
-      this.lyricsListener.addEventListener('click', this.handleSelect.bind(this)); //fetch associated annotations.then(annotations.forEach search lyrics str)
-      //style and comp-link lyrics with matching annotations
+      this.lyricsListener.addEventListener('click', this.handleSelect.bind(this));
     }
   }, {
     key: "handleSelect",
@@ -2584,25 +2584,36 @@ function (_React$Component) {
       this.setState({
         selection: currentSelection
       });
-      console.log(this.state.selection);
-      console.log("handleSelect fired");
     }
   }, {
     key: "render",
     value: function render() {
       var lyrics = this.props.song.lyrics;
+      var formHeader;
+
+      if (typeof this.props.currentUser.id === 'undefined') {
+        formHeader = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+          className: "sidebar-section-head"
+        }, "PLEASE SIGN IN", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " TO ADD ANNOTATION");
+      } else {
+        formHeader = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+          className: "sidebar-section-head"
+        }, "HIGHLIGHT TEXT", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " TO ADD ANNOTATION");
+      }
+
       var annotationForm;
 
       if (this.state.selection) {
-        annotationForm = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotations_annotation_form_ann_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        annotationForm = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotations_annotation_form_ann_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
           song: this.props.song,
-          sublyric: this.state.selection
+          sublyric: this.state.selection,
+          author: this.props.currentUser
         }));
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_artists_artist_bar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_artists_artist_bar__WEBPACK_IMPORTED_MODULE_4__["default"], {
         song: this.props.song,
         artist: this.props.song.artist
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2611,7 +2622,7 @@ function (_React$Component) {
         id: "show-lyrics"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "lyrics-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/songs/".concat(this.props.song.id, "/edit")
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "purple-button"
@@ -2621,16 +2632,14 @@ function (_React$Component) {
         className: "show-sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "annotation-section"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        className: "sidebar-section-head"
-      }, "HIGHLIGHT TEXT", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " TO ADD ANNOTATION"), annotationForm))));
+      }, formHeader, annotationForm))));
     }
   }]);
 
   return SongShow;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(SongShow));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(SongShow));
 
 /***/ }),
 
@@ -2653,15 +2662,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  var song = state.entities.songs[ownProps.match.params.songId] || {}; // debugger
-
-  var annotations = song.annotations ? song.annotations.map(function (ann) {
-    return state.entities.annotations[ann.id];
-  }) : [];
+  var song = state.entities.songs[ownProps.match.params.songId] || {};
+  var currentUser = state.entities.users[state.session.id] || {};
   return {
     id: ownProps.match.params.songId,
     song: song,
-    annotations: annotations
+    currentUser: currentUser
   };
 };
 

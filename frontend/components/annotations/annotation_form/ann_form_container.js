@@ -4,7 +4,7 @@ import AnnotationForm from './ann_form';
 import { openModal } from '../../../actions/modal_actions';
 
 const msp = (state, ownProps) => {
-  return { author: state.entities.users[state.session.id] || {} };
+  return { };
 };
 
 
