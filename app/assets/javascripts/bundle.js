@@ -688,7 +688,6 @@ function (_React$Component) {
   _createClass(AnnotationShow, [{
     key: "render",
     value: function render() {
-      console.log(this.annotation);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "annotation-show"
       }, this.props.ann.body);
@@ -2747,7 +2746,6 @@ function (_React$Component) {
 
       if (this.state.annotationOpen) {
         var ann = this.props.annotations[this.state.showingAnnotationId];
-        console.log(ann);
         annotationForm = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotations_annotation_show_ann_show__WEBPACK_IMPORTED_MODULE_8__["default"], {
           ann: ann
         }));

@@ -100,7 +100,7 @@ class SongShow extends React.Component {
 
     if (this.state.annotationOpen) {
       let ann = this.props.annotations[this.state.showingAnnotationId];
-      console.log(ann);
+
       annotationForm = (
         <div>
           <AnnotationShow ann={ann}/>

@@ -6,7 +6,6 @@ class AnnotationShow extends React.Component {
   }
 
   render () {
-    console.log(this.annotation);
     return (
       <div className="annotation-show">
         {this.props.ann.body}
