@@ -6,12 +6,18 @@ import ArtistBar from '../../artists/artist_bar';
 import AnnotationFormContainer from '../../annotations/annotation_form/ann_form_container';
 import Emoji from '../../emoji';
 import Parser from 'html-react-parser';
+import AnnotationShow from '../../annotations/annotation_show/ann_show';
 
 class SongShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { selection: null };
+    this.state = {
+      selection: null,
+      annotationOpen: false,
+      showingAnnotation: null
+    };
     this.styleAnnotations = this.styleAnnotations.bind(this);
+    this.handleAnnotationSelect = this.handleAnnotationSelect.bind(this);
   }
 
   componentWillMount() {
@@ -24,16 +30,21 @@ class SongShow extends React.Component {
   }
 
   handleSelect(e) {
-    let currentSelection;
-    if (window.getSelection) {
+    if (e.target && e.target.type === "submit") {
+      this.handleAnnotationSelect(e);
+    } else {
+      this.setState({ annotationOpen: false });
+      let currentSelection;
+      if (window.getSelection) {
         let sel = window.getSelection();
         if (sel.getRangeAt && sel.rangeCount) {
           currentSelection = sel.toString();
         } else {
           currentSelection = null;
         }
+      }
+      this.setState({ selection: currentSelection });
     }
-    this.setState({ selection: currentSelection });
   }
 
   styleAnnotations(annArr, lyrics) {
@@ -41,29 +52,33 @@ class SongShow extends React.Component {
 
     annArr.forEach((annotation, idx) => {
       let sublyric = annotation.sublyric;
-      let sublyricSpan = `<span className="sublyric" key=${idx}>${sublyric}</span>`;
+      let sublyricSpan = `<button className="sublyric" id="${idx}" key=${idx}>${sublyric}</button>`;
       lyricsDiv = lyricsDiv.replace(sublyric, sublyricSpan);
     });
 
     let parsedSpan = Parser(lyricsDiv);
-    console.log(parsedSpan);
     return parsedSpan;
   }
 
+  handleAnnotationSelect(e) {
+    console.log(e.target.id)
+    this.setState({
+      annotationOpen: true,
+      showingAnnotationId: e.target.id
+    });
+  }
 
   render() {
     let lyricString = this.props.song.lyrics;
     let annArr = this.props.annotations;
     let styledLyrics = this.styleAnnotations(annArr, lyricString);
-    // console.log(styledLyrics);
-    // this.styleAnnotations(annArr);
-
-
 
     let formHeader;
     if (typeof this.props.currentUser.id === 'undefined') {
       formHeader = (
-        <h3  className="sidebar-section-head">PLEASE SIGN IN TO  <Emoji symbol="◥" className="pointing-to-signin"/><br /> ADD AN ANNOTATION</h3>
+        <h3  className="sidebar-section-head">
+          PLEASE SIGN IN TO  <Emoji symbol="◥" id="pointing-to-signin"/><br /> ADD AN ANNOTATION
+        </h3>
       )
     } else {
       formHeader = (
@@ -79,6 +94,16 @@ class SongShow extends React.Component {
             song={this.props.song}
             sublyric={this.state.selection}
             author={this.props.currentUser} />
+        </div>
+      )
+    }
+
+    if (this.state.annotationOpen) {
+      let ann = this.props.annotations[this.state.showingAnnotationId];
+      console.log(ann);
+      annotationForm = (
+        <div>
+          <AnnotationShow ann={ann}/>
         </div>
       )
     }

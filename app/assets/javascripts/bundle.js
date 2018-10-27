@@ -643,6 +643,65 @@ var mdp = function mdp(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/annotations/annotation_show/ann_show.jsx":
+/*!**********************************************************************!*\
+  !*** ./frontend/components/annotations/annotation_show/ann_show.jsx ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var AnnotationShow =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(AnnotationShow, _React$Component);
+
+  function AnnotationShow(props) {
+    _classCallCheck(this, AnnotationShow);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(AnnotationShow).call(this, props));
+  }
+
+  _createClass(AnnotationShow, [{
+    key: "render",
+    value: function render() {
+      console.log(this.annotation);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "annotation-show"
+      }, this.props.ann.body);
+    }
+  }]);
+
+  return AnnotationShow;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (AnnotationShow);
+
+/***/ }),
+
 /***/ "./frontend/components/app.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/app.jsx ***!
@@ -2547,6 +2606,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _emoji__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../emoji */ "./frontend/components/emoji.jsx");
 /* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.js");
 /* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(html_react_parser__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _annotations_annotation_show_ann_show__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../annotations/annotation_show/ann_show */ "./frontend/components/annotations/annotation_show/ann_show.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2574,6 +2634,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
+
 var SongShow =
 /*#__PURE__*/
 function (_React$Component) {
@@ -2586,9 +2647,12 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SongShow).call(this, props));
     _this.state = {
-      selection: null
+      selection: null,
+      annotationOpen: false,
+      showingAnnotation: null
     };
     _this.styleAnnotations = _this.styleAnnotations.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleAnnotationSelect = _this.handleAnnotationSelect.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -2606,21 +2670,28 @@ function (_React$Component) {
   }, {
     key: "handleSelect",
     value: function handleSelect(e) {
-      var currentSelection;
+      if (e.target && e.target.type === "submit") {
+        this.handleAnnotationSelect(e);
+      } else {
+        this.setState({
+          annotationOpen: false
+        });
+        var currentSelection;
 
-      if (window.getSelection) {
-        var sel = window.getSelection();
+        if (window.getSelection) {
+          var sel = window.getSelection();
 
-        if (sel.getRangeAt && sel.rangeCount) {
-          currentSelection = sel.toString();
-        } else {
-          currentSelection = null;
+          if (sel.getRangeAt && sel.rangeCount) {
+            currentSelection = sel.toString();
+          } else {
+            currentSelection = null;
+          }
         }
-      }
 
-      this.setState({
-        selection: currentSelection
-      });
+        this.setState({
+          selection: currentSelection
+        });
+      }
     }
   }, {
     key: "styleAnnotations",
@@ -2628,21 +2699,27 @@ function (_React$Component) {
       var lyricsDiv = "<div id=\"lyrics\">".concat(lyrics, "<div>");
       annArr.forEach(function (annotation, idx) {
         var sublyric = annotation.sublyric;
-        var sublyricSpan = "<span className=\"sublyric\" key=".concat(idx, ">").concat(sublyric, "</span>");
+        var sublyricSpan = "<button className=\"sublyric\" id=\"".concat(idx, "\" key=").concat(idx, ">").concat(sublyric, "</button>");
         lyricsDiv = lyricsDiv.replace(sublyric, sublyricSpan);
       });
       var parsedSpan = html_react_parser__WEBPACK_IMPORTED_MODULE_7___default()(lyricsDiv);
-      console.log(parsedSpan);
       return parsedSpan;
+    }
+  }, {
+    key: "handleAnnotationSelect",
+    value: function handleAnnotationSelect(e) {
+      console.log(e.target.id);
+      this.setState({
+        annotationOpen: true,
+        showingAnnotationId: e.target.id
+      });
     }
   }, {
     key: "render",
     value: function render() {
       var lyricString = this.props.song.lyrics;
       var annArr = this.props.annotations;
-      var styledLyrics = this.styleAnnotations(annArr, lyricString); // console.log(styledLyrics);
-      // this.styleAnnotations(annArr);
-
+      var styledLyrics = this.styleAnnotations(annArr, lyricString);
       var formHeader;
 
       if (typeof this.props.currentUser.id === 'undefined') {
@@ -2650,7 +2727,7 @@ function (_React$Component) {
           className: "sidebar-section-head"
         }, "PLEASE SIGN IN TO  ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_emoji__WEBPACK_IMPORTED_MODULE_6__["default"], {
           symbol: "\u25E5",
-          className: "pointing-to-signin"
+          id: "pointing-to-signin"
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " ADD AN ANNOTATION");
       } else {
         formHeader = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
@@ -2665,6 +2742,14 @@ function (_React$Component) {
           song: this.props.song,
           sublyric: this.state.selection,
           author: this.props.currentUser
+        }));
+      }
+
+      if (this.state.annotationOpen) {
+        var ann = this.props.annotations[this.state.showingAnnotationId];
+        console.log(ann);
+        annotationForm = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotations_annotation_show_ann_show__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          ann: ann
         }));
       }
 

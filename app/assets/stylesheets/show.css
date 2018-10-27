@@ -18,10 +18,15 @@
 
 .sublyric {
   background-color: #ffff64;
+  border: none;
+  padding: 0px;
+  font-size: inherit;
+  text-align: left;
 }
 
 .sublyric:hover {
   background-color: #99a7ee;
+  cursor: pointer;
 }
 
 .show-sidebar {
@@ -30,9 +35,6 @@
   padding-bottom: 20px;
   line-height: 150%;
   border-left: 2px solid #99a7ee;
-}
-
-.pointing-to-signin {
 }
 
 .sidebar-section-head {
@@ -54,4 +56,8 @@
   border: .15rem solid #99a7ee;
   margin-top: 20px;
   margin-left: 15px;
+}
+
+.pointing-to-signin {
+
 }
