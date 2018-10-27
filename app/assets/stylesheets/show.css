@@ -16,12 +16,23 @@
   flex-direction: column;
 }
 
+.sublyric {
+  background-color: #ffff64;
+}
+
+.sublyric:hover {
+  background-color: #99a7ee;
+}
+
 .show-sidebar {
   margin: 1rem;
   padding-left: 20px;
   padding-bottom: 20px;
   line-height: 150%;
   border-left: 2px solid #99a7ee;
+}
+
+.pointing-to-signin {
 }
 
 .sidebar-section-head {

@@ -25,7 +25,11 @@ class Api::SongsController < ApplicationController
 
   def update
     @song = Song.find_by(params[:id])
+    # @artist = @song.artist
+    # @album = @song.album
     if @song.update_attributes(song_params)
+      # @artist.update_attributes(artist_params)
+      # @album.update_attributes(album_params)
       render :show
     else
       render json: @song.errors.full_messages, status: :unprocessable_entity

@@ -10,10 +10,12 @@ import { fetchArtist } from '../../../actions/artist_actions';
 const msp = (state, ownProps) => {
   const song = state.entities.songs[ownProps.match.params.songId] || { };
   const currentUser = state.entities.users[state.session.id] || { };
+  const annotations = Object.values(state.entities.annotations);
   return ({
     id: ownProps.match.params.songId,
     song,
-    currentUser
+    currentUser,
+    annotations
   });
 };
 

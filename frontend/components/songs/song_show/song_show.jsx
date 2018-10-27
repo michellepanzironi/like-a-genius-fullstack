@@ -4,12 +4,14 @@ import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import ArtistBar from '../../artists/artist_bar';
 import AnnotationFormContainer from '../../annotations/annotation_form/ann_form_container';
-
+import Emoji from '../../emoji';
+import Parser from 'html-react-parser';
 
 class SongShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = { selection: null };
+    this.styleAnnotations = this.styleAnnotations.bind(this);
   }
 
   componentWillMount() {
@@ -34,14 +36,34 @@ class SongShow extends React.Component {
     this.setState({ selection: currentSelection });
   }
 
+  styleAnnotations(annArr, lyrics) {
+    let lyricsDiv = `<div id="lyrics">${lyrics}<div>`;
+
+    annArr.forEach((annotation, idx) => {
+      let sublyric = annotation.sublyric;
+      let sublyricSpan = `<span className="sublyric" key=${idx}>${sublyric}</span>`;
+      lyricsDiv = lyricsDiv.replace(sublyric, sublyricSpan);
+    });
+
+    let parsedSpan = Parser(lyricsDiv);
+    console.log(parsedSpan);
+    return parsedSpan;
+  }
+
 
   render() {
-    let lyrics = this.props.song.lyrics;
+    let lyricString = this.props.song.lyrics;
+    let annArr = this.props.annotations;
+    let styledLyrics = this.styleAnnotations(annArr, lyricString);
+    // console.log(styledLyrics);
+    // this.styleAnnotations(annArr);
+
+
 
     let formHeader;
     if (typeof this.props.currentUser.id === 'undefined') {
       formHeader = (
-        <h3  className="sidebar-section-head">PLEASE SIGN IN<br /> TO ADD ANNOTATION</h3>
+        <h3  className="sidebar-section-head">PLEASE SIGN IN TO  <Emoji symbol="◥" className="pointing-to-signin"/><br /> ADD AN ANNOTATION</h3>
       )
     } else {
       formHeader = (
@@ -74,9 +96,9 @@ class SongShow extends React.Component {
                     Edit Song
                   </button>
                 </Link>
-              <div id="lyrics">
-                { lyrics }
-              </div>
+
+              { styledLyrics }
+
             </div>
           </div>
           <div className="show-sidebar">

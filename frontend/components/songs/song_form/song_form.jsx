@@ -18,6 +18,7 @@ class SongForm extends React.Component {
     this.album = this.state.album;
     this.album_cover = this.state.album_cover
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.update = this.update.bind(this);
     this.updateFileArtist = this.updateFileArtist.bind(this);
     this.updateFileAlbum = this.updateFileAlbum.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
@@ -34,11 +35,11 @@ class SongForm extends React.Component {
     e.preventDefault();
     let formData = new FormData();
     formData.append("song[title]", this.state.title);
-    formData.append("artist[name]", this.state.artist);
-    formData.append("album[title]", this.state.album_title);
     formData.append("song[lyrics]", this.state.lyrics);
 
     if (this.props.formType === 'ADD SONG') {
+      formData.append("artist[name]", this.state.artist);
+      formData.append("album[title]", this.state.album_title);
       formData.append("artist[photo]", this.state.artist_imageFile);
       formData.append("album[photo]", this.state.album_imageFile);
     }
@@ -97,9 +98,34 @@ class SongForm extends React.Component {
   }
 
   render () {
+    let inputArtist;
+    let inputAlbum;
     let imageInputArtist;
     let imageInputAlbum;
     if (this.props.formType === 'ADD SONG') {
+      inputArtist = (
+        <div>
+          <label>
+            <input
+              type="text"
+              value={this.artist.name}
+              onChange={this.update('artist')}
+              placeholder="Artist" />
+          </label>
+        </div>
+      )
+      inputAlbum = (
+        <div>
+          <br />
+          <label>
+            <input
+              type="text"
+              value={this.album}
+              onChange={this.update('album_title')}
+              placeholder="Album title" />
+          </label>
+        </div>
+      )
       imageInputArtist = (
         <div className="form-field-container">
           <label>
@@ -114,7 +140,6 @@ class SongForm extends React.Component {
       );
       imageInputAlbum = (
         <div className="form-field-container">
-          <br/>
           <label>
             <div className="form-field-label">Album Art</div>
             <input
@@ -148,25 +173,9 @@ class SongForm extends React.Component {
                   onChange={this.update('title')}
                   placeholder="Title" />
               </label>
-              <br/>
-
-              <label>
-                <input
-                  type="text"
-                  value={this.artist.name}
-                  onChange={this.update('artist')}
-                  placeholder="Artist" />
-              </label>
+              { inputArtist }
               { imageInputArtist }
-              <br/>
-
-              <label>
-                <input
-                  type="text"
-                  value={this.album}
-                  onChange={this.update('album_title')}
-                  placeholder="Album title" />
-              </label>
+              { inputAlbum }
               { imageInputAlbum }
               <br/>
 
