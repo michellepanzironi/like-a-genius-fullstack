@@ -99,7 +99,7 @@ class SongShow extends React.Component {
     }
 
     if (this.state.annotationOpen) {
-      let ann = this.props.annotations[this.state.showingAnnotationId];
+      let ann = this.props.annotations[this.state.showingAnnotationId] || {};
 
       annotationForm = (
         <div>
@@ -107,6 +107,23 @@ class SongShow extends React.Component {
         </div>
       )
     }
+
+    let editButton = (
+      <Link to={`/songs/${this.props.song.id}/edit`}>
+        <button className="purple-button">
+          Edit Song
+        </button>
+      </Link>
+    )
+    // ^ add back in when form fixed
+
+    let deleteButton = (
+      <Link to={'/'}>
+        <button className="purple-button">
+          Delete
+        </button>
+      </Link>
+    )
 
     return (
       <div className="background">
@@ -116,11 +133,6 @@ class SongShow extends React.Component {
         <div className="foreground">
           <div id="show-lyrics">
             <div className="lyrics-container">
-                <Link to={`/songs/${this.props.song.id}/edit`}>
-                  <button className="purple-button">
-                    Edit Song
-                  </button>
-                </Link>
 
               { styledLyrics }
 
