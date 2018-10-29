@@ -1715,12 +1715,6 @@ var mdp = function mdp(dispatch) {
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["closeModal"])());
     },
-    loginGuest: function loginGuest() {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["login"])({
-        username: 'guest',
-        password: 'guest123'
-      }));
-    },
     clearErrors: function clearErrors(clear) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["receiveErrors"])(clear));
     }
@@ -1782,7 +1776,7 @@ function (_React$Component) {
       password: ''
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.handleGuest = _this.handleGuest.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.loginGuest = _this.loginGuest.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -1792,18 +1786,16 @@ function (_React$Component) {
       this.clearErrors();
     }
   }, {
+    key: "clearErrors",
+    value: function clearErrors() {
+      this.props.clearErrors([]);
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
       this.props.action(user).then(this.props.closeModal);
-    }
-  }, {
-    key: "handleGuest",
-    value: function handleGuest(e) {
-      e.preventDefault();
-      var user = Object.assign({}, this.state);
-      this.props.processForm(user).then(this.props.closeModal);
     }
   }, {
     key: "update",
@@ -1827,9 +1819,12 @@ function (_React$Component) {
       }));
     }
   }, {
-    key: "clearErrors",
-    value: function clearErrors() {
-      this.props.clearErrors([]);
+    key: "loginGuest",
+    value: function loginGuest() {
+      this.setState({
+        username: 'katya',
+        password: 'yourdad'
+      });
     }
   }, {
     key: "render",
@@ -1863,9 +1858,12 @@ function (_React$Component) {
         value: this.state.password,
         placeholder: "Password",
         className: "session-input"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleSubmit
       }, this.props.buttonText), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.loginGuest,
+        className: "login-guest"
+      }, "GUEST")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "other-form-link",
         onClick: this.props.openModal
       }, this.props.otherFormText)));
@@ -2242,15 +2240,17 @@ function (_React$Component) {
     _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.fileReaderLoadedArtist = _this.fileReaderLoadedArtist.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.fileReaderLoadedAlbum = _this.fileReaderLoadedAlbum.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.clearErrors = _this.clearErrors.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
   _createClass(SongForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.clearErrors();
+      this.state.errors = null;
     }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {}
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
@@ -2338,13 +2338,6 @@ function (_React$Component) {
           }, error);
         }));
       }
-    }
-  }, {
-    key: "clearErrors",
-    value: function clearErrors() {
-      this.setState({
-        errors: []
-      });
     }
   }, {
     key: "render",

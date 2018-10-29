@@ -87,6 +87,10 @@ button {
   font-size: 1rem;
 }
 
+.login-guest {
+  margin-left: 10px;
+}
+
 .modal span {
   font-size: 19px;
 }

@@ -24,11 +24,14 @@ class SongForm extends React.Component {
     this.renderErrors = this.renderErrors.bind(this);
     this.fileReaderLoadedArtist = this.fileReaderLoadedArtist.bind(this);
     this.fileReaderLoadedAlbum = this.fileReaderLoadedAlbum.bind(this);
-    this.clearErrors = this.clearErrors.bind(this);
   }
 
   componentDidMount() {
-    this.clearErrors();
+
+    this.state.errors = null;
+  }
+
+  componentWillUnmount() {
   }
 
   handleSubmit(e) {
@@ -91,10 +94,6 @@ class SongForm extends React.Component {
         </ul>
       );
     }
-  }
-
-  clearErrors() {
-    this.setState({ errors: [] })
   }
 
   render () {

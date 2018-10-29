@@ -15,7 +15,6 @@ const mdp = dispatch => ({
   action: user => dispatch(login(user)),
   openModal: () => dispatch(openModal('SIGN UP')),
   closeModal: () => dispatch(closeModal()),
-  loginGuest: () => dispatch(login({ username: 'guest', password: 'guest123' })),
   clearErrors: (clear) => dispatch(receiveErrors(clear))
 });
 

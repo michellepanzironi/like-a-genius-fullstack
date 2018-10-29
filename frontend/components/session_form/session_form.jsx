@@ -6,23 +6,21 @@ class SessionForm extends React.Component {
     super(props);
     this.state = { username: '', password: '' };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleGuest = this.handleGuest.bind(this);
+    this.loginGuest = this.loginGuest.bind(this);
   }
 
   componentWillUnmount() {
     this.clearErrors();
   }
 
+  clearErrors() {
+    this.props.clearErrors([]);
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
     this.props.action(user).then(this.props.closeModal);
-  }
-
-  handleGuest(e) {
-    e.preventDefault();
-    const user = Object.assign({}, this.state);
-    this.props.processForm(user).then(this.props.closeModal);
   }
 
   update(field) {
@@ -45,8 +43,8 @@ class SessionForm extends React.Component {
     );
   }
 
-  clearErrors() {
-    this.props.clearErrors([]);
+  loginGuest() {
+    this.setState({ username: 'katya', password: 'yourdad' });
   }
 
   render () {
@@ -82,9 +80,16 @@ class SessionForm extends React.Component {
             placeholder="Password"
             className="session-input" >
           </input>
-          <button onClick={this.handleSubmit}>
-            {this.props.buttonText}
-          </button>
+          <div>
+            <button onClick={this.handleSubmit}>
+              {this.props.buttonText}
+            </button>
+            <button
+              onClick={this.loginGuest}
+              className="login-guest" >
+              GUEST
+            </button>
+          </div>
           <button
             className="other-form-link"
             onClick={this.props.openModal}>
