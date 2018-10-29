@@ -14,6 +14,13 @@ import CreateSongFormContainer from './songs/song_form/create_song_form_containe
 import ArtistIndexContainer from './artists/artist_index/artist_index_container';
 import ArtistShowContainer from './artists/artist_show/artist_show_container';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGhost, faStar } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faGhost, faStar);
+
+
 const App = () => (
   <div className="app-container">
     <header>

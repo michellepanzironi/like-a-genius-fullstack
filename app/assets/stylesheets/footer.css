@@ -4,6 +4,19 @@
   width: 100%;
 }
 
+.footer-middle {
+  justify-content: space-around;
+  padding: 2px;
+}
+
+.footer-middle-item {
+  margin: 5px;
+  /* border: .15rem solid #ffff64;
+  padding-top: 20px;
+  padding-left: 15px; */
+  align-content: center;
+}
+
 @media only screen and (min-width: 300px) {
   .footer-left {
     display: flex;
