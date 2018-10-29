@@ -2130,12 +2130,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchSong(this.props.match.params.songId);
-    } // componentWillReceiveProps(nextProps) {
-    //   if (this.props.song.id !== nextProps.match.params.songId) {
-    //     this.props.fetchSong(nextProps.match.params.songId);
-    //   }
-    // }
-
+    }
   }, {
     key: "clearErrors",
     value: function clearErrors() {
@@ -2745,12 +2740,23 @@ function (_React$Component) {
       }
 
       if (this.state.annotationOpen) {
-        var ann = this.props.annotations[this.state.showingAnnotationId];
+        var ann = this.props.annotations[this.state.showingAnnotationId] || {};
         annotationForm = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_annotations_annotation_show_ann_show__WEBPACK_IMPORTED_MODULE_8__["default"], {
           ann: ann
         }));
       }
 
+      var editButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        to: "/songs/".concat(this.props.song.id, "/edit")
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "purple-button"
+      }, "Edit Song")); // ^ add back in when form fixed
+
+      var deleteButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        to: '/'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "purple-button"
+      }, "Delete"));
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_artists_artist_bar__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -2762,11 +2768,7 @@ function (_React$Component) {
         id: "show-lyrics"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "lyrics-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/songs/".concat(this.props.song.id, "/edit")
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "purple-button"
-      }, "Edit Song")), styledLyrics)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, styledLyrics)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-sidebar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "annotation-section"
