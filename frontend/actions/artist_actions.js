@@ -3,6 +3,7 @@ import * as ArtistApiUtil from '../util/artist_api_util';
 export const RECEIVE_ALL_ARTISTS = 'RECEIVE_ALL_ARTISTS';
 export const RECEIVE_ARTIST = 'RECEIVE_ARTIST';
 export const RECEIVE_ARTIST_ERRORS = 'RECEIVE_ARTIST_ERRORS';
+export const RECEIVE_NEWEST_ARTISTS = 'RECEIVE_NEWEST_ARTISTS';
 
 export const receiveAllArtists = artists => {
   return {
@@ -19,6 +20,13 @@ export const receiveArtist = ({ artist, songs, albums }) => {
     songs,
     albums
   };
+};
+
+export const receiveNewestArtists = artists => {
+  return ({
+    type: RECEIVE_NEWEST_ARTISTS,
+    artists
+  });
 };
 
 export const receiveArtistErrors = errors => {
@@ -47,6 +55,12 @@ export const fetchArtist = id => dispatch => {
     errors => {
       return dispatch(receiveArtistErrors(errors.responseJSON));
     }
+  );
+};
+
+export const fetchNewestArtists = data => dispatch => {
+  return ArtistApiUtil.fetchNewestArtists(data).then(
+    artists => dispatch(receiveNewestArtists(artists))
   );
 };
 

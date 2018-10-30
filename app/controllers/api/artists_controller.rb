@@ -12,6 +12,11 @@ class Api::ArtistsController < ApplicationController
     render :show
   end
 
+  def newest
+    @artists = Artist.last(4)
+    render :newest
+  end
+
   def create
     @artist = Artist.find_or_create_by(artist_params)
     @artist.update(artist_photo_params)

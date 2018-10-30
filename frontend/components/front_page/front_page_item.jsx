@@ -1,25 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const FrontPageItem = ownProps => {
-  let index = ownProps.index;
-  let songId = ownProps.song.id;
-  let title = ownProps.song.title;
-  let artist = ownProps.song.artist;
-
+const FrontPageItem = ({ song }) => {
   return (
-    <div classname="front-page-list-item">
-      <Link to={`songs/${songId}`}>
-        <button>
-          <span classname="front-page-list-index">{index}</span>
-          <div>
-            <span classname="front-page-list-title">{title}</span>
+      <Link to={`/songs/${song.id}`}>
+        <li className="front-page index-item">
+          <img
+            src={`${song.album_cover}`}
+            className="index-item-thumb" />
+          <div className="index-item-left">
+            <span className="index-item-main">{song.title}</span>
             <br />
-            <span classname="front-page-list-artist">{artist}</span>
+            <span className="index-item-sub">
+              Artist | Album
+            </span>
           </div>
-        </button>
+        </li>
       </Link>
-    </div>
   );
 };
 

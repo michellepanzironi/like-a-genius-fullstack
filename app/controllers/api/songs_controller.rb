@@ -13,13 +13,13 @@ class Api::SongsController < ApplicationController
   end
 
   def newest
-    @songs = Song.last(2)
+    @songs = Song.last(10)
     render :newest
   end
 
   def random
     random_songs = Song.all
-    @songs = random_songs[0...-2].sample(3)
+    @songs = random_songs[0...-10].sample(1)
     render :random
   end
 

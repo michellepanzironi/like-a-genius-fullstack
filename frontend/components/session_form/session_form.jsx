@@ -49,8 +49,16 @@ class SessionForm extends React.Component {
 
   render () {
     let bottomFormLink;
+    let guestLoginButton;
     if (this.props.buttonText === 'SIGN IN') {
       bottomFormLink = <Link to=''>CREATE AN ACCOUNT</Link>
+      guestLoginButton = (
+        <button
+          onClick={this.loginGuest}
+          className="login-guest" >
+          GUEST
+        </button>
+      )
     }
 
     return (
@@ -84,11 +92,7 @@ class SessionForm extends React.Component {
             <button onClick={this.handleSubmit}>
               {this.props.buttonText}
             </button>
-            <button
-              onClick={this.loginGuest}
-              className="login-guest" >
-              GUEST
-            </button>
+            {guestLoginButton}
           </div>
           <button
             className="other-form-link"

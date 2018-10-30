@@ -6,6 +6,7 @@ import SongsReducer from './songs_reducer';
 import NewSongsReducer from './new_songs_reducer';
 import RandomSongsReducer from './random_songs_reducer';
 import AnnotationsReducer from './annotations_reducer';
+import NewArtistsReducer from './new_artists_reducer';
 
 const EntitiesReducer = combineReducers({
   users: UsersReducer,
@@ -13,6 +14,7 @@ const EntitiesReducer = combineReducers({
   songs: SongsReducer,
   newestSongs: NewSongsReducer,
   randomSongs: RandomSongsReducer,
+  newestArtists: NewArtistsReducer,
   annotations: AnnotationsReducer
 });
 

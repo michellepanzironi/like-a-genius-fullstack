@@ -2,6 +2,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  justify-content: space-around;
 }
 
 .footer-middle {
@@ -79,7 +80,7 @@
   align-items: center;
 }
 
-.footer Link:hover {
+.footer-middle Link:hover {
   color: #99a4ee;
 }
 

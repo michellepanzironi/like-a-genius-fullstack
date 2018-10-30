@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     get 'songs/newest', to: 'songs#newest'
     get 'songs/random', to: 'songs#random'
+    get 'artists/newest', to: 'artists#newest'
     resources :users, only: [:create]
     resource :session, only: [:show, :create, :destroy]
     resources :songs, only: [:index, :show, :create, :update] do

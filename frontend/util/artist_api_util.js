@@ -5,6 +5,14 @@ export const fetchArtists = () => {
   });
 };
 
+export const fetchNewestArtists = data => {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/artists/newest',
+    data: { data }
+  });
+};
+
 export const fetchArtist = id => {
   return $.ajax({
     method: 'GET',

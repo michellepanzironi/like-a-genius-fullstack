@@ -8,72 +8,77 @@ class FrontPage extends React.Component {
     super(props);
     if(isEmpty(this.props.newestSongs)) this.props.fetchNewestSongs();
     if(isEmpty(this.props.randomSongs)) this.props.fetchRandomSongs();
+    if(isEmpty(this.props.newestArtists)) this.props.fetchNewestArtists();
   }
 
   componentDidMount() {
     this.props.fetchNewestSongs();
     this.props.fetchRandomSongs();
+    this.props.fetchNewestArtists();
   }
 
   render() {
-    const randomSongFeatures = this.props.randomSongs.map((song, idx) => {
+    const randomSongFeature = this.props.randomSongs.map((song, idx) => {
       return (
-        <div className={`front-page-feature-${idx}`}
+        <div className="front-page random-song-feature"
           key={`${idx}`}>
           <Link to={`/songs/${song.id}`}>
-            <img className="feature-song-image" src={ song.album_cover } />
-            <div className="feature-song-text">
-                <h2 className="feature-song-title">{song.title}</h2>
-                <h3 className="feature-song-artist">{song.artist_name}</h3>
+            <img className="front-page random-song-image" src={ song.album_cover } />
+            <div className="random-song feature-text">
+                <h2 className="random-song-title">{song.title}</h2>
+                <h3 className="random-song-artist">{song.artist_name}</h3>
             </div>
           </Link>
         </div>
       );
     });
 
-    const newSongList = this.props.newestSongs.map((song, idx) => {
+    const newArtistFeatures = this.props.newestArtists.map((artist, idx) => {
       return (
-        <li
-          className="front-page-featured-item"
-          key={`front-page-featured-item-${idx}`}>
-          <FrontPageItem
-            key={`new-song-item-${idx}`}
-            index={parseInt(idx)+1}
-            songInfo = { this.props.newestSongs[idx] } />
-          <hr
-            className="new-song-list-line"
-            key={`front-page-line-${idx}`} />
-        </li>
-      );
-    });
-
-    const tempSongList = this.props.newestSongs.map((song, idx) => {
-      return (
-        <div className="front-page-other-rando" key={`${idx}`}>
-          <Link to={`/songs/${song.id}`}>
-            <img className="feature-song-image" src={ song.album_cover } />
-            <div className="feature-song-text">
-              <h3 > NEW </h3>
-              <h2 className="feature-song-title">{song.title}</h2>
-              <h3 className="feature-song-artist">{song.artist_name}</h3>
+        <div className="front-page new-artist-item" key={`${idx}`}>
+          <Link to={`/artists/${artist.id}`}>
+            <img className="front-page feature-image" src={ artist.photo } />
+            <div className="front-page feature-text">
+              <h2>{artist.name}</h2>
             </div>
           </Link>
         </div>
       )
     })
 
+    const newSongsList = this.props.newestSongs.map((song, idx) => {
+      return (
+        <FrontPageItem
+          key={idx}
+          song = { this.props.newestSongs[idx] } />
+      );
+    });
+
     return (
       <div>
         <div className="front-page-container">
+
           <section className="front-page-section">
 
+            <div className="front-page above-thumbnails">
+              <h2 className="random-song-header section-header">HERE'S A RANDOM SONG</h2>
+              <h2 className="new-artists-header section-header">NEW ARTISTS</h2>
+            </div>
+
             <div className="front-page-above-fold">
-              {randomSongFeatures}
-              <div className="front-page-other-holder">
-                {tempSongList}
+              {randomSongFeature}
+              <div className="front-page new-artists-section">
+                {newArtistFeatures}
               </div>
             </div>
           </section>
+
+          <div className="front-page new-songs">
+            <h2 className="new-songs section-header">NEWEST SONGS</h2>
+            <ul className="front-page index-list">
+              {newSongsList}
+            </ul>
+          </div>
         </div>
       </div>
     );

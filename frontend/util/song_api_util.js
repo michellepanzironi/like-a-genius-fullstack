@@ -52,3 +52,11 @@ export const deleteSong = id => {
     url: `/api/songs/${id}`
   });
 };
+
+// export const searchSongs = search => {
+//   return $.ajax({
+//     method: 'GET',
+//     url: '/api/songs',
+//
+//   })
+// }
