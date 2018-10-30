@@ -19,7 +19,7 @@ class Api::SongsController < ApplicationController
 
   def random
     random_songs = Song.all
-    @songs = random_songs[0...-10].sample(1)
+    @songs = random_songs[0..-10].sample(1)
     render :random
   end
 
