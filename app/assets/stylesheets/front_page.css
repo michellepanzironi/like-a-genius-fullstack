@@ -5,7 +5,7 @@
 }
 
 .section-header {
-  margin: 20px 5px;
+  margin: 15px 5px;
   color: #99a7ee;
   border-bottom: 5px solid #99a7ee;
 }
@@ -43,7 +43,7 @@
 }
 
 .random-song.feature-text {
-  width: 600px;
+  width: 598px;
   top: -325px;
 }
 
@@ -52,8 +52,8 @@
 }
 
 .random-song-image {
-  width: 600px;
-  height: 600px;
+  width: 598px;
+  height: 598px;
   object-fit: cover;
   opacity: 0.9;
 }
@@ -75,7 +75,8 @@
   height: 600px;
   width: 600px;
   justify-content: space-evenly;
-  margin: 0 5px;
+  margin: 0 7px;
+  overflow: hidden;
 }
 
 .new-artist-item {

@@ -38,11 +38,14 @@ export const createSong = formData => {
   });
 };
 
-export const updateSong = song => {
+export const updateSong = formData => {
+  debugger
   return $.ajax({
     method: 'PATCH',
-    url: `/api/songs/${song.id}`,
-    data: { song }
+    url: `/api/songs/${formData.get("song[id]")}`,
+    data: formData,
+    contentType: false,
+    processData: false
   });
 };
 

@@ -11,7 +11,9 @@ class Api::AnnotationsController < ApplicationController
     @user = User.find_by(user_params)
     @annotation.song = @song
     @annotation.author = @user
-    unless @annotation.save
+    if @annotation.save
+      # render "api/songs/show"
+    else
       render json: @annotation.errors.full_messages, status: :unprocessable_entity
     end
   end

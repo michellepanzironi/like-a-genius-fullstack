@@ -24,7 +24,7 @@ class Api::SongsController < ApplicationController
   end
 
   def update
-    @song = Song.find_by(params[:id])
+    @song = Song.find_by(id: params[:id])
     # @artist = @song.artist
     # @album = @song.album
     if @song.update_attributes(song_params)

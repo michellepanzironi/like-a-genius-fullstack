@@ -472,9 +472,9 @@ var createSong = function createSong(id) {
     });
   };
 };
-var updateSong = function updateSong(id) {
+var updateSong = function updateSong(formData) {
   return function (dispatch) {
-    return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__["updateSong"](id).then(function (song) {
+    return _util_song_api_util__WEBPACK_IMPORTED_MODULE_0__["updateSong"](formData).then(function (song) {
       return dispatch(receiveSong(song));
     }, function (errors) {
       return dispatch(receiveSongErrors(errors.responseJSON));
@@ -2295,6 +2295,8 @@ function (_React$Component) {
         formData.append("album[title]", this.state.album_title);
         formData.append("artist[photo]", this.state.artist_imageFile);
         formData.append("album[photo]", this.state.album_imageFile);
+      } else {
+        formData.append("song[id]", this.state.id);
       }
 
       this.props.action(formData).then(function (res) {
@@ -2801,7 +2803,7 @@ function (_React$Component) {
         className: "foreground"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "show-lyrics"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, editButton, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "lyrics-container"
       }, styledLyrics)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-sidebar"
@@ -3702,13 +3704,14 @@ var createSong = function createSong(formData) {
     processData: false
   });
 };
-var updateSong = function updateSong(song) {
+var updateSong = function updateSong(formData) {
+  debugger;
   return $.ajax({
     method: 'PATCH',
-    url: "/api/songs/".concat(song.id),
-    data: {
-      song: song
-    }
+    url: "/api/songs/".concat(formData.get("song[id]")),
+    data: formData,
+    contentType: false,
+    processData: false
   });
 };
 var deleteSong = function deleteSong(id) {

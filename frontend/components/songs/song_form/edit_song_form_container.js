@@ -36,7 +36,7 @@ class EditSongFormContainer extends React.Component {
   componentDidMount() {
     this.props.fetchSong(this.props.match.params.songId);
   }
-  
+
   clearErrors() {
     this.setState({ errors: [] });
   }

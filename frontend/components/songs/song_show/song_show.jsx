@@ -132,6 +132,7 @@ class SongShow extends React.Component {
           artist={this.props.song.artist} />
         <div className="foreground">
           <div id="show-lyrics">
+            {editButton}
             <div className="lyrics-container">
 
               { styledLyrics }

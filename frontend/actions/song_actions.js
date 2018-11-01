@@ -90,8 +90,8 @@ export const createSong = id => dispatch => {
   );
 };
 
-export const updateSong = id => dispatch => {
-  return SongApiUtil.updateSong(id).then(
+export const updateSong = formData => dispatch => {
+  return SongApiUtil.updateSong(formData).then(
     song => dispatch(receiveSong(song)),
     errors => dispatch(receiveSongErrors(errors.responseJSON))
   );

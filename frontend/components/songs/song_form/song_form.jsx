@@ -45,8 +45,9 @@ class SongForm extends React.Component {
       formData.append("album[title]", this.state.album_title);
       formData.append("artist[photo]", this.state.artist_imageFile);
       formData.append("album[photo]", this.state.album_imageFile);
+    } else {
+      formData.append("song[id]", this.state.id);
     }
-
     this.props.action(formData).then(res => {
       this.props.history.push(`/songs/${res.song.id}`);
     });
