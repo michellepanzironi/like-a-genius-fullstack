@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { createSong, receiveSongErrors } from '../../../actions/song_actions';
 import SongForm from './song_form';
+import { withRouter } from 'react-router';
 
 const msp = state => {
   return ({
@@ -17,4 +18,4 @@ const mdp = dispatch => {
   });
 };
 
-export default connect(msp, mdp)(SongForm);
+export default withRouter(connect(msp, mdp)(SongForm));

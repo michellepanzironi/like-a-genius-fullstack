@@ -39,7 +39,6 @@ export const createSong = formData => {
 };
 
 export const updateSong = formData => {
-  debugger
   return $.ajax({
     method: 'PATCH',
     url: `/api/songs/${formData.get("song[id]")}`,

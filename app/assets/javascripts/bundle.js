@@ -2058,6 +2058,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/song_actions */ "./frontend/actions/song_actions.js");
 /* harmony import */ var _song_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./song_form */ "./frontend/components/songs/song_form/song_form.jsx");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
+
 
 
 
@@ -2081,7 +2083,7 @@ var mdp = function mdp(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_song_form__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_song_form__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 
@@ -2099,6 +2101,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _song_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./song_form */ "./frontend/components/songs/song_form/song_form.jsx");
 /* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/song_actions */ "./frontend/actions/song_actions.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2116,6 +2119,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -2186,13 +2190,15 @@ function (_React$Component) {
           formType = _this$props.formType,
           song = _this$props.song,
           artist = _this$props.artist,
-          album = _this$props.album;
+          album = _this$props.album,
+          history = _this$props.history;
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_song_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
         action: action,
         formType: formType,
         song: song,
         artist: artist,
-        album: album
+        album: album,
+        history: history
       });
     }
   }]);
@@ -2200,7 +2206,7 @@ function (_React$Component) {
   return EditSongFormContainer;
 }(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(EditSongFormContainer));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(EditSongFormContainer)));
 
 /***/ }),
 
@@ -3356,7 +3362,6 @@ var songErrorsReducer = function songErrorsReducer() {
     case _actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_SONG"]:
     case _actions_song_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALL_SONGS"]:
       return _nullErrors;
-    //clears errors
 
     default:
       return state;
@@ -3705,7 +3710,6 @@ var createSong = function createSong(formData) {
   });
 };
 var updateSong = function updateSong(formData) {
-  debugger;
   return $.ajax({
     method: 'PATCH',
     url: "/api/songs/".concat(formData.get("song[id]")),

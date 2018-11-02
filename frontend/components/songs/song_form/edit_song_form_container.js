@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import SongForm from './song_form';
 import { fetchSong, updateSong, receiveSongErrors } from '../../../actions/song_actions';
+import { withRouter } from 'react-router';
 
 const msp = (state, ownProps) => {
   const emptySong = {
@@ -42,17 +43,18 @@ class EditSongFormContainer extends React.Component {
   }
 
   render() {
-    let { action, formType, song, artist, album } = this.props;
+    let { action, formType, song, artist, album, history } = this.props;
     return (
       <SongForm
         action={action}
         formType={formType}
         song={song}
         artist={artist}
-        album={album} />
+        album={album}
+        history={history} />
     );
   }
 }
 
 
-export default connect(msp, mdp)(EditSongFormContainer);
+export default withRouter(connect(msp, mdp)(EditSongFormContainer));

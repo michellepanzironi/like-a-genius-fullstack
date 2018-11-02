@@ -16,7 +16,7 @@ class SongForm extends React.Component {
     this.state = this.props.song || emptySong;
     this.artist = this.state.artist;
     this.album = this.state.album;
-    this.album_cover = this.state.album_cover
+    this.album_cover = this.state.album_cover;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.updateFileArtist = this.updateFileArtist.bind(this);
@@ -153,6 +153,7 @@ class SongForm extends React.Component {
 
     let imageClassArtist = this.state.artist_imageUrl === '' ? 'hidden' : 'artist-form-image';
     let imageClassAlbum = this.state.album_imageUrl === '' ? 'hidden' : 'album-form-image';
+
     return (
       <div className="background">
         <div className="foreground">

@@ -14,7 +14,7 @@ const songErrorsReducer = (state = [], action) => {
       return merge([], state, action.errors);
       case RECEIVE_SONG:
       case RECEIVE_ALL_SONGS:
-      return _nullErrors; //clears errors
+      return _nullErrors;
     default:
       return state;
   }
