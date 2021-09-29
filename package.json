@@ -11,7 +11,7 @@
     "babel-loader": "^8.0.2",
     "font-awesome": "^4.7.0",
     "html-react-parser": "^0.4.7",
-    "i": "^0.3.6",
+    "i": "^0.3.7",
     "lodash": "^4.17.10",
     "npm": "^6.4.1",
     "react": "^16.5.0",
