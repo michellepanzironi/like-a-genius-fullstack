@@ -2,7 +2,7 @@
   "name": "fullstack",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.0.1",
+    "@babel/core": "^7.20.7",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.7",
